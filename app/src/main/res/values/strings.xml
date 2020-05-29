@@ -1,0 +1,78 @@
+<resources>
+    <string name="app_name">Plan de Natación</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+
+    <string name="home_second">Home Second</string>
+
+    <string name="add_MacroCiclo">Añadir macro ciclo para competencia fundamental</string>
+    <string name="view_MacroCiclo">Visualizar macro ciclo para competencia fundamental</string>
+    <string name="edit_MacroCiclo">Modificar macro ciclo para competencia fundamental</string>
+    <string name="view_stadistics">Visualizar estadisticas</string>
+
+    <string name="menu_controlP">Control de pruebas</string>
+    <string name="menu_añadirP">Añadir pruebas</string>
+    <string name="menu_cancelarT">Cancelar tiempo</string>
+    <string name="menu_mostrarP">Mostrar pruebas</string>
+    <string name="menu_eliminarMC">Eliminar macro ciclo</string>
+    <string name="menu_info">Información legal</string>
+    <string name="menu_cerrarSesion">Cerrar sesión</string>
+
+    <string name="question_controlpruebas">El día de hoy desea realizar un control de:</string>
+    <string name="opcion1_controlpruebas">Control de test</string>
+    <string name="opcion2_controlpruebas">Control de competencias</string>
+
+    <string name="opcion0_anhadir">Añadir macro ciclo</string>
+    <string name="opcion1_titlecalendaranhadir">Introduzca los siguientes datos acerca de la competencia fundamental</string>
+    <string name="opcion2_nombre">Nombre</string>
+    <string name="opcion3_ingresa_nombre">Ingrese nombre de la Periodización</string>
+    <string name="opcion4_indique_fecha1">Indique el inicio del macro ciclo</string>
+    <string name="opcion5_fecha">DD/MM/AAAA</string>
+    <string name="opcion6_indique_fecha2">Indique el final del macro ciclo</string>
+    <string name="opcion7_Retroceder">Retroceder</string>
+    <string name="opcion8_Avanzar">Avanzar</string>
+
+    <string name="opcion0_anhadir_DA">DÍAS DE AGUA</string>
+    <string name="opcion1_title_hacer">Ahora, definamos días que haremos</string>
+    <string name="opcion2_resistencia">Resistencia</string>
+    <string name="opcion3_tecnica">Técnica</string>
+    <string name="opcion4_velocidad">Velocidad</string>
+
+    <string name="opcion0_anhadir_DT">DÍAS DE TIERRA</string>
+    <string name="opcion2_FC">Fuerza de construcción</string>
+    <string name="opcion3_FCon">Fuerza de conversión</string>
+    <string name="opcion4_Fmax">Fuerza máxima</string>
+    <string name="introDatos">Introduzca los siguientes datos acerca de la competencia fundamental</string>
+    <string name="label1_nombre">Nombre</string>
+    <string name="IntroNombre">Ingrese el nombre de la periodización</string>
+    <string name="Indique_el_inicio_del_macro_ciclo"></string>
+    <string name="title_activity_login">Sign in</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Ingresar</string>
+    <string name='action_register'>Registrarse</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">Welcome !</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be 5 characters</string>
+    <string name="login_failed">Login failed</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="volumen_agua">Volumen para días de agua (mts):</string>
+    <string name="ingresa_valor">Ingrese el valor aquí</string>
+    <string name="volumen_tierra">Volumen para días de tierra (mts):</string>
+
+    <string name="dia_agua_previa">Días de agua (Metros)</string>
+    <string name="dia_tierra_previa">Días de tierra (Metros)</string>
+    <string name="previous_visual">En resumen, el macro ciclo queda de la siguiente manera:</string>
+</resources>
