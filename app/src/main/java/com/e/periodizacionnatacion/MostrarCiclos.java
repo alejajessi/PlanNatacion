@@ -1,16 +1,20 @@
-package com.app;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
+package com.e.periodizacionnatacion;
 
 import android.os.Bundle;
+
+import androidx.fragment.app.Fragment;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.e.periodizacionnatacion.R;
 
-public class AddCycle_Fragment extends Fragment {
+/**
+ * A simple {@link Fragment} subclass.
+ * Use the {@link MostrarCiclos#newInstance} factory method to
+ * create an instance of this fragment.
+ */
+public class MostrarCiclos extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -20,7 +24,7 @@ public class AddCycle_Fragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public AddCycle_Fragment() {
+    public MostrarCiclos() {
         // Required empty public constructor
     }
 
@@ -30,11 +34,11 @@ public class AddCycle_Fragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment com.app.AddEarthCycle.
+     * @return A new instance of fragment MostrarCiclos.
      */
     // TODO: Rename and change types and number of parameters
-    public static AddCycle_Fragment newInstance(String param1, String param2) {
-        AddCycle_Fragment fragment = new AddCycle_Fragment();
+    public static MostrarCiclos newInstance(String param1, String param2) {
+        MostrarCiclos fragment = new MostrarCiclos();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -55,6 +59,6 @@ public class AddCycle_Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_cycle, container, false);
+        return inflater.inflate(R.layout.fragment_mostrar_ciclos, container, false);
     }
 }

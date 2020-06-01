@@ -15,6 +15,7 @@
             android:id="@+id/action_HomeFragment_to_HomeSecondFragment"
             app:destination="@id/nav_home_second" />
     </fragment>
+
     <fragment
         android:id="@+id/nav_home_second"
         android:name="com.e.periodizacionnatacion.ui.home.HomeSecondFragment"
@@ -28,17 +29,16 @@
             android:name="myArg"
             app:argType="string" />
     </fragment>
+    <fragment android:id="@+id/nav_addcyle"
+        android:name="com.app.AddCycle_Fragment"
+        android:label="@string/add_MacroCiclo"
+        tools:layout="@layout/fragment_add_cycle" />
 
-    <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.e.periodizacionnatacion.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+    <fragment android:id="@+id/nav_control"
+        android:name="com.app.AddCycle_Fragment"
+        android:label="@string/add_MacroCiclo"
+        tools:layout="@layout/fragment_add_cycle" />
 
-    <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.e.periodizacionnatacion.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+
 
 </navigation>

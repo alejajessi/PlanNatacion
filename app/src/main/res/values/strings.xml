@@ -75,4 +75,11 @@
     <string name="dia_agua_previa">Días de agua (Metros)</string>
     <string name="dia_tierra_previa">Días de tierra (Metros)</string>
     <string name="previous_visual">En resumen, el macro ciclo queda de la siguiente manera:</string>
+
+    <string name="acceso_google">Acceder con:</string>
+    <string name="terminos">Acepto los términos y condiciones</string>
+
+    <string name="seleccion_dia">Seleccione el día que desea consultar:</string>
+    <string name="definir_dia">Defina el día correspondiente</string>
+
 </resources>

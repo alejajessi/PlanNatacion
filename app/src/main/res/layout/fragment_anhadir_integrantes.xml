@@ -5,8 +5,8 @@
     android:id="@+id/calendarioanhadir"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@drawable/bg_color"
+    android:orientation="vertical"
     android:visibility="visible"
     tools:context=".ui.calendarioanhadir.CalendarioAnhadirFragment">
 
@@ -36,76 +36,22 @@
             android:src="@mipmap/logo_foreground" />
 
     </LinearLayout>
-    
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="horizontal"
+        android:layout_gravity="center">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:fontFamily="@font/bs_regular"
-            android:textSize="17dp"
-            android:layout_margin="20dp"
-            android:layout_marginTop="30dp"
-            android:text="@string/previous_visual"
-            android:textColor="@color/colorWhite" />
-        
-        <LinearLayout
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@color/colorSecond"
-            android:layout_gravity="center"
-            android:gravity="center">
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:fontFamily="@font/bs_regular"
-                android:textSize="15dp"
-                android:layout_margin="2dp"
-                android:text="@string/opcion0_anhadir_DT"
-                android:textColor="@color/colorWhite" />
-            <ListView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-            </ListView>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@color/colorSecond"
-            android:layout_gravity="center"
-            android:gravity="center">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:fontFamily="@font/bs_regular"
-                android:textSize="15dp"
-                android:layout_margin="2dp"
-                android:text="@string/opcion0_anhadir_DA"
-                android:textColor="@color/colorWhite" />
-            <ListView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-            </ListView>
-
-        </LinearLayout>
-
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableTop="@drawable/anhadir_foreground"/>
 
     </LinearLayout>
 
@@ -141,5 +87,6 @@
 
 
     </LinearLayout>
+
 
 </LinearLayout>

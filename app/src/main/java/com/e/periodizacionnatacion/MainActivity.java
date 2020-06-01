@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private ImageView imagenUsuario;
     private TextView nombreUsuario;
+    private TextView correoUsuario;
 
     private GoogleSignInClient clienteGoogle;
 
@@ -59,8 +60,7 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
-                .setDrawerLayout(drawer)
+                R.id.nav_control, R.id.nav_addcyle).setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
@@ -68,6 +68,8 @@ public class MainActivity extends AppCompatActivity {
 
         imagenUsuario = (ImageView) findViewById(R.id.ImagenUser);
         nombreUsuario = (TextView) findViewById(R.id.nombreUser);
+        correoUsuario = (TextView) findViewById(R.id.correoUser);
+
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -81,13 +83,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
-        updateUI(account);
+        //updateUI(account);
     }
 
     //Change UI according to user data.
     public void  updateUI(GoogleSignInAccount account){
         if (account != null){
             nombreUsuario.setText(account.getDisplayName());
+            correoUsuario.setText(account.getEmail());
             Glide.with(this).load(account.getPhotoUrl()).into(imagenUsuario);
         }else{
             cambioAlLog();
@@ -99,13 +102,6 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, Login.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
     }
 
     @Override
