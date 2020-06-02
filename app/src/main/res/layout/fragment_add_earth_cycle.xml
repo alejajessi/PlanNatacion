@@ -2,20 +2,21 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/calendarioanhadir"
+    android:id="@+id/addearthcycle"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_color"
     android:orientation="vertical"
     android:visibility="visible"
-    tools:context=".ui.calendarioanhadir.CalendarioAnhadirFragment">
+    tools:context="com.app.AddEarthCycle">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/text_title_calenanhadir"
+            android:id="@+id/tittle_earthcycle"
             android:layout_width="250dp"
             android:fontFamily="@font/bs_regular"
             android:layout_height="match_parent"
@@ -28,7 +29,7 @@
             android:textSize="27dp" />
 
         <ImageView
-            android:id="@+id/imgv_previa"
+            android:id="@+id/banner_earthcycle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
@@ -42,7 +43,6 @@
         android:layout_gravity="center"
         android:orientation="vertical">
 
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -50,6 +50,7 @@
             android:gravity="center"
             android:fontFamily="@font/bs_regular"
             android:textSize="17dp"
+            android:id="@+id/tx_enun1_earthcycle"
             android:layout_margin="20dp"
             android:layout_marginTop="30dp"
             android:text="@string/opcion0_anhadir_DT"
@@ -59,6 +60,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
+            android:id="@+id/tx_enun2_earthcycle"
             android:gravity="center"
             android:fontFamily="@font/bs_regular"
             android:textSize="17dp"
@@ -81,6 +83,7 @@
                 android:fontFamily="@font/bs_regular"
                 android:text="@string/opcion3_FCon"
                 android:textAllCaps="false"
+                android:id="@+id/fuer_conv_earthcycle"
                 android:background="@color/colorSecond"
                 android:textColor="@color/colorWhite"
                 android:textSize="17dp"/>
@@ -91,6 +94,7 @@
                 android:layout_marginTop="40dp"
                 android:fontFamily="@font/bs_regular"
                 android:text="@string/opcion2_FC"
+                android:id="@+id/fuer_const_earthcycle"
                 android:textAllCaps="false"
                 android:background="@color/colorSecond"
                 android:textColor="@color/colorWhite"
@@ -103,14 +107,12 @@
                 android:fontFamily="@font/bs_regular"
                 android:text="@string/opcion4_Fmax"
                 android:textAllCaps="false"
+                android:id="@+id/fuer_max_earthcycle"
                 android:background="@color/colorSecond"
                 android:textColor="@color/colorWhite"
                 android:textSize="17dp"/>
 
         </LinearLayout>
-
-
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -126,6 +128,7 @@
                 android:fontFamily="@font/bs_regular"
                 android:text="@string/opcion7_Retroceder"
                 android:textAllCaps="false"
+                android:id="@+id/retro_earthcycle"
                 android:background="@color/colorBanner"
                 android:textColor="@color/colorWhite"
                 android:textSize="17dp"/>
@@ -137,14 +140,13 @@
                 android:fontFamily="@font/bs_regular"
                 android:text="@string/opcion8_Avanzar"
                 android:textAllCaps="false"
+                android:id="@+id/avan_earthcycle"
                 android:layout_marginLeft="130dp"
                 android:textSize="17dp"
                 android:background="@color/colorBanner"
                 android:textColor="@color/colorWhite"/>
 
-
         </LinearLayout>
-
 
     </LinearLayout>
 

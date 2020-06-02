@@ -82,4 +82,26 @@
     <string name="seleccion_dia">Seleccione el día que desea consultar:</string>
     <string name="definir_dia">Defina el día correspondiente</string>
 
+    <string name="modificar_plan">Modificar plan de natación</string>
+    <string name="string_1_mes">Modificar porcentaje mes</string>
+    <string name="string_2_semana">Modificar porcentaje semana</string>
+    <string name="string_3_int">Modificar integrantes</string>
+
+    <string name="generar_estadisticas">Generar estadísticas</string>
+    <string name="enunciado_estadis">Defina que estadística desea generar</string>
+    <string name="esta_periodo">Estadísticas por periodo</string>
+    <string name="esta_mes">Estadísticas por mes</string>
+    <string name="esta_test">Estadísticas por test</string>
+    <string name="esta_comp">Estadística por competencia preparatoria</string>
+
+    <string name="mostrar_ciclo">Mostrar Macro Ciclo</string>
+    <string name="inicio">Inicio:</string>
+    <string name="nombre">Nombre:</string>
+    <string name="fin">Fin:</string>
+    <string name="info_DT">Información días tierra</string>
+    <string name="info_DA">Información días agua</string>
+    <string name="integra">Integrantes:</string>
+    <string name="opciones">Opciones</string>
+
+
 </resources>

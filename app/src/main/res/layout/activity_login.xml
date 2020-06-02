@@ -19,7 +19,7 @@
             android:layout_width="300dp"
             android:layout_marginTop="50dp"
             android:layout_gravity="center"
-            android:id="@+id/imgv_controlprueba"
+            android:id="@+id/imgv_bannerlogin"
             android:layout_height="300dp"
             android:src="@mipmap/logo_foreground"/>
 
@@ -54,6 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:id="@+id/cb_terminos"
             android:layout_marginTop="20dp"
             android:textColor="@color/colorBanner"
             android:fontFamily="@font/bs_regular"
