@@ -3,11 +3,15 @@ package com.e.periodizacionnatacion;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
+
+import com.e.periodizacionnatacion.Clases.Usuario;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -22,6 +26,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 public class Login extends AppCompatActivity {
@@ -30,6 +35,8 @@ public class Login extends AppCompatActivity {
 
     private GoogleSignInClient clienteGoogle;
     private FirebaseAuth fireAuth;
+    private Usuario usuario;
+    private Activity loginAct;
 
     private SignInButton signInButton;
 
@@ -44,6 +51,7 @@ public class Login extends AppCompatActivity {
         clienteGoogle = GoogleSignIn.getClient(this, gso);
 
         fireAuth = FirebaseAuth.getInstance();
+        loginAct = this;
 
         signInButton = findViewById(R.id.sesion_google);
         signInButton.setSize(SignInButton.SIZE_WIDE);
@@ -94,7 +102,7 @@ public class Login extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+       // super.onActivityResult(requestCode, resultCode, data);
         // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
             // The Task returned from this call is always completed, no need to attach
@@ -110,11 +118,12 @@ public class Login extends AppCompatActivity {
             // Signed in successfully, show authenticated UI.
             //updateUI(account);
             firebaseAuthWithGoogle(account);
+            Log.e(">>>>>>>>", account.getEmail());
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
-            //Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
-            //Log.w(TAG, "Google sign in failed", e);
+            Log.w(">>>>>>>>>>>>>>>>>>>", "signInResult:failed code=" + e.getStatusCode());
+            Log.w(">>>>>>>>>>>>>>>>>>>", "Google sign in failed", e);
             updateUI(null);
         }
     }
@@ -141,7 +150,15 @@ public class Login extends AppCompatActivity {
                                 if (isNew) {
 
                                     Log.e("GOOGLE AUTH", "I'm a new user.");
-                                    //GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount();
+                                    GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(loginAct);
+
+                                    String id = user.getUid();
+                                    String nombre = acct.getDisplayName();
+                                    String correo = acct.getEmail();
+                                    String foto = acct.getPhotoUrl()+"";
+
+                                    usuario = new Usuario(correo,foto,id,nombre);
+                                    FirebaseDatabase.getInstance().getReference().child("Usuario").child(id).setValue(usuario);
                                     updateUI(user);
 
                                 } else {
@@ -168,6 +185,7 @@ public class Login extends AppCompatActivity {
     public void cambioAlMain(){
         Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        //intent.putExtra("Usuario", usuario);
         startActivity(intent);
     }
 

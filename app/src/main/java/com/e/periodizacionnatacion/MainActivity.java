@@ -2,6 +2,7 @@ package com.e.periodizacionnatacion;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.widget.ImageView;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.e.periodizacionnatacion.Clases.Usuario;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -20,6 +22,13 @@ import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
@@ -37,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView nombreUsuario;
     private TextView correoUsuario;
 
-    private GoogleSignInClient clienteGoogle;
+    private Usuario usuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,37 +66,40 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        imagenUsuario = (ImageView) findViewById(R.id.ImagenUser);
-        nombreUsuario = (TextView) findViewById(R.id.nombreUser);
-        correoUsuario = (TextView) findViewById(R.id.correoUser);
+        imagenUsuario = (ImageView) navigationView.getHeaderView(0).findViewById(R.id.ImagenUser);
+        nombreUsuario = (TextView) navigationView.getHeaderView(0).findViewById(R.id.nombreUser);
+        correoUsuario = (TextView) navigationView.getHeaderView(0).findViewById(R.id.correoUser);
 
-
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build();
-        clienteGoogle = GoogleSignIn.getClient(this, gso);
-
+        //usuario =  (Usuario) getIntent().getSerializableExtra("Usuario");
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        updateUI(user);
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
-        //updateUI(account);
-    }
 
     //Change UI according to user data.
-    public void  updateUI(GoogleSignInAccount account){
-        if (account != null){
-            nombreUsuario.setText(account.getDisplayName());
-            correoUsuario.setText(account.getEmail());
-            Glide.with(this).load(account.getPhotoUrl()).into(imagenUsuario);
-        }else{
-            cambioAlLog();
-        }
+    public void  updateUI(FirebaseUser user){
+        Query query = FirebaseDatabase.getInstance().getReference().child("Usuario").child(user.getUid());
+
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                usuario = dataSnapshot.getValue(Usuario.class);
+                Log.e(">>>>>>", usuario.getNombre());
+                cambiarValorHeader();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
+    public void cambiarValorHeader(){
+        nombreUsuario.setText(usuario.getNombre());
+        correoUsuario.setText(usuario.getCorreo());
+        Glide.with(this).load(usuario.getFoto()).into(imagenUsuario);
+    }
 
     public void cambioAlLog(){
         Intent intent = new Intent(this, Login.class);
