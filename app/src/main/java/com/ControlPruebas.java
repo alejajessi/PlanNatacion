@@ -1,4 +1,4 @@
-package com.app;
+package com;
 
 import android.os.Bundle;
 
@@ -7,17 +7,15 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 
 import com.e.periodizacionnatacion.R;
 
-
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link AddVolumenCycle#newInstance} factory method to
+ * Use the {@link ControlPruebas#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AddVolumenCycle extends Fragment {
+public class ControlPruebas extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -26,9 +24,8 @@ public class AddVolumenCycle extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private EditText ed;
 
-    public AddVolumenCycle() {
+    public ControlPruebas() {
         // Required empty public constructor
     }
 
@@ -38,11 +35,11 @@ public class AddVolumenCycle extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment AddVolumenCycle.
+     * @return A new instance of fragment ControlPruebas.
      */
     // TODO: Rename and change types and number of parameters
-    public static AddVolumenCycle newInstance(String param1, String param2) {
-        AddVolumenCycle fragment = new AddVolumenCycle();
+    public static ControlPruebas newInstance(String param1, String param2) {
+        ControlPruebas fragment = new ControlPruebas();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -63,8 +60,6 @@ public class AddVolumenCycle extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
-
-        return inflater.inflate(R.layout.fragment_add_volumen_cycle, container, false);
+        return inflater.inflate(R.layout.fragment_control_pruebas, container, false);
     }
 }

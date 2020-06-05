@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/addearthcycle"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_color"
+    android:orientation="vertical"
+    android:visibility="visible"
+    tools:context=".SeleccionPrueba">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tittle_earthcycle"
+            android:layout_width="250dp"
+            android:fontFamily="@font/bs_regular"
+            android:layout_height="match_parent"
+            android:layout_gravity="left"
+            android:gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:text="@string/add_pruebas"
+            android:textColor="@color/colorWhite"
+            android:textSize="27dp" />
+
+        <ImageView
+            android:id="@+id/banner_earthcycle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:src="@mipmap/logo_foreground" />
+        
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:gravity="center">
+        
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="@string/seleccion_pruebas"
+            android:textColor="@color/colorWhite"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="17dp"
+            android:fontFamily="@font/bs_regular"
+            android:id="@+id/enun_pruebas"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:background="@color/colorSecond"
+            android:textSize="16dp"
+            android:text="@string/test"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhite"
+            android:fontFamily="@font/bs_regular"
+            android:id="@+id/sp_test"/>
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@color/colorSecond"
+            android:textSize="16dp"
+            android:text="@string/comp_prep"
+            android:layout_marginBottom="40dp"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhite"
+            android:fontFamily="@font/bs_regular"
+            android:id="@+id/sp_comp_prep"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="136dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:background="@color/colorBanner"
+            android:fontFamily="@font/bs_regular"
+            android:gravity="center"
+            android:text="@string/opcion7_Retroceder"
+            android:textAllCaps="false"
+            android:id="@+id/retro_addcycle"
+            android:textColor="@color/colorWhite"
+            android:layout_marginRight="10dp"
+            android:textSize="15dp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorBanner"
+            android:fontFamily="@font/bs_regular"
+            android:gravity="center"
+            android:id="@+id/avan_addcycle"
+            android:layout_marginLeft="10dp"
+            android:text="@string/opcion8_Avanzar"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhite"
+            android:textSize="15dp" />
+
+
+    </LinearLayout>
+</LinearLayout>

@@ -114,17 +114,23 @@
             android:orientation="vertical">
 
             <EditText
-                android:layout_width="170"
+                android:layout_width="170dp"
                 android:layout_height="wrap_content"
                 android:background="@color/colorWhite"
                 android:layout_margin="5dp"
+                android:id="@+id/ed_date1"
+                android:enabled="false"
                 android:layout_gravity="center"/>
 
             <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/colorBanner"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:id="@+id/btt_cal1_addcycle"
+                android:background="@mipmap/calendario"
+                android:layout_gravity="center"
+
                 />
+
         </LinearLayout>
         <TextView
             android:layout_width="match_parent"
@@ -141,19 +147,32 @@
             android:text="@string/opcion6_indique_fecha2"
             android:textColor="@color/colorWhite"/>
 
-        <Spinner
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="25dp"
-            android:id="@+id/spi_fin_addcycle"
+            android:layout_height="wrap_content"
+            android:background="@color/colorSecond"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:background="@color/colorSecond"
-            android:layout_gravity="center"
-            android:tag="Seleccionar día de inicio"
-            android:tooltipText="Seleccionar día de inicio"
-            android:outlineSpotShadowColor="@color/colorWhite"
-            android:outlineAmbientShadowColor="@color/colorWhite"
-            />
+            android:orientation="vertical">
+
+            <EditText
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:id="@+id/ed_date2"
+                android:layout_margin="5dp"
+                android:enabled="false"
+                android:layout_gravity="center"/>
+
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:id="@+id/calendar2_addcycle"
+                android:background="@mipmap/calendario"
+                android:layout_gravity="center"
+
+                />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -4,6 +4,7 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
+
         <item
             android:id="@+id/nav_addcyle"
             android:icon="@drawable/anhadir_foreground"
@@ -12,6 +13,40 @@
             android:id="@+id/nav_control_p"
             android:icon="@mipmap/control_prueba_foreground"
             android:title="@string/menu_controlP" />
+
+        <item
+            android:id="@+id/nav_addprueba"
+            android:icon="@drawable/anhadir_foreground"
+            android:title="@string/menu_añadirP"/>
+
+        <item
+            android:id="@+id/nav_controlpruebas"
+            android:icon="@mipmap/control_prueba_foreground"
+            android:title="@string/menu_controlP"/>
+
+        <item
+            android:id="@+id/nav_canceltiempo"
+            android:icon="@drawable/cancelar_foreground"
+            android:title="@string/menu_cancelarT"/>
+
+        <item
+            android:id="@+id/nav_mostrarpruebas"
+            android:icon="@mipmap/ver_foreground"
+            android:title="@string/menu_mostrarP"/>
+
+        <item
+            android:id="@+id/nav_deletecycle"
+            android:icon="@drawable/eliminar_foreground"
+            android:title="@string/menu_eliminarMC"/>
+
+        <item
+            android:id="@+id/nav_legalinfo"
+            android:icon="@drawable/info_foreground"
+            android:title="@string/menu_info"/>
+
+        <item
+            android:id="@+id/nav_logout"
+            android:title="@string/menu_cerrarSesion"/>
  <!---       <item
             android:id="@+id/nav_cancelar_t"
             android:icon="@drawable/cancelar_foreground"

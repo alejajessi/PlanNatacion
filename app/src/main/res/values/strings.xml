@@ -103,5 +103,17 @@
     <string name="integra">Integrantes:</string>
     <string name="opciones">Opciones</string>
 
+    <string name="add_pruebas">Añadir pruebas</string>
+    <string name="seleccion_pruebas">Seleccione la prueba que desea realizar:</string>
+    <string name="test">Test</string>
+    <string name="comp_prep">Competencia Preparatoria</string>
+
+    <string name="nom_test">Ingrese el nombre del test</string>
+    <string name="enun_fecha_test">Indiquela fecha en que se realizará el test:</string>
+    <string name="nom_comp">Ingrese el nombre de la competencia preparatoria:</string>
+    <string name="enun_fecha_comp">Indiquela fecha en que se realizará la competencia preparatoria:</string>
+    <string name="enun_control_pruebas">El día de hoy desea realizar registro de:</string>
+    <string name="control_test">Control de Test</string>
+    <string name="control_comp">Control de Competencia Preparatoria</string>
 
 </resources>
