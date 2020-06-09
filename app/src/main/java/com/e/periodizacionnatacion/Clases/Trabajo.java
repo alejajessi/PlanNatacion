@@ -3,56 +3,50 @@ package com.e.periodizacionnatacion.Clases;
 public class Trabajo {
 
     private String Volumen;
-    private String Habilidad1;
-    private String Habilidad2;
-    private String Habilidad3;
-    private String Dias;
-    private Cronograma Cronograma;
+    private DatoBasico Trabajo1;
+    private DatoBasico Trabajo2;
+    private DatoBasico Trabajo3;
+    private String Cronograma;
 
     /**
      * Constructor vacio
      */
     public Trabajo() {
         Volumen = "";
-        Habilidad1 = "";
-        Habilidad2 = "";
-        Habilidad3 = "";
-        Dias = "";
-        this.Cronograma = new Cronograma();
+        Trabajo1 = new DatoBasico();
+        Trabajo2 = new DatoBasico();
+        Trabajo3 = new DatoBasico();
+        this.Cronograma = "";
     }
 
     /**
      * Constructor basico
      * @param volumen
-     * @param habilidad1
-     * @param habilidad2
-     * @param habilidad3
-     * @param dias
+     * @param trabajo1
+     * @param trabajo2
+     * @param trabajo3
      */
-    public Trabajo(String volumen, String habilidad1, String habilidad2, String habilidad3, String dias) {
+    public Trabajo(String volumen, DatoBasico trabajo1, DatoBasico trabajo2, DatoBasico trabajo3) {
         Volumen = volumen;
-        Habilidad1 = habilidad1;
-        Habilidad2 = habilidad2;
-        Habilidad3 = habilidad3;
-        Dias = dias;
-        this.Cronograma = new Cronograma();
+        Trabajo1 = trabajo1;
+        Trabajo2 = trabajo2;
+        Trabajo3 = trabajo3;
+        this.Cronograma = "";
     }
 
     /**
      * Constructor completo
      * @param volumen
-     * @param habilidad1
-     * @param habilidad2
-     * @param habilidad3
-     * @param dias
+     * @param trabajo1
+     * @param trabajo2
+     * @param trabajo3
      * @param cronograma
      */
-    public Trabajo(String volumen, String habilidad1, String habilidad2, String habilidad3, String dias, Cronograma cronograma) {
+    public Trabajo(String volumen, DatoBasico trabajo1, DatoBasico trabajo2, DatoBasico trabajo3, String cronograma) {
         Volumen = volumen;
-        Habilidad1 = habilidad1;
-        Habilidad2 = habilidad2;
-        Habilidad3 = habilidad3;
-        Dias = dias;
+        Trabajo1 = trabajo1;
+        Trabajo2 = trabajo2;
+        Trabajo3 = trabajo3;
         this.Cronograma = cronograma;
     }
 
@@ -60,23 +54,19 @@ public class Trabajo {
         return Volumen;
     }
 
-    public String getHabilidad1() {
-        return Habilidad1;
+    public DatoBasico getTrabajo1() {
+        return Trabajo1;
     }
 
-    public String getHabilidad2() {
-        return Habilidad2;
+    public DatoBasico getTrabajo2() {
+        return Trabajo2;
     }
 
-    public String getHabilidad3() {
-        return Habilidad3;
+    public DatoBasico getTrabajo3() {
+        return Trabajo3;
     }
 
-    public String getDias() {
-        return Dias;
-    }
-
-    public Cronograma getCronograma() {
+    public String getCronograma() {
         return this.Cronograma;
     }
 
@@ -84,23 +74,19 @@ public class Trabajo {
         Volumen = volumen;
     }
 
-    public void setHabilidad1(String habilidad1) {
-        Habilidad1 = habilidad1;
+    public void setTrabajo1(DatoBasico trabajo1) {
+        Trabajo1 = trabajo1;
     }
 
-    public void setHabilidad2(String habilidad2) {
-        Habilidad2 = habilidad2;
+    public void setTrabajo2(DatoBasico trabajo2) {
+        Trabajo2 = trabajo2;
     }
 
-    public void setHabilidad3(String habilidad3) {
-        Habilidad3 = habilidad3;
+    public void setTrabajo3(DatoBasico trabajo3) {
+        Trabajo3 = trabajo3;
     }
 
-    public void setDias(String dias) {
-        Dias = dias;
-    }
-
-    public void setCronograma(Cronograma cronograma) {
+    public void setCronograma(String cronograma) {
         this.Cronograma = cronograma;
     }
 
@@ -108,10 +94,9 @@ public class Trabajo {
     public String toString() {
         return "Trabajo{" +
                 "Volumen='" + Volumen + '\'' +
-                ", Habilidad1='" + Habilidad1 + '\'' +
-                ", Habilidad2='" + Habilidad2 + '\'' +
-                ", Habilidad3='" + Habilidad3 + '\'' +
-                ", Dias='" + Dias + '\'' +
+                ", Habilidad1='" + Trabajo1 + '\'' +
+                ", Habilidad2='" + Trabajo2 + '\'' +
+                ", Habilidad3='" + Trabajo3 + '\'' +
                 ", Cronograma=" + this.Cronograma +
                 '}';
     }

@@ -10,12 +10,22 @@
         android:name="com.e.periodizacionnatacion.ui.home.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_nav_home_to_nav_addcyle"
+            app:destination="@id/nav_addcyle" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_control"
+            app:destination="@id/nav_control" />
     </fragment>
 
     <fragment android:id="@+id/nav_addcyle"
         android:name="com.app.AddCycle_Fragment"
         android:label="@string/add_MacroCiclo"
-        tools:layout="@layout/fragment_add_cycle" />
+        tools:layout="@layout/fragment_add_cycle" >
+        <action
+            android:id="@+id/action_nav_addcyle_to_nav_addwater"
+            app:destination="@id/nav_addwater" />
+    </fragment>
 
     <fragment android:id="@+id/nav_addprueba"
         android:name="com.e.periodizacionnatacion.SeleccionPrueba"
@@ -27,6 +37,51 @@
         android:label="@string/add_MacroCiclo"
         tools:layout="@layout/fragment_add_cycle" />
 
+    <fragment android:id="@+id/nav_addwater"
+        android:name="com.app.AddWaterCycle_Fragment"
+        android:label="@string/opcion0_anhadir_DA"
+        tools:layout="@layout/fragment_add_water_cycle" >
+        <action
+            android:id="@+id/action_nav_addwater_to_nav_earthcycle"
+            app:destination="@id/nav_earthcycle" />
+        <action
+            android:id="@+id/action_nav_addwater_to_nav_addcyle"
+            app:destination="@id/nav_addcyle" />
+    </fragment>
 
+
+    <fragment android:id="@+id/nav_earthcycle"
+        android:name="com.app.AddEarthCycle"
+        android:label="@string/info_DT"
+        tools:layout="@layout/fragment_add_earth_cycle" >
+        <action
+            android:id="@+id/action_nav_earthcycle_to_nav_addwater"
+            app:destination="@id/nav_addwater" />
+        <action
+            android:id="@+id/action_nav_earthcycle_to_nav_volumen"
+            app:destination="@id/nav_volumen" />
+    </fragment>
+
+
+    <fragment android:id="@+id/nav_volumen"
+        android:name="com.app.AddVolumenCycle"
+        android:label="@string/volumen"
+        tools:layout="@layout/fragment_add_volumen_cycle" >
+        <action
+            android:id="@+id/action_nav_volumen_to_nav_earthcycle"
+            app:destination="@id/nav_earthcycle" />
+        <action
+            android:id="@+id/action_nav_volumen_to_nav_vistaprevia"
+            app:destination="@id/nav_vistaprevia" />
+    </fragment>
+
+    <fragment android:id="@+id/nav_vistaprevia"
+        android:name="com.app.AddVistaPrevia"
+        android:label="@string/resumen"
+        tools:layout="@layout/fragment_vista_previa" >
+        <action
+            android:id="@+id/action_nav_vistaprevia_to_nav_volumen"
+            app:destination="@id/nav_volumen" />
+    </fragment>
 
 </navigation>

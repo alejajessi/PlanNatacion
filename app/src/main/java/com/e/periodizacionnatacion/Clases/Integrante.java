@@ -6,8 +6,7 @@ public class Integrante {
 
     private String Nombre;
     private String ID;
-    private String Prueba;
-    private ArrayList<String> FechaTiempo;
+    private ArrayList<Prueba> Pruebas;
 
     /**
      * Constructor vacio
@@ -15,33 +14,30 @@ public class Integrante {
     public Integrante() {
         Nombre = "";
         this.ID = "";
-        Prueba = "";
-        FechaTiempo = new ArrayList<String>();
+        Pruebas = new ArrayList<Prueba>();
     }
 
     /**
      * Constructor basico
      * @param nombre
-     * @param prueba
+     * @param ID
      */
-    public Integrante(String nombre, String ID, String prueba) {
+    public Integrante(String nombre, String ID) {
         Nombre = nombre;
         this.ID = ID;
-        Prueba = prueba;
-        FechaTiempo = new ArrayList<String>();
+        Pruebas = new ArrayList<Prueba>();
     }
 
     /**
      * Constructor Completo
      * @param nombre
+     * @param ID
      * @param prueba
-     * @param fechaTiempo
      */
-    public Integrante(String nombre, String ID, String prueba, ArrayList<String> fechaTiempo) {
+    public Integrante(String nombre, String ID, ArrayList<Prueba> prueba) {
         Nombre = nombre;
         this.ID = ID;
-        Prueba = prueba;
-        FechaTiempo = fechaTiempo;
+        Pruebas = prueba;
     }
 
     public String getNombre() {
@@ -52,12 +48,8 @@ public class Integrante {
         return ID;
     }
 
-    public String getPrueba() {
-        return Prueba;
-    }
-
-    public ArrayList<String> getFechaTiempo() {
-        return FechaTiempo;
+    public ArrayList<Prueba> getPruebas() {
+        return Pruebas;
     }
 
     public void setNombre(String nombre) {
@@ -68,20 +60,16 @@ public class Integrante {
         this.ID = ID;
     }
 
-    public void setPrueba(String prueba) {
-        Prueba = prueba;
-    }
-
-    public void setFechaTiempo(ArrayList<String> fechaTiempo) {
-        FechaTiempo = fechaTiempo;
+    public void setPruebas(ArrayList<Prueba> pruebas) {
+        Pruebas = pruebas;
     }
 
     @Override
     public String toString() {
         return "Integrante{" +
                 "Nombre='" + Nombre + '\'' +
-                ", Prueba='" + Prueba + '\'' +
-                ", FechaTiempo=" + FechaTiempo +
+                ", ID='" + ID + '\'' +
+                ", Pruebas=" + Pruebas +
                 '}';
     }
 }

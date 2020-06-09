@@ -11,6 +11,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.e.periodizacionnatacion.Clases.Cronograma;
+import com.e.periodizacionnatacion.Clases.Trabajo;
 import com.e.periodizacionnatacion.Clases.Usuario;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -27,6 +29,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
+import java.util.UUID;
 
 
 public class Login extends AppCompatActivity {
@@ -82,17 +87,11 @@ public class Login extends AppCompatActivity {
     public void  updateUI(FirebaseUser account){
 
         if (account != null) {
-            Toast.makeText(this,"Sesión iniciada exitosamente",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"Sesión iniciada exitosamente"+ UUID.randomUUID(),Toast.LENGTH_LONG).show();
             cambioAlMain();
         } else {
             Toast.makeText(this,"No se ha iniciado sesión",Toast.LENGTH_LONG).show();
         }
-       // if(account != null){
-       //     Toast.makeText(this,"Sesión iniciada exitosamente",Toast.LENGTH_LONG).show();
-       //     cambioAlMain();
-       // }else {
-       //     Toast.makeText(this,"No se ha iniciado sesión",Toast.LENGTH_LONG).show();
-       // }
     }
 
     private void signIn () {
@@ -115,8 +114,6 @@ public class Login extends AppCompatActivity {
     public void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-            // Signed in successfully, show authenticated UI.
-            //updateUI(account);
             firebaseAuthWithGoogle(account);
             Log.e(">>>>>>>>", account.getEmail());
         } catch (ApiException e) {
@@ -129,10 +126,7 @@ public class Login extends AppCompatActivity {
     }
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
-        //Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
-        // [START_EXCLUDE silent]
-        //showProgressDialog();
-        // [END_EXCLUDE]
+
         if (acct != null) {
             AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
             Log.d("GOOGLE AUTH", "firebaseAuthWithGoogle:" + acct.getId());
@@ -174,9 +168,6 @@ public class Login extends AppCompatActivity {
                                 Snackbar.make(signInButton, "Authentication Failed.", Snackbar.LENGTH_SHORT).show();
                                 updateUI(null);
                             }
-                            // [START_EXCLUDE]
-                            //hideProgressDialog();
-                            // [END_EXCLUDE]
                         }
                     });
         }

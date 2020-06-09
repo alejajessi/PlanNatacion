@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import com.e.periodizacionnatacion.MainActivity;
 import com.e.periodizacionnatacion.R;
 
 
@@ -66,5 +67,10 @@ public class AddVolumenCycle extends Fragment {
 
 
         return inflater.inflate(R.layout.fragment_add_volumen_cycle, container, false);
+    }
+
+    public void agregarVolumen(MainActivity actividad){
+        //Si no estan vacios pedir los datos
+        actividad.agregarVolumen("VolumenAgua","VolumenTierra");
     }
 }

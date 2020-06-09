@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.e.periodizacionnatacion.Clases.MacroCiclo;
 import com.e.periodizacionnatacion.Clases.Usuario;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -40,6 +41,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import java.util.UUID;
+
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
@@ -48,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView correoUsuario;
 
     private Usuario usuario;
+    private MacroCiclo MacroCiclo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,5 +114,34 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    public void inicializarMacrociclo(String nombre, String inicio, String fin){
+
+        MacroCiclo = new MacroCiclo(nombre,"id",inicio,fin);
+    }
+
+    public void agregarDiasAgua(String resistencia, String tecnica, String velocidad){
+
+        MacroCiclo.getDiasAgua().getTrabajo1().setDato1(resistencia);
+        MacroCiclo.getDiasAgua().getTrabajo2().setDato1(tecnica);
+        MacroCiclo.getDiasAgua().getTrabajo3().setDato1(velocidad);
+
+    }
+
+    public void agregarDiasTierra(String construccion, String conversion, String maximo){
+
+        MacroCiclo.getDiasTierra().getTrabajo1().setDato1(construccion);
+        MacroCiclo.getDiasTierra().getTrabajo2().setDato1(conversion);
+        MacroCiclo.getDiasTierra().getTrabajo3().setDato1(maximo);
+
+    }
+
+    public void agregarVolumen(String volumenAgua, String volumenTierra){
+        MacroCiclo.getDiasAgua().setVolumen(volumenAgua);
+        MacroCiclo.getDiasTierra().setVolumen(volumenTierra);
+
+        //calcular el cronograma
+        //Subir a la base de datos
     }
 }

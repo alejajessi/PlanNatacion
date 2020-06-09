@@ -107,6 +107,7 @@
                 android:fontFamily="@font/bs_regular"
                 android:text="@string/opcion4_velocidad"
                 android:textAllCaps="false"
+                android:id="@+id/btt_vel_watercycle"
                 android:background="@color/colorSecond"
                 android:textColor="@color/colorWhite"
                 android:textSize="17dp"/>
@@ -130,6 +131,7 @@
                 android:fontFamily="@font/bs_regular"
                 android:text="@string/opcion7_Retroceder"
                 android:textAllCaps="false"
+                android:id="@+id/retro_addwater"
                 android:background="@color/colorBanner"
                 android:textColor="@color/colorWhite"
                 android:textSize="17dp"/>
@@ -138,6 +140,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
+                android:id="@+id/avan_addwater"
                 android:fontFamily="@font/bs_regular"
                 android:text="@string/opcion8_Avanzar"
                 android:textAllCaps="false"

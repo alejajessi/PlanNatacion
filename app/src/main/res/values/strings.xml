@@ -116,4 +116,17 @@
     <string name="control_test">Control de Test</string>
     <string name="control_comp">Control de Competencia Preparatoria</string>
 
+    <string name="semana_lunes">Lunes</string>
+    <string name="semana_martes">Martes</string>
+    <string name="semana_miercoles">Miércoles</string>
+    <string name="semana_jueves">Jueves</string>
+    <string name="semana_viernes">Viernes</string>
+    <string name="semana_sabado">Sábado</string>
+    <string name="semana_domigno">Domingo</string>
+    <string name="seleccion_dias">Seleccione los días de entrenamiento:</string>
+    <string name="accept">Aceptar</string>
+    <string name="decline">Cancelar</string>
+
+    <string name="volumen">Volumen</string>
+    <string name="resumen">Vista previa</string>
 </resources>

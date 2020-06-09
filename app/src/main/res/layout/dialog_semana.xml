@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_color"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/logo_dialogo"
+        android:src="@mipmap/logo_foreground"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorWhite"
+        android:textSize="13dp"
+        android:id="@+id/enun_dialogo"
+        android:fontFamily="@font/bs_regular"
+        android:gravity="center"
+        android:text="@string/seleccion_dias"/>
+
+    <CheckBox
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:text="@string/semana_lunes"
+        android:layout_marginTop="20dp"
+        android:id="@+id/lunes_dialogo"
+        android:textColor="@color/colorWhite"
+        android:fontFamily="@font/bs_regular"
+        android:buttonTint="@color/colorWhite"/>
+
+    <CheckBox
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:text="@string/semana_martes"
+        android:id="@+id/martes_dialogo"
+        android:textColor="@color/colorWhite"
+        android:fontFamily="@font/bs_regular"
+        android:buttonTint="@color/colorWhite"/>
+
+    <CheckBox
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:id="@+id/mierco_dialogo"
+        android:text="@string/semana_miercoles"
+        android:textColor="@color/colorWhite"
+        android:fontFamily="@font/bs_regular"
+        android:buttonTint="@color/colorWhite"/>
+
+    <CheckBox
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:id="@+id/jueves_dialogo"
+        android:text="@string/semana_jueves"
+        android:textColor="@color/colorWhite"
+        android:fontFamily="@font/bs_regular"
+        android:buttonTint="@color/colorWhite"/>
+
+    <CheckBox
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:text="@string/semana_viernes"
+        android:id="@+id/viernes_dialogo"
+        android:textColor="@color/colorWhite"
+        android:fontFamily="@font/bs_regular"
+        android:buttonTint="@color/colorWhite"/>
+
+    <CheckBox
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:id="@+id/sabado_dialogo"
+        android:text="@string/semana_sabado"
+        android:textColor="@color/colorWhite"
+        android:fontFamily="@font/bs_regular"
+        android:buttonTint="@color/colorWhite"/>
+
+    <CheckBox
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:id="@+id/domingo_dialogo"
+        android:text="@string/semana_domigno"
+        android:textColor="@color/colorWhite"
+        android:fontFamily="@font/bs_regular"
+        android:buttonTint="@color/colorWhite"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="102dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/colorBanner"
+            android:fontFamily="@font/bs_regular"
+            android:text="@string/accept"
+            android:id="@+id/btt_accept_dialog"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhite" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="20dp"
+            android:id="@+id/btt_decline_dialog"
+            android:background="@color/colorBanner"
+            android:fontFamily="@font/bs_regular"
+            android:text="@string/decline"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhite" />
+
+
+    </LinearLayout>
+
+</LinearLayout>

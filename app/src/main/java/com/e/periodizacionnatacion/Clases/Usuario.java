@@ -9,7 +9,7 @@ public class Usuario implements Serializable {
     private String correo;
     private String foto;
     private String id;
-    private ArrayList<MacroCiclo> MacroCiclos;
+    private ArrayList<DatoBasico> MacroCiclos;
 
     /**
      * Constructor vacio
@@ -19,7 +19,7 @@ public class Usuario implements Serializable {
         correo = "";
         foto = "";
         this.id = "";
-        MacroCiclos = new ArrayList<MacroCiclo>();
+        MacroCiclos = new ArrayList<DatoBasico>();
     }
 
     /**
@@ -33,7 +33,7 @@ public class Usuario implements Serializable {
         this.correo = correo;
         this.foto = foto;
         this.id = ID;
-        MacroCiclos = new ArrayList<MacroCiclo>();
+        MacroCiclos = new ArrayList<DatoBasico>();
     }
 
     /**
@@ -43,7 +43,7 @@ public class Usuario implements Serializable {
      * @param ID
      * @param macroCiclos
      */
-    public Usuario(String correo, String foto, String ID, String nombre, ArrayList<MacroCiclo> macroCiclos) {
+    public Usuario(String correo, String foto, String ID, String nombre, ArrayList<DatoBasico> macroCiclos) {
         this.nombre = nombre;
         this.correo = correo;
         this.foto = foto;
@@ -67,7 +67,7 @@ public class Usuario implements Serializable {
         return id;
     }
 
-    public ArrayList<MacroCiclo> getMacroCiclos() {
+    public ArrayList<DatoBasico> getMacroCiclos() {
         return MacroCiclos;
     }
 
@@ -87,7 +87,7 @@ public class Usuario implements Serializable {
         this.id = ID;
     }
 
-    public void setMacroCiclos(ArrayList<MacroCiclo> macroCiclos) {
+    public void setMacroCiclos(ArrayList<DatoBasico> macroCiclos) {
         MacroCiclos = macroCiclos;
     }
 

@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.e.periodizacionnatacion.MainActivity;
 import com.e.periodizacionnatacion.R;
 
 
@@ -63,4 +64,9 @@ public class AddEarthCycle extends Fragment {
             // Inflate the layout for this fragment
             return inflater.inflate(R.layout.fragment_add_earth_cycle, container, false);
         }
+
+    public void agregarDiasTierra(MainActivity actividad){
+        //Pido los datos de los dias
+        actividad.agregarDiasTierra("Construccion","Conversion","Maximo");
+    }
     }

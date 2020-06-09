@@ -10,7 +10,7 @@ public class MacroCiclo {
     private String Fin;
     private Trabajo DiasAgua;
     private Trabajo DiasTierra;
-    private ArrayList<Integrante> Integrantes;
+    private ArrayList<DatoBasico> Integrantes;
 
     /**
      * Constructor vacio
@@ -22,7 +22,7 @@ public class MacroCiclo {
         Fin = "";
         DiasAgua = new Trabajo();
         DiasTierra = new Trabajo();
-        Integrantes = new ArrayList<Integrante>();
+        Integrantes = new ArrayList<DatoBasico>();
     }
 
     /**
@@ -39,7 +39,7 @@ public class MacroCiclo {
         Fin = fin;
         DiasAgua = new Trabajo();
         DiasTierra = new Trabajo();
-        Integrantes = new ArrayList<Integrante>();
+        Integrantes = new ArrayList<DatoBasico>();
     }
 
     /**
@@ -52,7 +52,7 @@ public class MacroCiclo {
      * @param diasTierra
      * @param integrantes
      */
-    public MacroCiclo(String nombre, String ID, String inicio, String fin, Trabajo diasAgua, Trabajo diasTierra, ArrayList<Integrante> integrantes) {
+    public MacroCiclo(String nombre, String ID, String inicio, String fin, Trabajo diasAgua, Trabajo diasTierra, ArrayList<DatoBasico> integrantes) {
         Nombre = nombre;
         this.ID = ID;
         Inicio = inicio;
@@ -86,7 +86,7 @@ public class MacroCiclo {
         return DiasTierra;
     }
 
-    public ArrayList<Integrante> getIntegrantes() {
+    public ArrayList<DatoBasico> getIntegrantes() {
         return Integrantes;
     }
 
@@ -114,7 +114,7 @@ public class MacroCiclo {
         DiasTierra = diasTierra;
     }
 
-    public void setIntegrantes(ArrayList<Integrante> integrantes) {
+    public void setIntegrantes(ArrayList<DatoBasico> integrantes) {
         Integrantes = integrantes;
     }
 

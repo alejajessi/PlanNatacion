@@ -43,10 +43,6 @@
             android:id="@+id/nav_legalinfo"
             android:icon="@drawable/info_foreground"
             android:title="@string/menu_info"/>
-
-        <item
-            android:id="@+id/nav_logout"
-            android:title="@string/menu_cerrarSesion"/>
  <!---       <item
             android:id="@+id/nav_cancelar_t"
             android:icon="@drawable/cancelar_foreground"
@@ -55,5 +51,10 @@
             android:id="@+id/nav_mostrar_p"
             android:icon="@mipmap/ver_foreground"
             android:title="@string/menu_mostrarP" /> -->
+    </group>
+    <group>
+        <item
+            android:id="@+id/nav_logout"
+            android:title="@string/menu_cerrarSesion"/>
     </group>
 </menu>

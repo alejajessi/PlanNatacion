@@ -5,8 +5,13 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,10 +19,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.e.periodizacionnatacion.MainActivity;
 import com.e.periodizacionnatacion.R;
 
 import java.util.Calendar;
+import java.util.Date;
 
 public class AddCycle_Fragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
@@ -29,13 +37,17 @@ public class AddCycle_Fragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private Button btt_date1;
-    private EditText edt_date1;
-    private  Button btt_date2;
-    private EditText edt_date2;
+    private EditText edtNom;
+    private Button bttDate1;
+    private EditText edtDate1;
+    private Button bttDate2;
+    private EditText edtDate2;
+    private Button avanzar;
+    private Button retroceder;
 
     private Calendar cal;
     private DatePickerDialog pickerDialog;
+
 
     public AddCycle_Fragment() {
         // Required empty public constructor
@@ -63,20 +75,47 @@ public class AddCycle_Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
-
         return inflater.inflate(R.layout.fragment_add_cycle, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        edt_date1 = view.findViewById(R.id.ed_date1);
-        edt_date2 = view.findViewById(R.id.ed_date2);
-        btt_date1 = view.findViewById(R.id.btt_cal1_addcycle);
-        btt_date2 = view.findViewById(R.id.calendar2_addcycle);
 
-        btt_date1.setOnClickListener(new View.OnClickListener() {
+        inicializarID(view);
+
+        funcionBttDate1();
+
+        funcionBttDate2();
+
+        //actividad = (Activity)getActivity();
+
+        final NavController navController= Navigation.findNavController(view);
+
+        funcionBttAvanzar(navController);
+
+        funcionBttRetroceder(navController);
+
+    }
+
+
+    public void inicializarID(View view){
+
+        edtNom = view.findViewById(R.id.et_nomb_addcycle);
+        edtDate1 = view.findViewById(R.id.ed_date1);
+        edtDate1.setText("HOY jaja");
+        edtDate2 = view.findViewById(R.id.ed_date2);
+        edtDate2.setText("Acuerdame esto");
+        bttDate1 = view.findViewById(R.id.btt_cal1_addcycle);
+        bttDate2 = view.findViewById(R.id.calendar2_addcycle);
+        avanzar = view.findViewById(R.id.avan_addcycle);
+        retroceder = view.findViewById(R.id.retro_addcycle);
+
+    }
+
+    public void funcionBttDate1(){
+
+        bttDate1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -89,13 +128,17 @@ public class AddCycle_Fragment extends Fragment {
                     @Override
                     public void onDateSet(DatePicker view, int myear, int mMonth, int mDay) {
 
-                        edt_date1.setText(mDay+"/"+(mMonth+1)+"/"+myear);
+                        edtDate1.setText(mDay+"/"+(mMonth+1)+"/"+myear);
                     }
                 }, day, month, year);
                 pickerDialog.show();
             }
         });
-        btt_date2.setOnClickListener(new View.OnClickListener() {
+    }
+
+    public void funcionBttDate2(){
+
+        bttDate2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -108,12 +151,53 @@ public class AddCycle_Fragment extends Fragment {
                     @Override
                     public void onDateSet(DatePicker view, int myear, int mMonth, int mDay) {
 
-                        edt_date1.setText(mDay+"/"+(mMonth+1)+"/"+myear);
+                        edtDate2.setText(mDay+"/"+(mMonth+1)+"/"+myear);
                     }
                 }, day, month, year);
                 pickerDialog.show();
             }
         });
+    }
+
+    public void funcionBttAvanzar(NavController navController){
+
+        avanzar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!edtDate1.getText().toString().trim().equals("Fecha") &&
+                        !edtDate2.getText().toString().trim().equals("Fecha") &&
+                        !edtNom.getText().toString().trim().isEmpty()){
+
+                    //crearMacroCiclo(actividad);
+                    Navigation.findNavController(v).navigate(R.id.nav_addwater);
+
+                }else {
+                    Toast.makeText(getContext(),"Recuerda llenar todos los campos",Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+    }
+
+
+    public void funcionBttRetroceder(NavController navController){
+
+        retroceder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigate(R.id.nav_home);
+            }
+        });
+
+    }
+
+    public void crearMacroCiclo(MainActivity actividad){
+
+        String nombreCiclo = edtNom.getText().toString().trim();
+        String inicioCiclo = edtDate1.getText().toString().trim();
+        String finCiclo = edtDate2.getText().toString().trim();
+
+        actividad.inicializarMacrociclo(nombreCiclo, inicioCiclo, finCiclo);
+
     }
 
 }
