@@ -8,7 +8,7 @@
     android:background="@drawable/bg_color"
     android:orientation="vertical"
     android:visibility="visible"
-    tools:context="com.app.AddWaterCycle_Fragment">
+    tools:context="com.cycleAdd.AddWaterCycle">
 
     <LinearLayout
         android:layout_width="match_parent"

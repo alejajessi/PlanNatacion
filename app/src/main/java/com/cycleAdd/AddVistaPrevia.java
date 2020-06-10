@@ -1,4 +1,4 @@
-package com.app;
+package com.cycleAdd;
 
 import android.os.Bundle;
 
@@ -7,18 +7,16 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 
-import com.e.periodizacionnatacion.MainActivity;
 import com.e.periodizacionnatacion.R;
 
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link AddVolumenCycle#newInstance} factory method to
+ * Use the {@link AddVistaPrevia#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AddVolumenCycle extends Fragment {
+public class AddVistaPrevia extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -27,9 +25,8 @@ public class AddVolumenCycle extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private EditText ed;
 
-    public AddVolumenCycle() {
+    public AddVistaPrevia() {
         // Required empty public constructor
     }
 
@@ -39,11 +36,11 @@ public class AddVolumenCycle extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment AddVolumenCycle.
+     * @return A new instance of fragment AddVistaPrevia.
      */
     // TODO: Rename and change types and number of parameters
-    public static AddVolumenCycle newInstance(String param1, String param2) {
-        AddVolumenCycle fragment = new AddVolumenCycle();
+    public static AddVistaPrevia newInstance(String param1, String param2) {
+        AddVistaPrevia fragment = new AddVistaPrevia();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -64,13 +61,6 @@ public class AddVolumenCycle extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
-
-        return inflater.inflate(R.layout.fragment_add_volumen_cycle, container, false);
-    }
-
-    public void agregarVolumen(MainActivity actividad){
-        //Si no estan vacios pedir los datos
-        actividad.agregarVolumen("VolumenAgua","VolumenTierra");
+        return inflater.inflate(R.layout.fragment_vista_previa, container, false);
     }
 }

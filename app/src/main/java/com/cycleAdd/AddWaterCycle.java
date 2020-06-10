@@ -1,72 +1,48 @@
-package com.app;
+package com.cycleAdd;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
-import android.app.Activity;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.EditText;
-import android.widget.Toast;
 
 import com.dialog.Dialog_Dias;
 import com.e.periodizacionnatacion.MainActivity;
 import com.e.periodizacionnatacion.R;
 
-import java.util.ArrayList;
+public class AddWaterCycle extends Fragment {
 
-public class AddWaterCycle_Fragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-    private static final CharSequence[] SEMANA= {"Lunes", "Martes", "Miércoles","Jueves","Viernes","Sábado","Domingo"};
-
-
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    //Componente gráfico del xml fragment_add_watercycle tipo Button
     private Button bttResistencia;
+
+    //Componente gráfico del xml fragment_add_watercycle tipo Button
     private Button bttVelocidad;
+
+    //Componente gráfico del xml fragment_add_watercycle tipo Button
     private Button bttTecnica;
+
+    //Componente gráfico del xml fragment_add_watercycle tipo Button
     private Button avanzar;
+
+    //Componente gráfico del xml fragment_add_watercycle tipo Button
     private Button retroceder;
+
+    //Componente gráfico del xml fragment_add_watercycle tipo Button
     private FragmentActivity actividad;
 
-    public AddWaterCycle_Fragment() {
+    //Constructor de la clase AddWaterCycle
+    public AddWaterCycle() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment AddVolumenCycle.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static AddWaterCycle_Fragment newInstance(String param1, String param2) {
-        AddWaterCycle_Fragment fragment = new AddWaterCycle_Fragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
+    //Método onCreateView
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -74,6 +50,7 @@ public class AddWaterCycle_Fragment extends Fragment {
         return inflater.inflate(R.layout.fragment_add_water_cycle, container, false);
     }
 
+    //Método OnViewCreated: maneja varias funcionalidades de los componentes xml
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -96,6 +73,7 @@ public class AddWaterCycle_Fragment extends Fragment {
 
     }
 
+    //Método inicializar ID, se encarga de definir el ID correspondiente para cada componente xml con los declarados en la clase.
     public void inicializarID(View view){
 
         bttResistencia = view.findViewById(R.id.btt_res_watercycle);
@@ -106,6 +84,7 @@ public class AddWaterCycle_Fragment extends Fragment {
 
     }
 
+    //Método funcionBttResistencia: Encargado de emerger el dialogo para la selección de días en la semana a trabajar resistencia
     public void funcionBttResistencia(){
 
         bttResistencia.setOnClickListener(new View.OnClickListener() {
@@ -118,6 +97,7 @@ public class AddWaterCycle_Fragment extends Fragment {
 
     }
 
+    //Método funcionBttAvanzar: Encargado de realizar el movimiento al fragment siguiente: AddEarthCycle, a tráves del NavController
     public void funcionBttAvanzar(NavController navController){
 
         avanzar.setOnClickListener(new View.OnClickListener() {
@@ -131,6 +111,7 @@ public class AddWaterCycle_Fragment extends Fragment {
     }
 
 
+    //Método funcionBttRetroceder: Encargado de realizar el movimiento del fragment anterior: AddCycle, a tráves del NavController
     public void funcionBttRetroceder(NavController navController){
 
        retroceder.setOnClickListener(new View.OnClickListener() {

@@ -1,4 +1,4 @@
-package com.e.periodizacionnatacion;
+package com.cycleAdd;
 
 import android.os.Bundle;
 
@@ -8,13 +8,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.e.periodizacionnatacion.R;
+
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link anhadir_integrantes#newInstance} factory method to
+ * Use the {@link AddIntegrantes#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class anhadir_integrantes extends Fragment {
+public class AddIntegrantes extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -24,7 +26,7 @@ public class anhadir_integrantes extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public anhadir_integrantes() {
+    public AddIntegrantes() {
         // Required empty public constructor
     }
 
@@ -34,11 +36,11 @@ public class anhadir_integrantes extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment anhadir_integrantes.
+     * @return A new instance of fragment AddIntegrantes.
      */
     // TODO: Rename and change types and number of parameters
-    public static anhadir_integrantes newInstance(String param1, String param2) {
-        anhadir_integrantes fragment = new anhadir_integrantes();
+    public static AddIntegrantes newInstance(String param1, String param2) {
+        AddIntegrantes fragment = new AddIntegrantes();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
