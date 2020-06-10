@@ -1,4 +1,4 @@
-package com.cycleAdd;
+package com.cycleadd;
 
 import android.os.Bundle;
 
@@ -53,7 +53,9 @@ public class AddVolumenCycle extends Fragment {
 
         final NavController navController = Navigation.findNavController(view);
 
+        funcionBttAvanzar(navController);
 
+        funcionBttRetroceder(navController);
 
     }
 

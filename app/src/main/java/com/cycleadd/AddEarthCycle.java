@@ -1,4 +1,4 @@
-package com.cycleAdd;
+package com.cycleadd;
 
 import android.os.Bundle;
 
@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.e.periodizacionnatacion.MainActivity;
 import com.e.periodizacionnatacion.R;

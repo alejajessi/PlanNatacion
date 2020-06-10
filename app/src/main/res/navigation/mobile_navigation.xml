@@ -19,7 +19,7 @@
     </fragment>
 
     <fragment android:id="@+id/nav_addcyle"
-        android:name="com.cycleAdd.AddCycle"
+        android:name="com.cycleadd.AddCycle"
         android:label="@string/add_MacroCiclo"
         tools:layout="@layout/fragment_add_cycle" >
         <action
@@ -33,12 +33,12 @@
         tools:layout="@layout/fragment_seleccion_prueba" />
 
     <fragment android:id="@+id/nav_control"
-        android:name="com.cycleAdd.AddCycle"
+        android:name="com.cycleadd.AddCycle"
         android:label="@string/add_MacroCiclo"
         tools:layout="@layout/fragment_add_cycle" />
 
     <fragment android:id="@+id/nav_addwater"
-        android:name="com.cycleAdd.AddWaterCycle"
+        android:name="com.cycleadd.AddWaterCycle"
         android:label="@string/opcion0_anhadir_DA"
         tools:layout="@layout/fragment_add_water_cycle" >
         <action
@@ -51,7 +51,7 @@
 
 
     <fragment android:id="@+id/nav_earthcycle"
-        android:name="com.cycleAdd.AddEarthCycle"
+        android:name="com.cycleadd.AddEarthCycle"
         android:label="@string/info_DT"
         tools:layout="@layout/fragment_add_earth_cycle" >
         <action
@@ -64,7 +64,7 @@
 
 
     <fragment android:id="@+id/nav_volumen"
-        android:name="com.cycleAdd.AddVolumenCycle"
+        android:name="com.cycleadd.AddVolumenCycle"
         android:label="@string/volumen"
         tools:layout="@layout/fragment_add_volumen_cycle" >
         <action
@@ -76,7 +76,7 @@
     </fragment>
 
     <fragment android:id="@+id/nav_vistaprevia"
-        android:name="com.cycleAdd.AddVistaPrevia"
+        android:name="com.cycleadd.AddVistaPrevia"
         android:label="@string/resumen"
         tools:layout="@layout/fragment_vista_previa" >
         <action
@@ -88,9 +88,9 @@
     </fragment>
 
     <fragment android:id="@+id/nav_addinteg"
-        android:name="com.cycleAdd.AddIntegrantes"
+        android:name="com.cycleadd.AddIntegrantes"
         android:label="@string/integra"
-        tools:layout="@layout/fragment_anhadir_integrantes" >
+        tools:layout="@layout/fragment_add_integrantes" >
         <action
             android:id="@+id/action_nav_addinteg_to_nav_vistaprevia"
             app:destination="@id/nav_vistaprevia" />
@@ -98,5 +98,6 @@
             android:id="@+id/action_nav_addinteg_to_nav_home"
             app:destination="@id/nav_home" />
     </fragment>
+
 
 </navigation>

@@ -2,13 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/calendarioanhadir"
+    android:id="@+id/fragment_vistaprevia"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/bg_color"
     android:visibility="visible"
-    tools:context=".ui.calendarioanhadir.CalendarioAnhadirFragment">
+    tools:context="com.cycleadd.AddVistaPrevia">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,7 +16,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/text_title_calenanhadir"
+            android:id="@+id/text_title_vprevia"
             android:layout_width="250dp"
             android:fontFamily="@font/bs_regular"
             android:layout_height="match_parent"
@@ -29,7 +29,7 @@
             android:textSize="27dp" />
 
         <ImageView
-            android:id="@+id/imgv_previa"
+            android:id="@+id/banner_vprevia"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
@@ -49,6 +49,7 @@
             android:gravity="center"
             android:fontFamily="@font/bs_regular"
             android:textSize="17dp"
+            android:id="@+id/enun1_vprevia"
             android:layout_margin="20dp"
             android:layout_marginTop="30dp"
             android:text="@string/previous_visual"
@@ -67,14 +68,17 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:gravity="center"
+                android:id="@+id/enun2_vprevia"
                 android:fontFamily="@font/bs_regular"
                 android:textSize="15dp"
                 android:layout_margin="2dp"
                 android:text="@string/opcion0_anhadir_DT"
                 android:textColor="@color/colorWhite" />
+
             <ListView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:id="@+id/list1_vprevia">
 
             </ListView>
 
@@ -95,12 +99,15 @@
                 android:gravity="center"
                 android:fontFamily="@font/bs_regular"
                 android:textSize="15dp"
+                android:id="@+id/enun3_vprevia"
                 android:layout_margin="2dp"
                 android:text="@string/opcion0_anhadir_DA"
                 android:textColor="@color/colorWhite" />
+
             <ListView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:id="@+id/list2_vprevia">
 
             </ListView>
 
@@ -120,6 +127,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
             android:layout_marginTop="40dp"
+            android:id="@+id/retro_vprevia"
             android:fontFamily="@font/bs_regular"
             android:text="@string/opcion7_Retroceder"
             android:textAllCaps="false"
@@ -134,6 +142,7 @@
             android:fontFamily="@font/bs_regular"
             android:text="@string/opcion8_Avanzar"
             android:textAllCaps="false"
+            android:id="@+id/avan_vprevia"
             android:layout_marginLeft="130dp"
             android:textSize="17dp"
             android:background="@color/colorBanner"

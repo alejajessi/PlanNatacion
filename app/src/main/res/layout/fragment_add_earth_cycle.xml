@@ -8,7 +8,7 @@
     android:background="@drawable/bg_color"
     android:orientation="vertical"
     android:visibility="visible"
-    tools:context="com.cycleAdd.AddEarthCycle">
+    tools:context="com.cycleadd.AddEarthCycle">
 
     <LinearLayout
         android:layout_width="match_parent"

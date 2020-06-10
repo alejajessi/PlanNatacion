@@ -1,4 +1,4 @@
-package com.cycleAdd;
+package com.cycleadd;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
