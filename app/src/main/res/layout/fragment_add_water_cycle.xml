@@ -50,7 +50,7 @@
             android:gravity="center"
             android:id="@+id/tx_enun1_watercycle"
             android:fontFamily="@font/bs_regular"
-            android:textSize="17dp"
+            android:textSize="14dp"
             android:layout_margin="20dp"
             android:layout_marginTop="30dp"
             android:text="@string/opcion0_anhadir_DA"
@@ -63,7 +63,7 @@
             android:id="@+id/tx_enun2_watercycle"
             android:gravity="center"
             android:fontFamily="@font/bs_regular"
-            android:textSize="17dp"
+            android:textSize="14dp"
             android:layout_margin="20dp"
             android:layout_marginTop="30dp"
             android:text="@string/opcion1_title_hacer"
@@ -86,7 +86,7 @@
                 android:id="@+id/btt_res_watercycle"
                 android:background="@color/colorSecond"
                 android:textColor="@color/colorWhite"
-                android:textSize="17dp"/>
+                android:textSize="14dp"/>
 
             <Button
                 android:layout_width="100dp"
@@ -98,7 +98,7 @@
                 android:id="@+id/btt_tec_watercycle"
                 android:background="@color/colorSecond"
                 android:textColor="@color/colorWhite"
-                android:textSize="17dp"/>
+                android:textSize="14dp"/>
 
             <Button
                 android:layout_width="100dp"
@@ -110,7 +110,7 @@
                 android:id="@+id/btt_vel_watercycle"
                 android:background="@color/colorSecond"
                 android:textColor="@color/colorWhite"
-                android:textSize="17dp"/>
+                android:textSize="14dp"/>
 
         </LinearLayout>
 
@@ -121,31 +121,34 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_gravity="center">
+            android:layout_gravity="center"
+            android:gravity="center">
 
             <Button
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="50dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="20dp"
                 android:fontFamily="@font/bs_regular"
                 android:text="@string/opcion7_Retroceder"
                 android:textAllCaps="false"
+                android:gravity="center"
                 android:id="@+id/retro_addwater"
                 android:background="@color/colorBanner"
                 android:textColor="@color/colorWhite"
-                android:textSize="17dp"/>
+                android:textSize="14dp"
+                android:layout_marginRight="10dp"/>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="20dp"
                 android:id="@+id/avan_addwater"
                 android:fontFamily="@font/bs_regular"
                 android:text="@string/opcion8_Avanzar"
                 android:textAllCaps="false"
-                android:layout_marginLeft="130dp"
-                android:textSize="17dp"
+                android:layout_marginLeft="10dp"
+                android:textSize="14dp"
+                android:gravity="center"
                 android:background="@color/colorBanner"
                 android:textColor="@color/colorWhite"/>
 

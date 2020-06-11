@@ -1,10 +1,13 @@
 package com.cycleadd;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
@@ -12,10 +15,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.e.periodizacionnatacion.MainActivity;
 import com.e.periodizacionnatacion.R;
+
+import java.util.ArrayList;
 
 
 /**
@@ -32,6 +38,8 @@ public class AddEarthCycle extends Fragment {
     private Button fmaxbtt;
     private Button avanzar;
     private Button retroceder;
+    private ArrayList<ArrayList> diasTierra;
+    private FragmentActivity actividad;
 
     public AddEarthCycle() {
             // Required empty public constructor
@@ -65,11 +73,37 @@ public class AddEarthCycle extends Fragment {
         fconstruccionbtt = view.findViewById(R.id.fuer_const_earthcycle);
         fconversionbtt = view.findViewById(R.id.fuer_conv_earthcycle);
         fmaxbtt = view.findViewById(R.id.fuer_max_earthcycle);
-
-
         avanzar = view.findViewById(R.id.avan_earthcycle);
         retroceder = view.findViewById(R.id.retro_earthcycle);
 
+    }
+
+    public  void funcionFMax(NavController navController){
+
+
+    }
+
+    public void funcionFConversionBtt(NavController navController){
+
+        fconversionbtt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                AlertDialog dialog= crearDialogo();
+                dialog.show();
+            }
+        });
+    }
+
+    public void funcionFConstruccionBtt(NavController navController){
+
+        fconstruccionbtt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog dialog= crearDialogo();
+                dialog.show();
+            }
+        });
     }
 
     //Método funcionBttAvanzar: Encargado de realizar el movimiento al fragment siguiente: AddVolumenCycle, a tráves del NavController
@@ -95,6 +129,59 @@ public class AddEarthCycle extends Fragment {
         });
 
     }
+
+    public AlertDialog crearDialogo(){
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+
+        LayoutInflater inflater = actividad.getLayoutInflater();
+
+        View v= inflater.inflate(R.layout.dialog_semana, null);
+
+        builder.setView(v);
+
+        final ArrayList<CheckBox> semana = organizacionDias(v);
+        final ArrayList itemSelected = new ArrayList();
+
+        builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                for (int i = 0; i < semana.size(); i++) {
+                    if (semana.get(i).isChecked()) {
+                        itemSelected.add(semana.get(i).getText());
+                    }
+                }
+                diasTierra.add(itemSelected);
+            }
+        });
+
+        builder.setNegativeButton("Cancelar",null);
+
+        return  builder.create();
+    }
+
+    public ArrayList<CheckBox> organizacionDias(View v){
+        CheckBox lunes = v.findViewById(R.id.lunes_dialogo);
+        CheckBox martes = v.findViewById(R.id.martes_dialogo);
+        CheckBox miercoles = v.findViewById(R.id.mierco_dialogo);
+        CheckBox jueves = v.findViewById(R.id.jueves_dialogo);
+        CheckBox viernes = v.findViewById(R.id.viernes_dialogo);
+        CheckBox sabado = v.findViewById(R.id.sabado_dialogo);
+        CheckBox domingo = v.findViewById(R.id.domingo_dialogo);
+
+        final ArrayList<CheckBox> semana = new ArrayList<CheckBox>();
+
+        semana.add(lunes);
+        semana.add(martes);
+        semana.add(miercoles);
+        semana.add(jueves);
+        semana.add(viernes);
+        semana.add(sabado);
+        semana.add(domingo);
+
+        return semana;
+    }
+
 
     public void agregarDiasTierra(MainActivity actividad){
         //Pido los datos de los dias

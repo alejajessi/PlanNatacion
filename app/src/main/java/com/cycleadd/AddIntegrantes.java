@@ -61,7 +61,7 @@ public class AddIntegrantes extends Fragment {
     //Método funcionBttAvanzar: Encargado de realizar el movimiento al fragment siguiente: AddVolumenCycle, a tráves del NavController
     public void funcionBttCrear(){
 
-        avanzar.setOnClickListener(new View.OnClickListener() {
+        crear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 

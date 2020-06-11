@@ -49,7 +49,7 @@
             android:textStyle="bold"
             android:gravity="center"
             android:fontFamily="@font/bs_regular"
-            android:textSize="17dp"
+            android:textSize="14dp"
             android:id="@+id/tx_enun1_earthcycle"
             android:layout_margin="20dp"
             android:layout_marginTop="30dp"
@@ -63,7 +63,7 @@
             android:id="@+id/tx_enun2_earthcycle"
             android:gravity="center"
             android:fontFamily="@font/bs_regular"
-            android:textSize="17dp"
+            android:textSize="14dp"
             android:layout_margin="20dp"
             android:layout_marginTop="30dp"
             android:text="@string/opcion1_title_hacer"
@@ -86,7 +86,7 @@
                 android:id="@+id/fuer_conv_earthcycle"
                 android:background="@color/colorSecond"
                 android:textColor="@color/colorWhite"
-                android:textSize="17dp"/>
+                android:textSize="14dp"/>
 
             <Button
                 android:layout_width="100dp"
@@ -98,7 +98,7 @@
                 android:textAllCaps="false"
                 android:background="@color/colorSecond"
                 android:textColor="@color/colorWhite"
-                android:textSize="17dp"/>
+                android:textSize="14dp"/>
 
             <Button
                 android:layout_width="100dp"
@@ -110,7 +110,7 @@
                 android:id="@+id/fuer_max_earthcycle"
                 android:background="@color/colorSecond"
                 android:textColor="@color/colorWhite"
-                android:textSize="17dp"/>
+                android:textSize="14dp"/>
 
         </LinearLayout>
 
@@ -118,31 +118,37 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_gravity="center">
+            android:layout_gravity="center"
+            android:gravity="center"
+            >
 
             <Button
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="50dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="20dp"
                 android:fontFamily="@font/bs_regular"
                 android:text="@string/opcion7_Retroceder"
                 android:textAllCaps="false"
+                android:layout_marginRight="10dp"
                 android:id="@+id/retro_earthcycle"
                 android:background="@color/colorBanner"
                 android:textColor="@color/colorWhite"
-                android:textSize="17dp"/>
+                android:textSize="14dp"
+                android:layout_gravity="center"
+                android:gravity="center"/>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="10dp"
                 android:fontFamily="@font/bs_regular"
                 android:text="@string/opcion8_Avanzar"
                 android:textAllCaps="false"
+                android:gravity="center"
+                android:layout_gravity="center"
                 android:id="@+id/avan_earthcycle"
-                android:layout_marginLeft="130dp"
-                android:textSize="17dp"
+                android:textSize="14dp"
                 android:background="@color/colorBanner"
                 android:textColor="@color/colorWhite"/>
 

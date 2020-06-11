@@ -49,10 +49,9 @@
             android:layout_marginTop="20dp"
             android:layout_height="wrap_content"
             android:id="@+id/tx_enun1_volcycle"
-            android:textStyle="bold"
             android:gravity="center"
             android:fontFamily="@font/bs_regular"
-            android:textSize="17dp"
+            android:textSize="14dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:text="@string/volumen_agua"
@@ -68,7 +67,7 @@
             android:layout_gravity="center"
             android:id="@+id/ed_resp1_volcycle"
             android:fontFamily="@font/bs_regular"
-            android:textSize="17dp"
+            android:textSize="14dp"
             android:gravity="center"
             android:text="@string/ingresa_valor"
 
@@ -78,10 +77,9 @@
             android:layout_width="match_parent"
             android:layout_marginTop="20dp"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
             android:gravity="center"
             android:fontFamily="@font/bs_regular"
-            android:textSize="17dp"
+            android:textSize="14dp"
             android:id="@+id/tx_enun2_volcycle"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
@@ -98,7 +96,7 @@
             android:layout_gravity="center"
             android:fontFamily="@font/bs_regular"
             android:id="@+id/ed_resp2_volcycle"
-            android:textSize="17dp"
+            android:textSize="14dp"
             android:gravity="center"
             android:text="@string/ingresa_valor"
 
@@ -108,33 +106,39 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_gravity="center"
+            android:gravity="center"
             android:layout_marginTop="70dp">
 
             <Button
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="50dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="10dp"
                 android:fontFamily="@font/bs_regular"
                 android:text="@string/opcion7_Retroceder"
                 android:textAllCaps="false"
                 android:id="@+id/btt_retro_volcycle"
                 android:background="@color/colorBanner"
                 android:textColor="@color/colorWhite"
-                android:textSize="17dp"/>
+                android:textSize="14dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="10dp"
                 android:fontFamily="@font/bs_regular"
                 android:text="@string/opcion8_Avanzar"
                 android:textAllCaps="false"
-                android:layout_marginLeft="130dp"
-                android:textSize="17dp"
+                android:textSize="14dp"
                 android:id="@+id/btt_avan_volcycle"
                 android:background="@color/colorBanner"
-                android:textColor="@color/colorWhite"/>
+                android:textColor="@color/colorWhite"
+                android:layout_gravity="center"
+                android:gravity="center"/>
 
 
         </LinearLayout>

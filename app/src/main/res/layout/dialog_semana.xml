@@ -91,40 +91,7 @@
         android:text="@string/semana_domigno"
         android:textColor="@color/colorWhite"
         android:fontFamily="@font/bs_regular"
-        android:buttonTint="@color/colorWhite"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="102dp"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="20dp"
-            android:background="@color/colorBanner"
-            android:fontFamily="@font/bs_regular"
-            android:text="@string/accept"
-            android:id="@+id/btt_accept_dialog"
-            android:textAllCaps="false"
-            android:textColor="@color/colorWhite" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="20dp"
-            android:id="@+id/btt_decline_dialog"
-            android:background="@color/colorBanner"
-            android:fontFamily="@font/bs_regular"
-            android:text="@string/decline"
-            android:textAllCaps="false"
-            android:textColor="@color/colorWhite" />
-
-
-    </LinearLayout>
+        android:buttonTint="@color/colorWhite"
+        android:layout_marginBottom="70dp"/>
 
 </LinearLayout>
