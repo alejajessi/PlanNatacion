@@ -1,10 +1,12 @@
 package com.e.periodizacionnatacion.Clases;
 
+import java.io.Serializable;
+
 /**
  * Esta clase es utilizada para asignar datos especificos en los ArrayList
  * de las clases Usuario, MacroCiclo, Trabajo y Prueba
  */
-public class DatoBasico {
+public class DatoBasico implements Serializable {
 
     /**
      * Esta variable se Utiliza para asignar un nombre en las clases Usuario y MacroCiclo

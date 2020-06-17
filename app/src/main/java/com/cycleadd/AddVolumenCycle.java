@@ -14,8 +14,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.e.periodizacionnatacion.MainActivity;
+import com.callback.CallBackListener;
 import com.e.periodizacionnatacion.R;
 
 
@@ -32,6 +33,7 @@ public class AddVolumenCycle extends Fragment {
     private EditText edvoltierra;
     private Button avanzar;
     private Button retroceder;
+    private CallBackListener callback;
 
 
     public AddVolumenCycle() {
@@ -43,6 +45,14 @@ public class AddVolumenCycle extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_add_volumen_cycle, container, false);
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        if (getActivity() instanceof CallBackListener) {
+            callback = (CallBackListener) getActivity();
+        }
     }
 
     @Override
@@ -77,7 +87,15 @@ public class AddVolumenCycle extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Navigation.findNavController(v).navigate(R.id.nav_vistaprevia);
+                boolean campos=verificarCampos();
+                if (campos == true){
+
+                    agregarVolumen();
+                    Navigation.findNavController(v).navigate(R.id.nav_vistaprevia);
+
+                }else {
+                    Toast.makeText(getContext(),"Recuerda llenar todos los campos",Toast.LENGTH_LONG).show();
+                }
 
             }
         });
@@ -97,8 +115,23 @@ public class AddVolumenCycle extends Fragment {
         });
     }
 
-    public void agregarVolumen(MainActivity actividad){
-        //Si no estan vacios pedir los datos
-        actividad.agregarVolumen("VolumenAgua","VolumenTierra");
+    public boolean verificarCampos(){
+
+        if (!edvolagua.getText().toString().trim().isEmpty() &&
+                !edvoltierra.getText().toString().trim().isEmpty()){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+
+    public void agregarVolumen(){
+
+        String volumenAgua = edvolagua.getText().toString().trim();
+        String volumenTierra = edvoltierra.getText().toString().trim();
+        if (callback != null){
+            callback.onCallBack("AddVolumenCycle",volumenAgua, volumenTierra, "");
+        }
     }
 }

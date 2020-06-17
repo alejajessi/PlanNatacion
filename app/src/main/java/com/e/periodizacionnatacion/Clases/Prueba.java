@@ -1,12 +1,13 @@
 package com.e.periodizacionnatacion.Clases;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Esta clase es utilizada unicamente por la clase integrantes para guardar los diferentes
  * resultados de una prueba, la cual se puede realizar muchas veces.
  */
-public class Prueba {
+public class Prueba implements Serializable {
 
     private String nombre;
     private ArrayList<DatoBasico> resultadosPruebas;

@@ -4,13 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +16,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Toast;
 
-import com.e.periodizacionnatacion.MainActivity;
+import com.callback.CallBackListener;
 import com.e.periodizacionnatacion.R;
 
 import java.util.ArrayList;
@@ -40,10 +38,17 @@ public class AddWaterCycle extends Fragment {
     //Componente gráfico del xml fragment_add_watercycle tipo Button
     private Button retroceder;
 
-    //Componente gráfico del xml fragment_add_watercycle tipo Button
-    private FragmentActivity actividad;
-
     private ArrayList<ArrayList> diasAgua;
+
+    private ArrayList<String> resis;
+
+    private ArrayList<String> tec;
+
+    private ArrayList<String> vel;
+
+    private String cualBoton;
+
+    private CallBackListener callback;
 
     //Constructor de la clase AddWaterCycle
     public AddWaterCycle() {
@@ -58,14 +63,19 @@ public class AddWaterCycle extends Fragment {
         return inflater.inflate(R.layout.fragment_add_water_cycle, container, false);
     }
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        if (getActivity() instanceof CallBackListener) {
+            callback = (CallBackListener) getActivity();
+        }
+    }
     //Método OnViewCreated: maneja varias funcionalidades de los componentes xml
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         inicializarID(view);
-
-        actividad = getActivity();
 
         funcionBttResistencia();
 
@@ -89,7 +99,10 @@ public class AddWaterCycle extends Fragment {
         bttVelocidad = view.findViewById(R.id.btt_vel_watercycle);
         avanzar = view.findViewById(R.id.avan_addwater);
         retroceder = view.findViewById(R.id.retro_addwater);
-        diasAgua= new ArrayList<>();
+        diasAgua = new ArrayList<ArrayList>();
+        resis = new ArrayList<String>();
+        tec = new ArrayList<String>();
+        vel = new ArrayList<String>();
 
     }
 
@@ -99,6 +112,7 @@ public class AddWaterCycle extends Fragment {
         bttResistencia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                cualBoton = "Resistencia";
                 AlertDialog dialog= crearDialogo();
                 dialog.show();
             }
@@ -109,12 +123,42 @@ public class AddWaterCycle extends Fragment {
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
 
-        LayoutInflater inflater = actividad.getLayoutInflater();
+        LayoutInflater inflater = getActivity().getLayoutInflater();
 
         View v= inflater.inflate(R.layout.dialog_semana, null);
 
         builder.setView(v);
 
+        final ArrayList<CheckBox> semana = organizacionDias(v);
+        final ArrayList<String> itemSelected = new ArrayList<String>();
+
+        builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                for (int i = 0; i < semana.size(); i++) {
+                    if (semana.get(i).isChecked()) {
+                        itemSelected.add(semana.get(i).getText().toString().trim());
+                    }
+                }
+                if (cualBoton.equals("Resistencia")){
+                    resis = itemSelected;
+                    cualBoton = "";
+                }else if (cualBoton.equals("Tecnica")){
+                    tec = itemSelected;
+                    cualBoton = "";
+                }else if (cualBoton.equals("Velocidad")){
+                    vel = itemSelected;
+                    cualBoton = "";
+                }
+            }
+        });
+
+        builder.setNegativeButton("Cancelar",null);
+
+        return  builder.create();
+    }
+
+    public ArrayList<CheckBox> organizacionDias(View v){
         CheckBox lunes = v.findViewById(R.id.lunes_dialogo);
         CheckBox martes = v.findViewById(R.id.martes_dialogo);
         CheckBox miercoles = v.findViewById(R.id.mierco_dialogo);
@@ -123,8 +167,7 @@ public class AddWaterCycle extends Fragment {
         CheckBox sabado = v.findViewById(R.id.sabado_dialogo);
         CheckBox domingo = v.findViewById(R.id.domingo_dialogo);
 
-        final ArrayList<CheckBox> semana = new ArrayList<>();
-        final ArrayList itemSelected = new ArrayList();
+        final ArrayList<CheckBox> semana = new ArrayList<CheckBox>();
 
         semana.add(lunes);
         semana.add(martes);
@@ -134,20 +177,36 @@ public class AddWaterCycle extends Fragment {
         semana.add(sabado);
         semana.add(domingo);
 
-        builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                for (int i = 0; i < semana.size(); i++) {
-                    if (semana.get(i).isChecked()) {
-                        itemSelected.add(semana.get(i).getText());
+        if (cualBoton.equals("Resistencia") && !resis.isEmpty()){
+            for (int i=0;i<semana.size();i++){
+                for (int j=0;j<resis.size();j++){
+                    if (semana.get(i).getText().toString().trim().equals(resis.get(j))){
+                        semana.get(i).setChecked(true);
+                        break;
                     }
                 }
-                diasAgua.add(itemSelected);
             }
-        });
+        }else if (cualBoton.equals("Tecnica") && !tec.isEmpty()){
+            for (int i=0;i<semana.size();i++){
+                for (int j=0;j<tec.size();j++){
+                    if (semana.get(i).getText().toString().trim().equals(tec.get(j))){
+                        semana.get(i).setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }else if (cualBoton.equals("Velocidad") && !vel.isEmpty()){
+            for (int i=0;i<semana.size();i++){
+                for (int j=0;j<vel.size();j++){
+                    if (semana.get(i).getText().toString().trim().equals(vel.get(j))){
+                        semana.get(i).setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
 
-        builder.setNegativeButton("Cancelar",null);
-        return  builder.create();
+        return semana;
     }
 
     //Método funcionBttAvanzar: Encargado de realizar el movimiento al fragment siguiente: AddEarthCycle, a tráves del NavController
@@ -156,7 +215,11 @@ public class AddWaterCycle extends Fragment {
         avanzar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (diasAgua.size()==3) {
+                if (!resis.isEmpty() && !tec.isEmpty() && !vel.isEmpty()) {
+                    diasAgua.add(resis);
+                    diasAgua.add(tec);
+                    diasAgua.add(vel);
+                    agregarDiasAgua();
                     Navigation.findNavController(v).navigate(R.id.nav_earthcycle);
                 }else{
                     Toast.makeText(getContext(),"Selecciona los días para todas las opciones",Toast.LENGTH_LONG).show();
@@ -184,6 +247,7 @@ public class AddWaterCycle extends Fragment {
         bttTecnica.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                cualBoton = "Tecnica";
                 AlertDialog dialog= crearDialogo();
                 dialog.show();
             }
@@ -195,14 +259,33 @@ public class AddWaterCycle extends Fragment {
         bttVelocidad.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                cualBoton = "Velocidad";
                 AlertDialog dialog= crearDialogo();
                 dialog.show();
             }
         });
     }
 
-    public void agregarDiasAgua(MainActivity actividad){
+    public void agregarDiasAgua(){
         //Pido los datos de los dias
-        actividad.agregarDiasAgua("Resistencia","Tecnica","Velocidad");
+        String resistencia = "";
+        String tecnica = "";
+        String velocidad = "";
+
+        for (int i=0;i<diasAgua.size();i++){
+            ArrayList<String> trabajo = diasAgua.get(i);
+            for (int j=0;j<trabajo.size();j++){
+                if (i==0){
+                    resistencia += trabajo.get(j)+"-";
+                }else if (i==1){
+                    tecnica += trabajo.get(j)+"-";
+                }else {
+                    velocidad += trabajo.get(j)+"-";
+                }
+            }
+        }
+        if (callback != null){
+            callback.onCallBack("AddWaterCycle",resistencia,tecnica,velocidad);
+        }
     }
 }

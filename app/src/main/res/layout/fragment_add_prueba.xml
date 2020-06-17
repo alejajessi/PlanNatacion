@@ -8,7 +8,7 @@
     android:background="@drawable/bg_color"
     android:orientation="vertical"
     android:visibility="visible"
-    tools:context=".SeleccionPrueba">
+    tools:context=".AddPrueba">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -42,45 +42,67 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_gravity="center"
-        android:gravity="center">
-        
+        android:gravity="center"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:textColor="@color/colorWhite"
+            android:textSize="14dp"
+            android:text="@string/nom_prueba"
+            android:id="@+id/tx_enun1_addp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="25dp"
+            android:fontFamily="@font/bs_regular"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorWhite"
+            android:textColor="@color/colorBanner"
+            android:layout_margin="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/ed_nombre_addp"
+            android:fontFamily="@font/bs_regular"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorWhite"
+            android:textSize="14dp"
+            android:fontFamily="@font/bs_regular"
             android:text="@string/seleccion_pruebas"
-            android:textColor="@color/colorWhite"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:textSize="17dp"
-            android:fontFamily="@font/bs_regular"
-            android:id="@+id/enun_pruebas"/>
+            android:id="@+id/tx_enun1_addp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"/>
 
-        <Button
-            android:layout_width="wrap_content"
+        <CheckBox
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="70dp"
-            android:background="@color/colorSecond"
-            android:textSize="16dp"
-            android:text="@string/test"
-            android:textAllCaps="false"
             android:textColor="@color/colorWhite"
-            android:fontFamily="@font/bs_regular"
-            android:id="@+id/sp_test"/>
-
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:background="@color/colorSecond"
-            android:textSize="16dp"
             android:text="@string/comp_prep"
-            android:layout_marginBottom="40dp"
-            android:textAllCaps="false"
+            android:buttonTint="@color/colorWhite"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="25dp"
+            android:id="@+id/cb_addp1"
+            android:textSize="14dp"
+            android:fontFamily="@font/bs_regular"/>
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:textColor="@color/colorWhite"
+            android:text="@string/test"
+            android:textSize="14dp"
             android:fontFamily="@font/bs_regular"
-            android:id="@+id/sp_comp_prep"/>
+            android:buttonTint="@color/colorWhite"
+            android:layout_marginLeft="15dp"
+            android:id="@+id/cb_addp2"/>
 
     </LinearLayout>
 
@@ -93,30 +115,31 @@
 
         <Button
             android:layout_width="100dp"
+            android:layout_marginTop="30dp"
             android:layout_height="wrap_content"
             android:background="@color/colorBanner"
             android:fontFamily="@font/bs_regular"
             android:gravity="center"
             android:text="@string/opcion7_Retroceder"
             android:textAllCaps="false"
-            android:id="@+id/retro_addcycle"
+            android:id="@+id/retro_sp"
             android:textColor="@color/colorWhite"
             android:layout_marginRight="10dp"
-            android:textSize="15dp" />
+            android:textSize="14dp" />
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
+            android:layout_marginTop="30dp"
             android:layout_height="wrap_content"
             android:background="@color/colorBanner"
             android:fontFamily="@font/bs_regular"
             android:gravity="center"
-            android:id="@+id/avan_addcycle"
-            android:layout_marginLeft="10dp"
-            android:text="@string/opcion8_Avanzar"
+            android:text="@string/anadir_pr"
             android:textAllCaps="false"
+            android:id="@+id/anadir_sp"
             android:textColor="@color/colorWhite"
-            android:textSize="15dp" />
-
+            android:layout_marginRight="10dp"
+            android:textSize="14dp" />
 
     </LinearLayout>
 </LinearLayout>

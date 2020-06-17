@@ -1,6 +1,11 @@
 package com.e.periodizacionnatacion.Clases;
 
-public class Trabajo {
+import android.util.Log;
+
+import java.io.Serializable;
+import java.util.Calendar;
+
+public class Trabajo implements Serializable {
 
     private String Volumen;
     private DatoBasico Trabajo1;
@@ -88,6 +93,45 @@ public class Trabajo {
 
     public void setCronograma(String cronograma) {
         this.Cronograma = cronograma;
+    }
+
+    public Cronograma generarCronograma(Dato periodo1, Dato periodo2, Dato periodo3){
+        Cronograma cronogramaDias = new Cronograma();
+
+        cronogramaDias.getPeriodo1().setInicio(periodo1.getInicio());
+        cronogramaDias.getPeriodo1().setFin(periodo1.getFin());
+
+        cronogramaDias.getPeriodo2().setInicio(periodo2.getInicio());
+        cronogramaDias.getPeriodo2().setFin(periodo2.getFin());
+
+        cronogramaDias.getPeriodo3().setInicio(periodo3.getInicio());
+        cronogramaDias.getPeriodo3().setFin(periodo3.getFin());
+
+        //generar los porcentajes de cada periodo
+        int porcentaje1 = (int) (Math.random() * 11) + 30;
+        int porcentaje2 = (int) (Math.random() * 11) + 35;
+        int porcentaje3 = 100 - porcentaje1 - porcentaje2;
+
+        //Agregar los porcentajes de cada periodo
+        cronogramaDias.getPeriodo1().setPorcentaje(porcentaje1+"");
+        cronogramaDias.getPeriodo2().setPorcentaje(porcentaje2+"");
+        cronogramaDias.getPeriodo3().setPorcentaje(porcentaje3+"");
+
+        //Calcular los volumenes de cada periodo
+        float volumen = Float.parseFloat(Volumen);
+        float volumen1 = volumen*((float)(porcentaje1/100.00));
+        float volumen2 = volumen*((float)(porcentaje2/100.00));
+        float volumen3 = volumen*((float)(porcentaje3/100.00));
+
+        //Agregar los volumenes de cada periodo
+        cronogramaDias.getPeriodo1().setVolumen(volumen1+"");
+        cronogramaDias.getPeriodo2().setVolumen(volumen2+"");
+        cronogramaDias.getPeriodo3().setVolumen(volumen3+"");
+
+        //Generar cronograma
+        cronogramaDias.generarCronogramaPeriodo();
+
+        return cronogramaDias;
     }
 
     @Override

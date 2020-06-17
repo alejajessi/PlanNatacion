@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_color"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/logo_dialogo"
+        android:src="@mipmap/logo_foreground"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorWhite"
+        android:textSize="13dp"
+        android:id="@+id/enun_diainteg"
+        android:fontFamily="@font/bs_regular"
+        android:gravity="center"
+        android:text="@string/nom_integ"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/colorWhite"
+        android:fontFamily="@font/bs_regular"
+        android:textSize="14dp"
+        android:id="@+id/nom_diainteg"
+        android:textColor="@color/colorBanner"
+        android:layout_margin="15dp"/>
+
+</LinearLayout>

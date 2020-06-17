@@ -7,7 +7,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
@@ -17,8 +16,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.e.periodizacionnatacion.MainActivity;
+import com.callback.CallBackListener;
 import com.e.periodizacionnatacion.R;
 
 import java.util.ArrayList;
@@ -38,8 +38,18 @@ public class AddEarthCycle extends Fragment {
     private Button fmaxbtt;
     private Button avanzar;
     private Button retroceder;
+
     private ArrayList<ArrayList> diasTierra;
-    private FragmentActivity actividad;
+
+    private ArrayList<String> conv;
+
+    private ArrayList<String> cons;
+
+    private ArrayList<String> max;
+
+    private String cualBoton;
+
+    private CallBackListener callback;
 
     public AddEarthCycle() {
             // Required empty public constructor
@@ -53,10 +63,24 @@ public class AddEarthCycle extends Fragment {
     }
 
     @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        if (getActivity() instanceof CallBackListener) {
+            callback = (CallBackListener) getActivity();
+        }
+    }
+
+    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         inicializarID(view);
+
+        funcionFConstruccionBtt();
+
+        funcionFConversionBtt();
+
+        funcionFMax();
 
         final NavController navController= Navigation.findNavController(view);
 
@@ -75,31 +99,44 @@ public class AddEarthCycle extends Fragment {
         fmaxbtt = view.findViewById(R.id.fuer_max_earthcycle);
         avanzar = view.findViewById(R.id.avan_earthcycle);
         retroceder = view.findViewById(R.id.retro_earthcycle);
+        diasTierra = new ArrayList<ArrayList>();
+        conv = new ArrayList<String>();
+        cons = new ArrayList<String>();
+        max = new ArrayList<String>();
 
     }
 
-    public  void funcionFMax(NavController navController){
+    public  void funcionFMax(){
 
+        fmaxbtt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cualBoton = "Maxima";
+                AlertDialog dialog= crearDialogo();
+                dialog.show();
+            }
+        });
 
     }
 
-    public void funcionFConversionBtt(NavController navController){
+    public void funcionFConversionBtt(){
 
         fconversionbtt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                cualBoton = "Conversion";
                 AlertDialog dialog= crearDialogo();
                 dialog.show();
             }
         });
     }
 
-    public void funcionFConstruccionBtt(NavController navController){
+    public void funcionFConstruccionBtt(){
 
         fconstruccionbtt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                cualBoton = "Construccion";
                 AlertDialog dialog= crearDialogo();
                 dialog.show();
             }
@@ -113,7 +150,15 @@ public class AddEarthCycle extends Fragment {
             @Override
             public void onClick(View v) {
                     //crearMacroCiclo(actividad);
+                if (!conv.isEmpty() && !cons.isEmpty() && !max.isEmpty()) {
+                    diasTierra.add(conv);
+                    diasTierra.add(cons);
+                    diasTierra.add(max);
+                    agregarDiasTierra();
                     Navigation.findNavController(v).navigate(R.id.nav_volumen);
+                }else{
+                    Toast.makeText(getContext(),"Selecciona los días para todas las opciones",Toast.LENGTH_LONG).show();
+                }
             }
         });
     }
@@ -134,24 +179,33 @@ public class AddEarthCycle extends Fragment {
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
 
-        LayoutInflater inflater = actividad.getLayoutInflater();
+        LayoutInflater inflater = getActivity().getLayoutInflater();
 
         View v= inflater.inflate(R.layout.dialog_semana, null);
 
         builder.setView(v);
 
         final ArrayList<CheckBox> semana = organizacionDias(v);
-        final ArrayList itemSelected = new ArrayList();
+        final ArrayList<String> itemSelected = new ArrayList<String>();
 
         builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 for (int i = 0; i < semana.size(); i++) {
                     if (semana.get(i).isChecked()) {
-                        itemSelected.add(semana.get(i).getText());
+                        itemSelected.add(semana.get(i).getText().toString().trim());
                     }
                 }
-                diasTierra.add(itemSelected);
+                if (cualBoton.equals("Conversion")){
+                    conv = itemSelected;
+                    cualBoton = "";
+                }else if (cualBoton.equals("Construccion")){
+                    cons = itemSelected;
+                    cualBoton = "";
+                }else if (cualBoton.equals("Maxima")){
+                    max = itemSelected;
+                    cualBoton = "";
+                }
             }
         });
 
@@ -161,6 +215,7 @@ public class AddEarthCycle extends Fragment {
     }
 
     public ArrayList<CheckBox> organizacionDias(View v){
+
         CheckBox lunes = v.findViewById(R.id.lunes_dialogo);
         CheckBox martes = v.findViewById(R.id.martes_dialogo);
         CheckBox miercoles = v.findViewById(R.id.mierco_dialogo);
@@ -179,13 +234,59 @@ public class AddEarthCycle extends Fragment {
         semana.add(sabado);
         semana.add(domingo);
 
+        if (cualBoton.equals("Conversion") && !conv.isEmpty()){
+            for (int i=0;i<semana.size();i++){
+                for (int j=0;j<conv.size();j++){
+                    if (semana.get(i).getText().toString().trim().equals(conv.get(j))){
+                        semana.get(i).setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }else if (cualBoton.equals("Construccion") && !cons.isEmpty()){
+            for (int i=0;i<semana.size();i++){
+                for (int j=0;j<cons.size();j++){
+                    if (semana.get(i).getText().toString().trim().equals(cons.get(j))){
+                        semana.get(i).setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }else if (cualBoton.equals("Maxima") && !max.isEmpty()){
+            for (int i=0;i<semana.size();i++){
+                for (int j=0;j<max.size();j++){
+                    if (semana.get(i).getText().toString().trim().equals(max.get(j))){
+                        semana.get(i).setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
         return semana;
     }
 
-
-    public void agregarDiasTierra(MainActivity actividad){
+    public void agregarDiasTierra(){
         //Pido los datos de los dias
-        actividad.agregarDiasTierra("Construccion","Conversion","Maximo");
+        String construccion = "";
+        String conversion = "";
+        String maxima = "";
+
+        for (int i=0;i<diasTierra.size();i++){
+            ArrayList<String> trabajo = diasTierra.get(i);
+            for (int j=0;j<trabajo.size();j++){
+                if (i==0){
+                    construccion += trabajo.get(j)+"-";
+                }else if (i==1){
+                    conversion += trabajo.get(j)+"-";
+                }else {
+                    maxima += trabajo.get(j)+"-";
+                }
+            }
+        }
+        if (callback != null){
+            callback.onCallBack("AddEarthCycle",construccion, conversion, maxima);
+        }
     }
 
-    }
+}

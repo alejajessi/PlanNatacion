@@ -1,8 +1,9 @@
 package com.e.periodizacionnatacion.Clases;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Integrante {
+public class Integrante implements Serializable {
 
     private String Nombre;
     private String ID;

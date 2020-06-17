@@ -13,9 +13,16 @@
         <action
             android:id="@+id/action_nav_home_to_nav_addcyle"
             app:destination="@id/nav_addcyle" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_showcycle"
+        android:name="com.e.periodizacionnatacion.MostrarCiclo"
+        android:label="@string/mostrar_ciclo"
+        tools:layout="@layout/fragment_mostrar_ciclo">
         <action
-            android:id="@+id/action_nav_home_to_nav_control"
-            app:destination="@id/nav_control" />
+            android:id="@+id/action_nav_showcycle_to_nav_home"
+            app:destination="@id/nav_home" />
     </fragment>
 
     <fragment android:id="@+id/nav_addcyle"
@@ -28,14 +35,16 @@
     </fragment>
 
     <fragment android:id="@+id/nav_addprueba"
-        android:name="com.e.periodizacionnatacion.SeleccionPrueba"
+        android:name="com.e.periodizacionnatacion.AddPrueba"
         android:label="@string/add_pruebas"
-        tools:layout="@layout/fragment_seleccion_prueba" />
-
-    <fragment android:id="@+id/nav_control"
-        android:name="com.cycleadd.AddCycle"
-        android:label="@string/add_MacroCiclo"
-        tools:layout="@layout/fragment_add_cycle" />
+        tools:layout="@layout/fragment_add_prueba" >
+        <action
+            android:id="@+id/action_nav_addprueba_to_nav_home"
+            app:destination="@id/nav_home" />
+        <action
+            android:id="@+id/action_nav_addprueba_to_nav_mostrarP"
+            app:destination="@id/nav_mostrarP" />
+    </fragment>
 
     <fragment android:id="@+id/nav_addwater"
         android:name="com.cycleadd.AddWaterCycle"
@@ -75,6 +84,15 @@
             app:destination="@id/nav_vistaprevia" />
     </fragment>
 
+    <fragment android:id="@+id/nav_modifcycle"
+        android:name="com.e.periodizacionnatacion.ModifMacro"
+        android:label="@string/modificar_plan"
+        tools:layout="@layout/fragment_modif_macro" >
+        <action
+            android:id="@+id/action_nav_modifcycle_to_nav_home"
+            app:destination="@id/nav_home" />
+    </fragment>
+
     <fragment android:id="@+id/nav_vistaprevia"
         android:name="com.cycleadd.AddVistaPrevia"
         android:label="@string/resumen"
@@ -99,5 +117,10 @@
             app:destination="@id/nav_home" />
     </fragment>
 
+    <fragment android:id="@+id/nav_mostrarP"
+        android:name="com.e.periodizacionnatacion.ListPruebas"
+        android:label="@string/sel_prue"
+        tools:layout="@layout/fragment_list_pruebas" >
+    </fragment>
 
 </navigation>

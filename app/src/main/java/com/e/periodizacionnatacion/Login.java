@@ -87,7 +87,7 @@ public class Login extends AppCompatActivity {
     public void  updateUI(FirebaseUser account){
 
         if (account != null) {
-            Toast.makeText(this,"Sesión iniciada exitosamente"+ UUID.randomUUID(),Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"Sesión iniciada exitosamente",Toast.LENGTH_LONG).show();
             cambioAlMain();
         } else {
             Toast.makeText(this,"No se ha iniciado sesión",Toast.LENGTH_LONG).show();

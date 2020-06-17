@@ -48,12 +48,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:textColor="@color/colorBanner"
+            android:textColor="@color/colorWhite"
             android:fontFamily="@font/bs_regular"
             android:id="@+id/enun1_addcomp"
             android:text="@string/nom_comp"
-            android:textSize="14dp"
-            android:background="@color/colorWhite"/>
+            android:textSize="14dp"/>
 
         <EditText
             android:layout_width="match_parent"
@@ -66,12 +65,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:textColor="@color/colorBanner"
+            android:textColor="@color/colorWhite"
             android:fontFamily="@font/bs_regular"
             android:id="@+id/enun2_infocomp"
             android:text="@string/enun_fecha_comp"
-            android:textSize="14dp"
-            android:background="@color/colorWhite"/>
+            android:textSize="14dp"/>
 
         <EditText
             android:layout_width="match_parent"

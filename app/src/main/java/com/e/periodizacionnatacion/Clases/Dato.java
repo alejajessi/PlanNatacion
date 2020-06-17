@@ -1,65 +1,68 @@
 package com.e.periodizacionnatacion.Clases;
 
+import android.util.Log;
+
 import androidx.annotation.Nullable;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Dato {
+public class Dato implements Serializable {
 
-    private String valor;
+    private String inicio;
+    private String fin;
     private String porcentaje;
     private String Volumen;
     private boolean Modificado;
     private ArrayList<Dato> fecha;
-    private int cantidad;
 
     /**
      * Constructor vacio
      */
     public Dato() {
-        this.valor = "";
+        this.inicio = "";
         this.porcentaje = "";
         Volumen = "";
         Modificado = false;
         this.fecha = null;
-        this.cantidad = 0;
+        this.fin = "";
     }
 
     /**
      * Constructor Mes y Semanas
-     * @param valor
+     * @param inicio
      * @param porcentaje
      * @param volumen
      * @param modificado
      * @param fecha
-     * @param cantidad
+     * @param fin
      */
-    public Dato(String valor, String porcentaje, String volumen, boolean modificado, ArrayList<Dato> fecha, int cantidad) {
-        this.valor = valor;
+    public Dato(String inicio, String fin, String porcentaje, String volumen, boolean modificado, ArrayList<Dato> fecha) {
+        this.inicio = inicio;
         this.porcentaje = porcentaje;
         Volumen = volumen;
         Modificado = modificado;
         this.fecha = fecha;
-        this.cantidad = cantidad;
+        this.fin = fin;
     }
 
     /**
      * Constructor Dia
-     * @param valor
+     * @param inicio
      * @param volumen
      * @param modificado
      */
-    public Dato(String valor, String volumen, boolean modificado) {
-        this.valor = valor;
+    public Dato(String inicio, String volumen, boolean modificado) {
+        this.inicio = inicio;
         this.porcentaje = "";
         Volumen = volumen;
         Modificado = modificado;
         this.fecha = null;
-        this.cantidad = 0;
+        this.fin = "";
     }
 
-    public String getValor() {
-        return valor;
+    public String getInicio() {
+        return inicio;
     }
 
     public String getPorcentaje() {
@@ -79,12 +82,12 @@ public class Dato {
         return fecha;
     }
 
-    public int getCantidad() {
-        return cantidad;
+    public String getFin() {
+        return fin;
     }
 
-    public void setValor(String valor) {
-        this.valor = valor;
+    public void setInicio(String inicio) {
+        this.inicio = inicio;
     }
 
     public void setPorcentaje(String porcentaje) {
@@ -103,19 +106,80 @@ public class Dato {
         this.fecha = fecha;
     }
 
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
+    public void setFin(String fin) {
+        this.fin = fin;
+    }
+
+    public void agregarVolumenFecha(){
+        if (fecha != null){
+            //Pregunto el tamaño del arreglo y calculo el porsentaje
+            int numFecha = fecha.size();
+            int porcentaje = 100/numFecha;
+
+            //Se calculan los porcentajes y volumenes de cada mes dependiendo de la cantidad y
+            //se hace la misma operacion con los array de cada fecha
+            int cantidad = 0;
+            int medio = (int)numFecha/2;
+            int porcentajeFecha = 0;
+            int ultimoPorcentaje = 100;
+            float volumenFecha = 0;
+            float volumen = Float.parseFloat(Volumen);
+            for (int i=0; i<numFecha-1;i++){
+
+                cantidad = calcularCantidad(numFecha);
+                if (i<medio || i>medio){
+                    porcentajeFecha = porcentaje-cantidad;
+                }else if (i == medio){
+                    porcentajeFecha = porcentaje+cantidad;
+                }
+
+                //Agrego el porcentaje del mes
+                ultimoPorcentaje = ultimoPorcentaje-porcentajeFecha;
+                fecha.get(i).setPorcentaje(porcentajeFecha+"");
+
+                //Calculo el volumen del mes y lo asigno
+                volumenFecha = volumen*((float)(porcentajeFecha/100.00));
+                fecha.get(i).setVolumen(volumenFecha+"");
+                fecha.get(i).agregarVolumenFecha();
+            }
+
+            //Agrego el porcentaje del ultimo mes
+            fecha.get(numFecha-1).setPorcentaje(ultimoPorcentaje+"");
+
+            //Calculo el volumen del ultimo mes y lo asigno
+            volumenFecha = volumen*((float)(ultimoPorcentaje/100.00));
+            fecha.get(numFecha-1).setVolumen(volumenFecha+"");
+            fecha.get(numFecha-1).agregarVolumenFecha();
+        }
+
+    }
+
+    public int calcularCantidad(int tamaño){
+        //defino la cantidad que se va a aumentar o disminuir del procentaje
+        //dependiendo el tamaño del arreglo
+        int cantidad = 0;
+        if (tamaño<4 && tamaño>1){
+            cantidad = (int)(Math.random() * 11);
+        }else if (tamaño<7 && tamaño>3){
+            cantidad = (int)(Math.random()*6);
+        }else if (tamaño<13 && tamaño>6){
+            cantidad = (int)(Math.random()*4);
+        }else{
+            cantidad = (int)(Math.random()*2);
+        }
+
+        return cantidad;
     }
 
     @Override
     public String toString() {
         return "Dato{" +
-                "valor='" + valor + '\'' +
+                "inicio='" + inicio + '\'' +
                 ", porcentaje='" + porcentaje + '\'' +
                 ", Volumen='" + Volumen + '\'' +
                 ", Modificado=" + Modificado +
                 ", fecha=" + fecha +
-                ", cantidad=" + cantidad +
+                ", fin=" + fin +
                 '}';
     }
 }

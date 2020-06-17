@@ -129,4 +129,10 @@
 
     <string name="volumen">Volumen</string>
     <string name="resumen">Vista previa</string>
+    <string name="nom_integ">Nombre del integrante:</string>
+    <string name="nom_prueba">Nombre de la prueba:</string>
+    <string name="anadir_pr">Añadir</string>
+    <string name="sel_prue">Selección de prueba</string>
+    <string name="ingreso_integ">Ingrese los integrantes del macro ciclo:</string>
+    <string name="crear_ciclo">Crear</string>
 </resources>

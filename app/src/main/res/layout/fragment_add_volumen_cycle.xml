@@ -69,8 +69,7 @@
             android:fontFamily="@font/bs_regular"
             android:textSize="14dp"
             android:gravity="center"
-            android:text="@string/ingresa_valor"
-
+            android:inputType="number"
             />
 
         <TextView
@@ -98,9 +97,9 @@
             android:id="@+id/ed_resp2_volcycle"
             android:textSize="14dp"
             android:gravity="center"
-            android:text="@string/ingresa_valor"
-
+            android:inputType="number"
             />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
