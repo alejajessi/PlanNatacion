@@ -79,7 +79,9 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 usuario = dataSnapshot.getValue(Usuario.class);
-                Log.e(">>>>>>", usuario.getNombre());
+                if (usuario != null){
+                    Log.e(">>>>>>", usuario.toString());
+                }
                 cambiarValorHeader();
             }
 
@@ -91,9 +93,13 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
     }
 
     public void cambiarValorHeader(){
-        nombreUsuario.setText(usuario.getNombre());
-        correoUsuario.setText(usuario.getCorreo());
-        Glide.with(this).load(usuario.getFoto()).into(imagenUsuario);
+        if (usuario !=null){
+            nombreUsuario.setText(usuario.getNombre());
+            correoUsuario.setText(usuario.getCorreo());
+            Glide.with(this).load(usuario.getFoto()).into(imagenUsuario);
+        }else{
+            cambioAlLog();
+        }
     }
 
     public void cambioAlLog(){
@@ -123,6 +129,10 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
                 break;
             case "AddVolumenCycle":
                 agregarVolumen(dato1,dato2);
+                break;
+            case "MostrarMacroCiclo":
+                pedirMacroCiclo(dato1);
+                break;
         }
     }
 
@@ -188,7 +198,7 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
     }
 
     @Override
-    public ArrayList<Cronograma> onCallBackVistaPrevia(String Fragmento) {
+    public ArrayList<Cronograma> onCallBackVistaPrevia(String fragmento) {
         return cronogramas;
     }
 
@@ -265,5 +275,38 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
 
             }
         });
+    }
+
+    @Override
+    public ArrayList<DatoBasico> onCallBackMostrarCiclo(String fragmento) {
+        ArrayList<DatoBasico> ciclos = new ArrayList<DatoBasico>();
+        if (usuario.getMacroCiclos().isEmpty()){
+            return null;
+        }
+        return usuario.getMacroCiclos();
+    }
+
+    public void pedirMacroCiclo(String id){
+        if (MacroCiclo != null && MacroCiclo.getID().equals(id)){
+            return;
+        }
+        Query query = FirebaseDatabase.getInstance().getReference().child("MacroCiclo").child(id);
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                MacroCiclo = dataSnapshot.getValue(MacroCiclo.class);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+    }
+
+    @Override
+    public com.e.periodizacionnatacion.Clases.MacroCiclo onCallBackInfoCycle(String fragmento) {
+        if (MacroCiclo != null){
+            return MacroCiclo;
+        }
+        return null;
     }
 }

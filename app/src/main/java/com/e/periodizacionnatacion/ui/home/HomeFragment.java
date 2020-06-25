@@ -94,6 +94,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
+                Navigation.findNavController(v).navigate(R.id.nav_showcycle);
             }
         });
 

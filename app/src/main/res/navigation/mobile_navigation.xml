@@ -13,11 +13,14 @@
         <action
             android:id="@+id/action_nav_home_to_nav_addcyle"
             app:destination="@id/nav_addcyle" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_showCycles"
+            app:destination="@id/nav_showCycles" />
     </fragment>
 
     <fragment
         android:id="@+id/nav_showcycle"
-        android:name="com.e.periodizacionnatacion.MostrarCiclo"
+        android:name="com.cycleshow.MostrarCiclo"
         android:label="@string/mostrar_ciclo"
         tools:layout="@layout/fragment_mostrar_ciclo">
         <action
@@ -121,6 +124,42 @@
         android:name="com.e.periodizacionnatacion.ListPruebas"
         android:label="@string/sel_prue"
         tools:layout="@layout/fragment_list_pruebas" >
+    </fragment>
+
+    <fragment android:id="@+id/nav_showCycles"
+        android:name="com.cycleshow.MostrarInfoCycle"
+        android:label="@string/info_ciclo"
+        tools:layout="@layout/fragment_mostrar_info_cycle" >
+        <action
+            android:id="@+id/action_nav_showCycles_to_nav_home"
+            app:destination="@id/nav_home" />
+        <action
+            android:id="@+id/action_nav_showCycles_to_nav_showMonths"
+            app:destination="@id/nav_showMonths" />
+        <action
+            android:id="@+id/action_nav_showCycles_to_nav_home2"
+            app:destination="@id/nav_home" />
+    </fragment>
+
+    <fragment android:id="@+id/nav_showMonths"
+        android:name="com.cycleshow.MostrarInfoMonths"
+        android:label="@string/info_mes"
+        tools:layout="@layout/fragment_mostrar_info_months" >
+        <action
+            android:id="@+id/action_nav_showMonths_to_nav_showCycles"
+            app:destination="@id/nav_showCycles" />
+        <action
+            android:id="@+id/action_nav_showMonths_to_nav_showWeeks"
+            app:destination="@id/nav_showWeeks" />
+    </fragment>
+
+    <fragment android:id="@+id/nav_showWeeks"
+        android:name="com.cycleshow.MostrarInfoWeek"
+        android:label="@string/info_sem"
+        tools:layout="@layout/fragment_mostrar_info_week" >
+        <action
+            android:id="@+id/action_nav_showWeeks_to_nav_showMonths"
+            app:destination="@id/nav_showMonths" />
     </fragment>
 
 </navigation>

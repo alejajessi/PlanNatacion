@@ -112,7 +112,7 @@ public class Dato implements Serializable {
 
     public void agregarVolumenFecha(){
         if (fecha != null){
-            //Pregunto el tamaño del arreglo y calculo el porsentaje
+            //Pregunto el tamaño del arreglo y calculo el porcentaje
             int numFecha = fecha.size();
             int porcentaje = 100/numFecha;
 

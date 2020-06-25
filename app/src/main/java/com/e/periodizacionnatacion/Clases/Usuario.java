@@ -93,11 +93,19 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "Usuario{" +
+        String retorno = "Usuario{" +
                 "Nombre='" + nombre + '\'' +
                 ", Correo='" + correo + '\'' +
-                ", ID='" + id + '\'' +
-                ", MacroCiclos=" + MacroCiclos +
-                '}';
+                ", ID='" + id + '\'' ;
+        if (!MacroCiclos.isEmpty()){
+            retorno = retorno+", MacroCiclos= [";
+            int tam = MacroCiclos.size();
+            for (int i=0;i<tam-1;i++){
+                retorno = retorno+MacroCiclos.get(i).getDato1()+", ";
+            }
+            retorno = retorno + MacroCiclos.get(tam-1).getDato1()+"]";
+        }
+                retorno = retorno+" }";
+        return retorno;
     }
 }

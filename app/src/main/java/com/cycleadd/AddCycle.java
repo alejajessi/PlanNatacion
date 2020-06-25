@@ -8,12 +8,14 @@ import androidx.navigation.Navigation;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.callback.CallBackListener;
@@ -30,13 +32,13 @@ public class AddCycle extends Fragment {
     private EditText edtNom;
 
     //Componente gráfico del xml fragment_add_cycle tipo Button
-    private Button bttDate1;
+    private ImageButton bttDate1;
 
     //Componente gráfico del xml fragment_add_cycle tipo EditText
     private EditText edtDate1;
 
     //Componente gráfico del xml fragment_add_cycle tipo Button
-    private Button bttDate2;
+    private ImageButton bttDate2;
 
     //Componente gráfico del xml fragment_add_cycle tipo EditText
     private EditText edtDate2;
@@ -260,9 +262,12 @@ public class AddCycle extends Fragment {
         fecha.set(year,month,day);
 
         int meses = calcularMes(cal,fecha);
+        int anho=cal.get(Calendar.YEAR);
 
-        if (year >= cal.get(Calendar.YEAR) && meses >= 0){
-            if (month == cal.get(Calendar.MONTH) && (day-cal.get(Calendar.DATE))<0){
+
+        if (year >= anho && meses >= 0){
+
+            if (month == cal.get(Calendar.MONTH) && (day-cal.get(Calendar.DATE))<0 && year == anho ){
                 return true;
             }else {
                 return false;

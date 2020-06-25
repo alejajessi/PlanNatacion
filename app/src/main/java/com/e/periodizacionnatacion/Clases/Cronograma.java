@@ -111,6 +111,7 @@ public class Cronograma implements Serializable {
         finPeriodo.set(Integer.parseInt(fin[2]),Integer.parseInt(fin[1])-1,Integer.parseInt(fin[0]));
 
         Periodo2.setFecha(agregarSemanasAMeses(inicioPeriodo,finPeriodo));
+        Log.e("periodo2", Periodo2.getFecha().size()+"");
         Periodo2.agregarVolumenFecha();
 
         //Periodo 3
@@ -125,6 +126,8 @@ public class Cronograma implements Serializable {
         finPeriodo.set(Integer.parseInt(fin[2]),Integer.parseInt(fin[1])-1,Integer.parseInt(fin[0]));
 
         Periodo3.setFecha(agregarSemanasAMeses(inicioPeriodo,finPeriodo));
+
+        Log.e("periodo3", Periodo3.getFecha().size()+"");
         Periodo3.agregarVolumenFecha();
     }
 
@@ -135,7 +138,19 @@ public class Cronograma implements Serializable {
 
         int diasFecha1 = inicio.get(Calendar.DAY_OF_YEAR);
         int diasFecha2 = fin.get(Calendar.DAY_OF_YEAR);
-        int diferencia = (diasFecha2-diasFecha1)/7;
+        int diferencia = 0;
+
+        //Dependiendo de si inicio y fin se encuentran en años diferentes calcula la diferencia de dias entre ambas
+        int diferenciaAnios = fin.get(Calendar.YEAR)-inicio.get(Calendar.YEAR);
+
+        if (diferenciaAnios > 0){
+            //Calcula los dias si inicio y fin son de años diferentes y despues calcula el numero de semanas entre ellos
+            int diasanios = diferenciaAnios*inicio.getActualMaximum(Calendar.DAY_OF_YEAR);
+            diferencia=(diasFecha2+diasanios-diasFecha1)/7;
+        }else{
+            //Calcula las semanas si inicio y fin son de años diferentes
+            diferencia = (diasFecha2-diasFecha1)/7;
+        }
 
         //El modulo especifica el numero de semanas que tendra un mes
         int modulo4 = diferencia%4;
@@ -179,7 +194,6 @@ public class Cronograma implements Serializable {
             //Agrego la semana al array de semanas
             semanas.add(semana);
             numSemanas++;
-
             if (numSemanas == 1){
 
                 //Inicializo el mes y agrego la fecha de inicio

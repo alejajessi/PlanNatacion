@@ -108,8 +108,8 @@ public class Trabajo implements Serializable {
         cronogramaDias.getPeriodo3().setFin(periodo3.getFin());
 
         //generar los porcentajes de cada periodo
-        int porcentaje1 = (int) (Math.random() * 11) + 30;
-        int porcentaje2 = (int) (Math.random() * 11) + 35;
+        int porcentaje1 = (int) (Math.random() * 11) + 35;
+        int porcentaje2 = (int) (Math.random() * 11) + 30;
         int porcentaje3 = 100 - porcentaje1 - porcentaje2;
 
         //Agregar los porcentajes de cada periodo

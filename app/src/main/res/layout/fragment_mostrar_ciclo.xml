@@ -8,7 +8,7 @@
     android:background="@drawable/bg_color"
     android:orientation="vertical"
     android:visibility="visible"
-    tools:context=".MostrarCiclo">
+    tools:context="com.cycleshow.MostrarCiclo">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -37,12 +37,34 @@
 
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
+    <ListView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scrollbars="vertical"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:background="@color/colorSecond"/>
+        android:layout_height="300dp"
+        android:background="@drawable/botonredondo_second"
+        android:layout_margin="30dp"
+        android:id="@+id/list_show"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="136dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/borderedondo_banner"
+            android:fontFamily="@font/bs_regular"
+            android:gravity="center"
+            android:text="@string/opcion7_Retroceder"
+            android:textAllCaps="false"
+            android:id="@+id/retro_minfocycle"
+            android:textColor="@color/colorWhite"
+            android:textSize="14dp" />
+
+    </LinearLayout>
+
 
 </LinearLayout>

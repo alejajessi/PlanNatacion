@@ -76,7 +76,7 @@
             android:layout_height="25dp"
             android:layout_marginRight="30dp"
             android:layout_marginLeft="30dp"
-            android:background="@color/colorWhite"
+            android:background="@drawable/borderedondo_txt"
             android:textColor="@color/colorBanner"
             android:layout_gravity="center"
             android:id="@+id/et_nomb_addcycle"
@@ -111,7 +111,7 @@
             <EditText
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
-                android:background="@color/colorWhite"
+                android:background="@drawable/borderedondo_txt"
                 android:layout_margin="5dp"
                 android:id="@+id/ed_date1"
                 android:textSize="14dp"
@@ -120,11 +120,12 @@
                 android:enabled="false"
                 android:layout_gravity="center"/>
 
-            <Button
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+            <ImageButton
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:id="@+id/btt_cal1_addcycle"
-                android:background="@mipmap/calendario"
+                android:src="@mipmap/calendario"
+                android:background="@drawable/borderedondo_banner"
                 android:layout_gravity="center"
 
                 />
@@ -156,7 +157,7 @@
             <EditText
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
-                android:background="@color/colorWhite"
+                android:background="@drawable/borderedondo_txt"
                 android:id="@+id/ed_date2"
                 android:gravity="center"
                 android:textSize="14dp"
@@ -165,14 +166,16 @@
                 android:enabled="false"
                 android:layout_gravity="center"/>
 
-            <Button
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+            <ImageButton
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:id="@+id/calendar2_addcycle"
-                android:background="@mipmap/calendario"
+                android:src="@mipmap/calendario"
+                android:background="@drawable/borderedondo_banner"
                 android:layout_gravity="center"
-
                 />
+
+
         </LinearLayout>
 
         <LinearLayout
@@ -185,7 +188,7 @@
             <Button
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:background="@color/colorBanner"
+                android:background="@drawable/borderedondo_banner"
                 android:fontFamily="@font/bs_regular"
                 android:gravity="center"
                 android:text="@string/opcion7_Retroceder"
@@ -198,7 +201,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/colorBanner"
+                android:background="@drawable/borderedondo_banner"
                 android:fontFamily="@font/bs_regular"
                 android:gravity="center"
                 android:id="@+id/avan_addcycle"

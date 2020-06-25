@@ -70,10 +70,10 @@
 
     <string name="volumen_agua">Volumen para días de agua (mts):</string>
     <string name="ingresa_valor">Ingrese el valor aquí</string>
-    <string name="volumen_tierra">Volumen para días de tierra (mts):</string>
+    <string name="volumen_tierra">Volumen para días de tierra (min):</string>
 
     <string name="dia_agua_previa">Días de agua (Metros)</string>
-    <string name="dia_tierra_previa">Días de tierra (Metros)</string>
+    <string name="dia_tierra_previa">Días de tierra (Minutos)</string>
     <string name="previous_visual">En resumen, el macro ciclo queda de la siguiente manera:</string>
 
     <string name="acceso_google">Acceder con:</string>
@@ -129,10 +129,17 @@
 
     <string name="volumen">Volumen</string>
     <string name="resumen">Vista previa</string>
-    <string name="nom_integ">Nombre del integrante:</string>
+    <string name="nom_integ">Nombre del nadador:</string>
     <string name="nom_prueba">Nombre de la prueba:</string>
     <string name="anadir_pr">Añadir</string>
     <string name="sel_prue">Selección de prueba</string>
     <string name="ingreso_integ">Ingrese los integrantes del macro ciclo:</string>
     <string name="crear_ciclo">Crear</string>
+    <string name="info_ciclo">Información Ciclo</string>
+    <string name="vol_tierra">Volumen en tierra:</string>
+    <string name="vol_agua">Volumen en agua:</string>
+    <string name="info_mes">Info mes</string>
+    <string name="info_sem">Info semana</string>
+    <string name="salir">Salir</string>
+    <string name="info_integ">Información del nadador:</string>
 </resources>
