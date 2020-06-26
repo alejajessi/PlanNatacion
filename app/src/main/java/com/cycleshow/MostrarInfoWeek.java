@@ -58,6 +58,11 @@ public class MostrarInfoWeek extends Fragment {
     private Button salir;
 
     /**
+     * Componente gráfico del xml fragment_mostrar_info_week tipo Button
+     */
+    private Button opciones;
+
+    /**
      * Objeto tipo ArrayAdapter para modificación del ListView 1
      */
     private ArrayAdapter<String> adaptadorAgua;
@@ -121,6 +126,7 @@ public class MostrarInfoWeek extends Fragment {
         lview2 = view.findViewById(R.id.list2_minfoWeek);
         salir = view.findViewById(R.id.avan_minfoWeek);
         retroceder = view.findViewById(R.id.retro_minfoWeek);
+        opciones = view.findViewById((R.id.opc_minfoWeek));
 
         diasAgua = new ArrayList<String>();
         adaptadorAgua = new ArrayAdapter<String>(getContext(),R.layout.mes_trabajo,diasAgua);

@@ -10,17 +10,20 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.callback.CallBackListener;
+import com.e.periodizacionnatacion.Clases.Integrante;
 import com.e.periodizacionnatacion.R;
 
 import java.util.ArrayList;
@@ -34,9 +37,16 @@ public class AddIntegrantes extends Fragment {
     private ArrayAdapter<String> adaptador;
     private ArrayList<String> nombres;
 
+    private ArrayList<Integrante> integrantes;
+
+    private ArrayList<String> testType;
+
+    private String cualBoton;
+
     private CallBackListener callback;
 
     private boolean agregar;
+    private Integrante integrante;
     private int posicion;
 
     public AddIntegrantes() {
@@ -83,8 +93,10 @@ public class AddIntegrantes extends Fragment {
         retroceder = view.findViewById(R.id.retro_addinteg);
         lista = view.findViewById(R.id.integrantes_lista);
         nombres = new ArrayList<String>();
+        integrantes = new ArrayList<Integrante>();
         adaptador = new ArrayAdapter<String>(getContext(),R.layout.integrante_txv,nombres);
         lista.setAdapter(adaptador);
+        testType = new ArrayList<String>();
 
     }
 
@@ -94,7 +106,8 @@ public class AddIntegrantes extends Fragment {
             @Override
             public void onClick(View v) {
                 agregar = true;
-                AlertDialog dialog= crearDialogo();
+
+                AlertDialog dialog= crearDialogoPrincipal();
                 dialog.show();
             }
         });
@@ -107,13 +120,13 @@ public class AddIntegrantes extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 agregar = false;
                 posicion = position;
-                AlertDialog dialog= crearDialogo();
+                AlertDialog dialog= crearDialogoPrincipal();
                 dialog.show();
             }
         });
     }
 
-    public AlertDialog crearDialogo(){
+    public AlertDialog crearDialogoPrincipal(){
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
 
@@ -123,15 +136,59 @@ public class AddIntegrantes extends Fragment {
 
         builder.setView(v);
 
-        final EditText  nombre= v.findViewById(R.id.nom_diainteg);
+        final EditText  nombre = v.findViewById(R.id.nom_diainteg);
+        final EditText descrip = v.findViewById(R.id.infor_diainteg);
+
+        builder.setPositiveButton("Siguiente", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                cualBoton = "Prueba";
+                integrante = new Integrante();
+                String name = nombre.getText().toString();
+                Log.e("nombre", name);
+                integrante.setNombre(name);
+                String desc = descrip.getText().toString();
+                integrante.setDescripcion(desc);
+                AlertDialog dialogo= crearDialogoPruebas();
+                dialogo.show();
+            }
+        });
+
+        builder.setNegativeButton("Cancelar",null);
+
+        return  builder.create();
+    }
+
+    public AlertDialog crearDialogoPruebas(){
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+
+        LayoutInflater inflater = getActivity().getLayoutInflater();
+
+        View v= inflater.inflate(R.layout.dialog_int_pruebas, null);
+
+        builder.setView(v);
+
+        final ArrayList<CheckBox> pruebas = organizacionPruebas(v);
+        final ArrayList<String> itemSelected = new ArrayList<String>();
 
         builder.setPositiveButton("Añadir", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                for (int i = 0; i < pruebas.size(); i++) {
+                    if (pruebas.get(i).isChecked()) {
+                        itemSelected.add(pruebas.get(i).getText().toString().trim());
+                    }
+                }
+                testType = itemSelected;
+                integrante.setTiposPruebas(testType);
+                cualBoton = "";
+
                 if (agregar){
-                    agregarIntegrante(nombre);
+                    agregarIntegrante();
                 }else{
-                    modificarIntegrante(nombre);
+                    modificarIntegrante();
                 }
             }
         });
@@ -141,28 +198,60 @@ public class AddIntegrantes extends Fragment {
         return  builder.create();
     }
 
-    public void agregarIntegrante(EditText nombre){
+    public ArrayList<CheckBox> organizacionPruebas(View v){
 
-        if(!nombre.toString().trim().isEmpty()) {
-            String x=nombre.getText().toString().trim();
+        CheckBox aire = v.findViewById(R.id.pru_airelibre);
+        CheckBox combin = v.findViewById(R.id.pru_combin);
+        CheckBox espalda = v.findViewById(R.id.pru_espal);
+        CheckBox mariposa = v.findViewById(R.id.pru_mari);
+        CheckBox pecho = v.findViewById(R.id.pru_pecho);
+
+        final ArrayList<CheckBox> pruebas = new ArrayList<CheckBox>();
+
+        pruebas.add(aire);
+        pruebas.add(combin);
+        pruebas.add(espalda);
+        pruebas.add(mariposa);
+        pruebas.add(pecho);
+
+        if (cualBoton.equals("Pruebas") && !testType.isEmpty()){
+            for (int i=0;i<pruebas.size();i++){
+                for (int j=0;j<testType.size();j++){
+                    if (pruebas.get(i).getText().toString().trim().equals(testType.get(j))){
+                        pruebas.get(i).setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }
+
+        return pruebas;
+    }
+
+    public void agregarIntegrante(){
+        String nombre = integrante.getNombre();
+        if(!nombre.isEmpty()) {
+            String x=nombre;
             nombres.add(x);
+            integrantes.add(integrante);
             adaptador.notifyDataSetChanged();
         }else {
             Toast.makeText(getContext(),"Recuerde ingresar un nombre",Toast.LENGTH_LONG).show();
         }
     }
 
-    public void modificarIntegrante(EditText nombre){
+    public void modificarIntegrante(){
 
-        if(!nombre.toString().trim().isEmpty()) {
-            String x=nombre.getText().toString().trim();
+        String nombre = integrante.getNombre();
+        if(!nombre.isEmpty()) {
+            String x=nombre;
             nombres.set(posicion,x);
+            integrantes.set(posicion, integrante);
             adaptador.notifyDataSetChanged();
         }else {
             Toast.makeText(getContext(),"Recuerde ingresar un nombre",Toast.LENGTH_LONG).show();
         }
     }
-
 
     //Método funcionBttAvanzar: Encargado de realizar el movimiento al fragment siguiente: AddVolumenCycle, a tráves del NavController
     public void funcionBttCrear(NavController navController){
@@ -171,7 +260,7 @@ public class AddIntegrantes extends Fragment {
             @Override
             public void onClick(View v) {
                 if (callback != null){
-                    callback.onCallBackArray("AddIntegrantes", nombres);
+                    callback.onCallBackIntegrante("AddIntegrantes", integrantes);
                 }
                 Navigation.findNavController(v).navigate(R.id.nav_home);
             }

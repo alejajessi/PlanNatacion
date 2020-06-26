@@ -58,6 +58,11 @@ public class MostrarInfoMonths extends Fragment {
     private Button retroceder;
 
     /**
+     * Componente gráfico del xml fragment_mostrar_info_day tipo Button
+     */
+    private Button opciones;
+
+    /**
      * Objeto tipo ArrayAdapter para modificación del ListView 1
      */
     private ArrayAdapter<String> adaptadorAgua;
@@ -129,6 +134,7 @@ public class MostrarInfoMonths extends Fragment {
         lview2 = view.findViewById(R.id.list2_minfoMonth);
         salir = view.findViewById(R.id.avan_minfoMonth);
         retroceder = view.findViewById(R.id.retro_minfoMonth);
+        opciones = view.findViewById(R.id.opc_minfoMonth);
 
         diasAgua = new ArrayList<String>();
         adaptadorAgua = new ArrayAdapter<String>(getContext(),R.layout.mes_trabajo,diasAgua);

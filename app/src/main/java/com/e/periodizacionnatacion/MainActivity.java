@@ -203,7 +203,7 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
     }
 
     @Override
-    public void onCallBackArray(String fragmento, ArrayList<String> array) {
+    public void onCallBackIntegrante(String fragmento, ArrayList<Integrante> array) {
         switch (fragmento){
             case "AddIntegrantes":
                 agregarIntegrantes(array);
@@ -211,15 +211,17 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
         }
     }
 
-    public void agregarIntegrantes(ArrayList<String> nombresIntegrante){
+    public void agregarIntegrantes(ArrayList<Integrante> integrantes){
 
         Integrantes = new ArrayList<Integrante>();
         Integrante integrante = new Integrante();
         DatoBasico datos =  new DatoBasico();
 
-        for (int i=0; i<nombresIntegrante.size(); i++){
+        for (int i = 0; i < integrantes.size(); i++){
             //Se pide el nombre
-            String nombre = nombresIntegrante.get(i);
+            String nombre = integrantes.get(i).getNombre();
+            String descripcion = integrantes.get(i).getDescripcion();
+            ArrayList<String> tiposPrueba = integrantes.get(i).getTiposPruebas();
             //Se genera un ID para el integrante y se verifica si existe en la BD
             String id =  UUID.randomUUID()+"";
             verificarSiExisteId("Integrantes", id);
@@ -228,7 +230,11 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
                 verificarSiExisteId("Integrantes", id);
             }
             //Se crea el integrante
-            integrante = new Integrante(nombre,id);
+            Log.e("ID", id);
+            integrante.setID(id);
+            integrante.setNombre(nombre);
+            integrante.setDescripcion(descripcion);
+            integrante.setTiposPruebas(tiposPrueba);
             datos = new DatoBasico(nombre,id);
             MacroCiclo.getIntegrantes().add(datos);
             Integrantes.add(integrante);

@@ -123,7 +123,7 @@ public class MostrarCiclo extends Fragment {
     public void inicializarID(View view){
 
         listCycle = view.findViewById(R.id.list_show);
-
+        retroceder = view.findViewById(R.id.retro_showCyclee);
         macroCiclos = new ArrayList<String>();
         adaptador = new ArrayAdapter<String>(getContext(),R.layout.mes_trabajo,macroCiclos);
         listCycle.setAdapter(adaptador);

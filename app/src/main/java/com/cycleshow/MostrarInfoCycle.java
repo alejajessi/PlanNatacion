@@ -60,6 +60,11 @@ public class MostrarInfoCycle extends Fragment {
     private Button retroceder;
 
     /**
+     * Componente gráfico del xml fragment_mostrar_info_day tipo Button
+     */
+    private Button opciones;
+
+    /**
      * Objeto tipo MacroCiclo
      */
     private MacroCiclo macroClico;
@@ -141,7 +146,8 @@ public class MostrarInfoCycle extends Fragment {
         txVolAgua = view.findViewById(R.id.tx10_nomb_infocycle);
         txVolTierra = view.findViewById(R.id.tx8_nomb_infocycle);
         avanzar = view.findViewById(R.id.avan_infocycle);
-        retroceder = view.findViewById(R.id.retro_minfocycle);
+        retroceder = view.findViewById(R.id.retro_infocycle);
+        opciones = view.findViewById(R.id.opc_infocycle);
 
     }
 

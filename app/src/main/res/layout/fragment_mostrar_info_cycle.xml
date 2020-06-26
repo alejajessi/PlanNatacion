@@ -211,10 +211,9 @@
             android:textSize="14dp" />
     </LinearLayout>
 
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="136dp"
+        android:layout_height="90dp"
         android:layout_gravity="center"
         android:gravity="center"
         android:orientation="horizontal">
@@ -227,7 +226,7 @@
             android:gravity="center"
             android:text="@string/opcion7_Retroceder"
             android:textAllCaps="false"
-            android:id="@+id/retro_mcycle"
+            android:id="@+id/retro_infocycle"
             android:textColor="@color/colorWhite"
             android:layout_marginRight="10dp"
             android:textSize="14dp" />
@@ -245,9 +244,20 @@
             android:textColor="@color/colorWhite"
             android:textSize="14dp" />
 
-
     </LinearLayout>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/borderedondo_banner"
+        android:fontFamily="@font/bs_regular"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:id="@+id/opc_infocycle"
+        android:layout_marginLeft="10dp"
+        android:text="@string/opci"
+        android:textAllCaps="false"
+        android:textColor="@color/colorWhite"
+        android:textSize="14dp" />
 
-    </LinearLayout>
-
+</LinearLayout>
