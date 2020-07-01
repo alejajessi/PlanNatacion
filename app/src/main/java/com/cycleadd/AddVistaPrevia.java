@@ -164,7 +164,7 @@ public class AddVistaPrevia extends Fragment {
         //Periodo 1
         ArrayList<Dato> mesesPeriodo = periodo1.getFecha();
         for (int i=0;i<mesesPeriodo.size();i++){
-            dato = " Mes"+numMes+": "+mesesPeriodo.get(i).getVolumen();
+            dato = "(Periodo 1) Mes"+numMes+": "+mesesPeriodo.get(i).getVolumen()+" ("+mesesPeriodo.get(i).getPorcentaje()+"%)";
             dia.add(dato);
             numMes++;
         }
@@ -172,7 +172,7 @@ public class AddVistaPrevia extends Fragment {
         //Periodo 2
         mesesPeriodo = periodo2.getFecha();
         for (int i=0;i<mesesPeriodo.size();i++){
-            dato = " Mes"+numMes+": "+mesesPeriodo.get(i).getVolumen();
+            dato = "(Periodo 2) Mes"+numMes+": "+mesesPeriodo.get(i).getVolumen()+" ("+mesesPeriodo.get(i).getPorcentaje()+"%)";
             dia.add(dato);
             numMes++;
         }
@@ -180,7 +180,7 @@ public class AddVistaPrevia extends Fragment {
         //Periodo 3
         mesesPeriodo = periodo3.getFecha();
         for (int i=0;i<mesesPeriodo.size();i++){
-            dato = " Mes"+numMes+": "+mesesPeriodo.get(i).getVolumen();
+            dato = "(Periodo 3) Mes"+numMes+": "+mesesPeriodo.get(i).getVolumen()+" ("+mesesPeriodo.get(i).getPorcentaje()+"%)";
             dia.add(dato);
             numMes++;
         }

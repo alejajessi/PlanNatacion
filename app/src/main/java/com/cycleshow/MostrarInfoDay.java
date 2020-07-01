@@ -143,6 +143,8 @@ public class MostrarInfoDay extends Fragment {
         diasTierra = new ArrayList<String>();
         adaptadorTierra = new ArrayAdapter<String>(getContext(),R.layout.mes_trabajo,diasTierra);
         lview1.setAdapter(adaptadorTierra);
+
+
     }
 
     /**

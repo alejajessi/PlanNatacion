@@ -47,6 +47,11 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
     ArrayList<Cronograma> cronogramas;
     private boolean existe;
 
+    //Para preguntar si se puede cambiar a otro fragment
+    //(True) no permite cambiar
+    //(False) permite cambiar
+    private boolean cambioDeFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,13 +74,14 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
         //usuario =  (Usuario) getIntent().getSerializableExtra("Usuario");
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         updateUI(user);
+
+        cambioDeFragment = true;
     }
 
     //Change UI according to user data.
     public void  updateUI(FirebaseUser user){
-        Query query = FirebaseDatabase.getInstance().getReference().child("Usuario").child(user.getUid());
-
-        query.addValueEventListener(new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference().child("Usuario").child(user.getUid())
+                .addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 usuario = dataSnapshot.getValue(Usuario.class);
@@ -131,7 +137,15 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
                 agregarVolumen(dato1,dato2);
                 break;
             case "MostrarMacroCiclo":
+                cambioDeFragment = true;
                 pedirMacroCiclo(dato1);
+                break;
+            case "MostrarInfoCycle":
+                cronogramas = new ArrayList<Cronograma>();
+                cronogramas.add(new Cronograma());
+                cronogramas.add(new Cronograma());
+                pedirCronograma(MacroCiclo.getDiasAgua().getCronograma(), 0);
+                pedirCronograma(MacroCiclo.getDiasTierra().getCronograma(), 1);
                 break;
         }
     }
@@ -221,7 +235,7 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
             //Se pide el nombre
             String nombre = integrantes.get(i).getNombre();
             String descripcion = integrantes.get(i).getDescripcion();
-            ArrayList<String> tiposPrueba = integrantes.get(i).getTiposPruebas();
+            //ArrayList<String> tiposPrueba = integrantes.get(i).getTiposPruebas();
             //Se genera un ID para el integrante y se verifica si existe en la BD
             String id =  UUID.randomUUID()+"";
             verificarSiExisteId("Integrantes", id);
@@ -234,7 +248,7 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
             integrante.setID(id);
             integrante.setNombre(nombre);
             integrante.setDescripcion(descripcion);
-            integrante.setTiposPruebas(tiposPrueba);
+            //integrante.setTiposPruebas(tiposPrueba);
             datos = new DatoBasico(nombre,id);
             MacroCiclo.getIntegrantes().add(datos);
             Integrantes.add(integrante);
@@ -286,7 +300,7 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
     @Override
     public ArrayList<DatoBasico> onCallBackMostrarCiclo(String fragmento) {
         ArrayList<DatoBasico> ciclos = new ArrayList<DatoBasico>();
-        if (usuario.getMacroCiclos().isEmpty()){
+        if (usuario.getMacroCiclos().isEmpty() ||usuario.getMacroCiclos() == null){
             return null;
         }
         return usuario.getMacroCiclos();
@@ -294,6 +308,7 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
 
     public void pedirMacroCiclo(String id){
         if (MacroCiclo != null && MacroCiclo.getID().equals(id)){
+            cambioDeFragment = false;
             return;
         }
         Query query = FirebaseDatabase.getInstance().getReference().child("MacroCiclo").child(id);
@@ -301,11 +316,37 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 MacroCiclo = dataSnapshot.getValue(MacroCiclo.class);
+                cambioDeFragment = false;
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
+    }
+
+    public void pedirCronograma(String id, final int posicion){
+        if (!cronogramas.isEmpty() && cronogramas.size()>posicion
+                && cronogramas.get(posicion).getID().equals(id)){
+           // cambioDeFragment = false;
+            return;
+        }
+        Query query = FirebaseDatabase.getInstance().getReference().child("Cronograma").child(id);
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Cronograma cronograma = dataSnapshot.getValue(Cronograma.class);
+                cronogramas.set(posicion,cronograma);
+            //    cambioDeFragment = false;
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+    }
+
+    @Override
+    public boolean onCallBackCambio() {
+        return cambioDeFragment;
     }
 
     @Override

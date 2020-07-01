@@ -88,7 +88,7 @@
     </fragment>
 
     <fragment android:id="@+id/nav_modifcycle"
-        android:name="com.e.periodizacionnatacion.ModifMacro"
+        android:name="com.cycleoptions.ModifMacro"
         android:label="@string/modificar_plan"
         tools:layout="@layout/fragment_modif_macro" >
         <action
@@ -139,6 +139,9 @@
         <action
             android:id="@+id/action_nav_showCycles_to_nav_home2"
             app:destination="@id/nav_home" />
+        <action
+            android:id="@+id/action_nav_showCycles_to_nav_addIntegrante"
+            app:destination="@id/nav_addIntegrante" />
     </fragment>
 
     <fragment android:id="@+id/nav_showMonths"
@@ -151,6 +154,9 @@
         <action
             android:id="@+id/action_nav_showMonths_to_nav_showWeeks"
             app:destination="@id/nav_showWeeks" />
+        <action
+            android:id="@+id/action_nav_showMonths_to_nav_addIntegrante"
+            app:destination="@id/nav_addIntegrante" />
     </fragment>
 
     <fragment android:id="@+id/nav_showWeeks"
@@ -160,6 +166,18 @@
         <action
             android:id="@+id/action_nav_showWeeks_to_nav_showMonths"
             app:destination="@id/nav_showMonths" />
+        <action
+            android:id="@+id/action_nav_showWeeks_to_nav_addIntegrante"
+            app:destination="@id/nav_addIntegrante" />
     </fragment>
 
+    <fragment android:id="@+id/nav_addIntegrante"
+        android:name="com.cycleoptions.AddIntegrante"
+        android:label="@string/add_int"
+        tools:layout="@layout/fragment_add_integrante">
+
+        <action
+            android:id="@+id/action_nav_addIntegrante_to_nav_home"
+            app:destination="@id/nav_home" />
+    </fragment>
 </navigation>

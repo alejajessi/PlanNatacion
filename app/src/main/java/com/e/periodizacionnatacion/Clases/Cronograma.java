@@ -97,6 +97,7 @@ public class Cronograma implements Serializable {
         finPeriodo.set(Integer.parseInt(fin[2]),Integer.parseInt(fin[1])-1,Integer.parseInt(fin[0]));
 
         Periodo1.setFecha(agregarSemanasAMeses(inicioPeriodo,finPeriodo));
+        Log.w("periodo1", Periodo1.getFecha().size()+"");
         Periodo1.agregarVolumenFecha();
 
         //Periodo 2
@@ -111,7 +112,7 @@ public class Cronograma implements Serializable {
         finPeriodo.set(Integer.parseInt(fin[2]),Integer.parseInt(fin[1])-1,Integer.parseInt(fin[0]));
 
         Periodo2.setFecha(agregarSemanasAMeses(inicioPeriodo,finPeriodo));
-        Log.e("periodo2", Periodo2.getFecha().size()+"");
+        Log.w("periodo2", Periodo2.getFecha().size()+"");
         Periodo2.agregarVolumenFecha();
 
         //Periodo 3
@@ -126,8 +127,7 @@ public class Cronograma implements Serializable {
         finPeriodo.set(Integer.parseInt(fin[2]),Integer.parseInt(fin[1])-1,Integer.parseInt(fin[0]));
 
         Periodo3.setFecha(agregarSemanasAMeses(inicioPeriodo,finPeriodo));
-
-        Log.e("periodo3", Periodo3.getFecha().size()+"");
+        Log.w("periodo3", Periodo3.getFecha().size()+"");
         Periodo3.agregarVolumenFecha();
     }
 
@@ -160,6 +160,8 @@ public class Cronograma implements Serializable {
             maximoSemanas = 4;
         }else if (modulo5 == 0 || modulo5 > 2){
             maximoSemanas = 5;
+        }else if (diferencia != 2){
+            maximoSemanas=4;
         }
 
         //Fecha para incrementar
@@ -187,7 +189,7 @@ public class Cronograma implements Serializable {
             semana.setInicio(df.format(fechaIncremento.getTime()));
 
             //Aumento la fecha en 1 semana y agrego la fecha al fin de la semana
-            fecha = FechaIncrementoDia(7,fechaIncremento);
+            fecha = FechaIncrementoDia(6,fechaIncremento);
             fechaIncremento.set(fecha[2],fecha[1],fecha[0]);
             semana.setFin(df.format(fechaIncremento.getTime()));
 
@@ -211,10 +213,25 @@ public class Cronograma implements Serializable {
                 //Agrego el mes al array de meses
                 meses.add(mes);
                 numSemanas=0;
+                Log.e("Mes"+meses.size(),"inicio >> "+mes.getInicio());
+                Log.e("Mes"+meses.size(),"Fin >> "+mes.getFin());
+                Log.e("Meses>>"+meses.size(),"Semanas>>"+maximoSemanas);
             }
             //Incremento 1 dia
             fecha = FechaIncrementoDia(1,fechaIncremento);
             fechaIncremento.set(fecha[2],fecha[1],fecha[0]);
+        }
+
+        //Si el for llega a ser igual a diferencia y numSemana no a llegado al maximo
+        //Se agregan esas semanas al ultimo mes del array de meses
+        if (numSemanas>0 && numSemanas<maximoSemanas){
+            mes = meses.get(meses.size()-1);
+            for (int i=0; i<semanas.size(); i++){
+                mes.getFecha().add(semanas.get(i));
+                mes.setFin(semanas.get(i).getFin());
+            }
+            meses.set(meses.size()-1,mes);
+            Log.v("Mes"+meses.size(),"Fin >> "+mes.getFin());
         }
 
         //Calcular las fechas cuando no son semanas exactas
@@ -228,10 +245,13 @@ public class Cronograma implements Serializable {
 
                 //Pedir la fecha de fin de la ultima semana
                 String[] fechafin = semana.getFin().split("-");
-                fechaIncremento.set(Integer.parseInt(fechafin[2]),Integer.parseInt(fechafin[1])-1,Integer.parseInt(fechafin[0]));
+                fechaIncremento.set(Integer.parseInt(fechafin[2]),Integer.parseInt(fechafin[1])-1,(Integer.parseInt(fechafin[0])));
+
 
                 //Incrementar la fecha de fin por en la diferencia
-                fecha = FechaIncrementoDia(diferencia,fechaIncremento);
+                //Se agrega 1 a la diferencia ya que la modificacion de la variable fechaIncremento
+                // no tiene en cuenta el ultimo incremento hecho en el for
+                fecha = FechaIncrementoDia((diferencia+1),fechaIncremento);
                 fechaIncremento.set(fecha[2],fecha[1],fecha[0]);
 
                 //Cambio la fecha de fin de la ultima semana
@@ -261,6 +281,9 @@ public class Cronograma implements Serializable {
             //Modifico el ultimo mes
             int posUltimoMes = meses.size()-1;
             meses.set(posUltimoMes,mes);
+            Log.v("Mes"+meses.size(),"Fin >> "+mes.getFin());
+            Log.v("Meses>>"+meses.size(),"Semanas>>"+meses.get(meses.size()-1).getFecha().size());
+
         }
 
         return meses;
@@ -327,6 +350,30 @@ public class Cronograma implements Serializable {
         return fecha;
     }
 
+    public int[] FechaDisminucionDia(int dias, Calendar inicio){
+        //Arreglo con la fecha a incrementar [dia,mes,año]
+        int[] fecha = new int[3];
+        int day = inicio.get(Calendar.DATE);
+        int month = inicio.get(Calendar.MONTH)+1;
+        int year = inicio.get(Calendar.YEAR);
+        fecha[0]=day-dias;
+        fecha[1] = month;
+        fecha[2]=year;
+
+        //verificar si al disminuir pasa al anterior mes o año
+        if (fecha[0]<1){
+            fecha[1] = fecha[1]-1;
+            if (fecha[1]<1){
+                fecha[2]=fecha[2]-1;
+                fecha[1]= 12-fecha[1];
+            }
+            inicio.set(fecha[2],(fecha[1]-1),1);
+            fecha[0] = inicio.getActualMaximum(Calendar.DAY_OF_MONTH)-fecha[0];
+        }
+        fecha[1]  = fecha[1]-1;
+        return fecha;
+    }
+
     public int calcularMes(Calendar inicio, Calendar fin){
         int diferenciaAnios = calcularAnio(inicio,fin);
         int diferencia = (diferenciaAnios*12)+(fin.get(Calendar.MONTH)-inicio.get(Calendar.MONTH));
@@ -353,4 +400,5 @@ public class Cronograma implements Serializable {
                 ", Periodo3=" + Periodo3 +
                 '}';
     }
+
 }

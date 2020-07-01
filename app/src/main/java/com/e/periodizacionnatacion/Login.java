@@ -176,7 +176,6 @@ public class Login extends AppCompatActivity {
     public void cambioAlMain(){
         Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-        //intent.putExtra("Usuario", usuario);
         startActivity(intent);
     }
 

@@ -77,7 +77,7 @@
 
             <ListView
                 android:layout_width="wrap_content"
-                android:layout_height="100dp"
+                android:layout_height="150dp"
                 android:background="@drawable/borderedondo_txt"
                 android:id="@+id/list1_minfoMonth">
 
@@ -107,7 +107,7 @@
 
             <ListView
                 android:layout_width="wrap_content"
-                android:layout_height="100dp"
+                android:layout_height="150dp"
                 android:background="@drawable/borderedondo_txt"
                 android:id="@+id/list2_minfoMonth">
 

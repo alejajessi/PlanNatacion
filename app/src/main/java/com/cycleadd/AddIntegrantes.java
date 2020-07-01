@@ -30,10 +30,25 @@ import java.util.ArrayList;
 
 public class AddIntegrantes extends Fragment {
 
+    /**
+     * Componente gráfico del xml fragment_add_integrantes tipo Button
+     */
     private Button bttadd;
+
+    /**
+     * Componente gráfico del xml fragment_add_integrantes tipo Button
+     */
     private Button crear;
-    private ListView lista;
+
+    /**
+     * Componente gráfico del xml fragment_add_integrantes tipo Button
+     */
     private Button retroceder;
+
+    /**
+     * Componente gráfico del xml fragment_add_integrantes tipo ListView
+     */
+    private ListView lista;
     private ArrayAdapter<String> adaptador;
     private ArrayList<String> nombres;
 

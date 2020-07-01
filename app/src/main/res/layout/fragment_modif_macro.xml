@@ -8,7 +8,7 @@
     android:background="@drawable/bg_color"
     android:orientation="vertical"
     android:visibility="visible"
-    tools:context=".ModifMacro">
+    tools:context="com.cycleoptions.ModifMacro">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -67,17 +67,6 @@
             android:layout_marginTop="15dp"
             android:fontFamily="@font/bs_regular"/>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/colorSecond"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:textAllCaps="false"
-            android:text="@string/string_3_int"
-            android:textColor="@color/colorWhite"
-            android:layout_marginTop="15dp"
-            android:fontFamily="@font/bs_regular"/>
 
         <Button
             android:layout_width="wrap_content"

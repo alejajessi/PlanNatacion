@@ -53,5 +53,4 @@
         android:textColor="@color/colorBanner"
         android:layout_margin="15dp"/>
 
-
 </LinearLayout>

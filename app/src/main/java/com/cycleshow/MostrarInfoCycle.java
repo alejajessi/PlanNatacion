@@ -1,21 +1,26 @@
 package com.cycleshow;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.callback.CallBackListener;
+import com.e.periodizacionnatacion.Clases.Integrante;
 import com.e.periodizacionnatacion.Clases.MacroCiclo;
 import com.e.periodizacionnatacion.R;
 
@@ -131,6 +136,7 @@ public class MostrarInfoCycle extends Fragment {
 
         funcionBttAvanzar(navController);
         funcionBttRetroceder(navController);
+        funcionBttOpciones(navController);
 
     }
 
@@ -170,6 +176,10 @@ public class MostrarInfoCycle extends Fragment {
         txVolTierra.setText(vol1);
         txVolAgua.setText(vol2);
 
+        if (callback != null){
+            callback.onCallBack("MostrarInfoCycle", null, null, null);
+        }
+
     }
 
     /**
@@ -199,6 +209,88 @@ public class MostrarInfoCycle extends Fragment {
             }
         });
 
+    }
+
+    public void funcionBttOpciones(final NavController navController){
+        opciones.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog dialog= crearDialogoOpciones(navController);
+                dialog.show();
+            }
+        });
+    }
+
+    public AlertDialog crearDialogoOpciones(NavController navController){
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+
+        LayoutInflater inflater = getActivity().getLayoutInflater();
+
+        View v= inflater.inflate(R.layout.dialog_opcionesmc, null);
+
+        builder.setView(v);
+
+        Button modificar = v.findViewById(R.id.opc_porcentaje);
+        funcionBttModificar(modificar, navController);
+        Button anhadir = v.findViewById(R.id.opc_addinteg);
+        funcionBttAnhadir(anhadir, navController);
+        Button general = v.findViewById(R.id.opc_pdfgeneral);
+        funcionBttGeneral(general);
+        Button dia = v.findViewById(R.id.opc_pdfdia);
+        funcionBttDia(dia);
+        Button delete = v.findViewById(R.id.opc_delete);
+        funcionBttDelete (delete);
+        builder.setNegativeButton("Cancelar",null);
+
+        return  builder.create();
+    }
+
+    public void funcionBttAnhadir(Button anhadir, NavController navController){
+
+        anhadir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigate(R.id.nav_addIntegrante);
+            }
+        });
+    }
+
+    public void funcionBttModificar(Button modificar, NavController navController){
+
+        modificar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigate(R.id.nav_modifcycle);
+            }
+        });
+    }
+
+    public void funcionBttGeneral(Button general){
+        general.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+    }
+
+    public void funcionBttDia(Button dia){
+        dia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+    }
+
+    public void funcionBttDelete(Button delete){
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
 }

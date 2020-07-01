@@ -16,6 +16,9 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.callback.CallBackListener;
+import com.e.periodizacionnatacion.Clases.Cronograma;
+import com.e.periodizacionnatacion.Clases.Dato;
 import com.e.periodizacionnatacion.R;
 
 import java.util.ArrayList;
@@ -82,6 +85,9 @@ public class MostrarInfoMonths extends Fragment {
      */
     private ArrayList<String> diasTierra;
 
+
+    private CallBackListener callback;
+
     /**
      * Constructor de la clase MostrarInfoMonths
      */
@@ -101,6 +107,19 @@ public class MostrarInfoMonths extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_mostrar_info_months, container, false);
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        if (getActivity() instanceof CallBackListener) {
+            callback = (CallBackListener) getActivity();
+        }
+
+        if (callback != null){
+            ArrayList<Cronograma> cronogramas = callback.onCallBackVistaPrevia("AddVistaPrevia");
+            AgregarCronogramas(cronogramas.get(0),cronogramas.get(1));
+        }
     }
 
     /**
@@ -173,5 +192,43 @@ public class MostrarInfoMonths extends Fragment {
             }
         });
 
+    }
+
+    public void AgregarCronogramas(Cronograma agua, Cronograma tierra) {
+
+        llenarArray(agua.getPeriodo1(),agua.getPeriodo2(),agua.getPeriodo3(), diasAgua);
+        adaptadorAgua.notifyDataSetChanged();
+
+        llenarArray(tierra.getPeriodo1(),tierra.getPeriodo2(),tierra.getPeriodo3(), diasTierra);
+        adaptadorTierra.notifyDataSetChanged();
+    }
+
+    public void llenarArray (Dato periodo1, Dato periodo2, Dato periodo3, ArrayList<String> dia){
+        String dato = "";
+        int numMes = 1;
+
+        //Periodo 1
+        ArrayList<Dato> mesesPeriodo = periodo1.getFecha();
+        for (int i=0;i<mesesPeriodo.size();i++){
+            dato = "(Periodo 1) Mes"+numMes+": "+mesesPeriodo.get(i).getVolumen()+" ("+mesesPeriodo.get(i).getPorcentaje()+"%)";
+            dia.add(dato);
+            numMes++;
+        }
+
+        //Periodo 2
+        mesesPeriodo = periodo2.getFecha();
+        for (int i=0;i<mesesPeriodo.size();i++){
+            dato = "(Periodo 2) Mes"+numMes+": "+mesesPeriodo.get(i).getVolumen()+" ("+mesesPeriodo.get(i).getPorcentaje()+"%)";
+            dia.add(dato);
+            numMes++;
+        }
+
+        //Periodo 3
+        mesesPeriodo = periodo3.getFecha();
+        for (int i=0;i<mesesPeriodo.size();i++){
+            dato = "(Periodo 3) Mes"+numMes+": "+mesesPeriodo.get(i).getVolumen()+" ("+mesesPeriodo.get(i).getPorcentaje()+"%)";
+            dia.add(dato);
+            numMes++;
+        }
     }
 }

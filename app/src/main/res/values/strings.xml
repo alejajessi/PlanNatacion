@@ -128,4 +128,11 @@
     <string name="prue_mari">Pruebas mariposa</string>
     <string name="prue_comb">Pruebas de combinado individual</string>
     <string name="enun_integ">Por favor añadir los nadadores que serán participantes de este Macro Ciclo:</string>
+    <string name="modi_porce">Modificar porcentajes</string>
+    <string name="add_int">Añadir nadador</string>
+    <string name="desc_pdf_gen">Descargar pdf general</string>
+    <string name="desc_pdf_dia">Descargar pdf día actual</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
