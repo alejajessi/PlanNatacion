@@ -159,10 +159,7 @@ public class MostrarCiclo extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 callback.onCallBack("MostrarMacroCiclo",ciclos.get(position).getDato2(),null,null);
                 Log.e("Mostrar MacroCiclos", "InfoCycle");
-               // while (callback.onCallBackCambio()){
-               //     Log.e("Mostrar MacroCiclos", "Imuere");
-                    Toast.makeText(getContext(),"Cargando MacroCiclo...",Toast.LENGTH_SHORT).show();
-               // }
+                Toast.makeText(getContext(),"Cargando MacroCiclo...",Toast.LENGTH_SHORT).show();
                 Navigation.findNavController(view).navigate(R.id.nav_showCycles);
             }
         });

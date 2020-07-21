@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,7 +62,7 @@ public class AddVistaPrevia extends Fragment {
         }
 
         if (callback != null){
-            ArrayList<Cronograma> cronogramas = callback.onCallBackVistaPrevia("AddVistaPrevia");
+            ArrayList<Cronograma> cronogramas = callback.onCallBackCronograma("AddVistaPrevia");
             AgregarCronogramas(cronogramas.get(0),cronogramas.get(1));
         }
     }

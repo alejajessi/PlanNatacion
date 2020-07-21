@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,37 +16,33 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.callback.CallBackListener;
+import com.e.periodizacionnatacion.Clases.Dato;
+import com.e.periodizacionnatacion.Clases.Dia;
 import com.e.periodizacionnatacion.R;
 
 import java.util.ArrayList;
 
 public class MostrarInfoDay extends Fragment {
 
-    /**
-     * Componente gráfico del xml fragment_mostrar_info_day tipo TextView
-     */
-    private TextView enun1txt;
+    private TextView txPeriodo;
 
-    /**
-     * Componente gráfico del xml fragment_mostrar_info_day tipo TextView
-     */
-    private TextView enun2txt;
+    private TextView txMes;
 
-    /**
-     * Componente gráfico del xml fragment_mostrar_info_day tipo TextView
-     */
-    private TextView enun3txt;
+    private TextView txSemana;
 
-    /**
-     * Componente gráfico del xml fragment_mostrar_info_day tipo ListView
-     */
-    private ListView lview1;
+    private TextView txDia;
 
-    /**
-     * Componente gráfico del xml fragment_mostrar_info_day tipo ListView
-     */
-    private ListView lview2;
+    private TextView txHabilidades;
+
+    //Para mostrar el dia
+    private Dia dia;
+
+    private CallBackListener callback;
+
+    private String mostrando;
 
     /**
      * Componente gráfico del xml fragment_mostrar_info_day tipo Button
@@ -57,30 +54,6 @@ public class MostrarInfoDay extends Fragment {
      */
     private Button retroceder;
 
-    /**
-     * Componente gráfico del xml fragment_mostrar_info_day tipo Button
-     */
-    private Button opciones;
-
-    /**
-     * Objeto tipo ArrayAdapter para modificación del ListView 1
-     */
-    private ArrayAdapter<String> adaptadorAgua;
-
-    /**
-     * Objeto tipo ArrayList para  asignar información de la lista del ListView 1
-     */
-    private ArrayList<String> diasAgua;
-
-    /**
-     * Objeto tipo ArrayAdapter para modificación del ListView 2
-     */
-    private ArrayAdapter<String> adaptadorTierra;
-
-    /**
-     * Objeto tipo ArrayList para  asignar información de la lista del ListView 2
-     */
-    private ArrayList<String> diasTierra;
 
     /**
      * Constructor de la clase MostrarInfoDay
@@ -101,6 +74,20 @@ public class MostrarInfoDay extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_mostrar_info_day, container, false);
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        if (getActivity() instanceof CallBackListener) {
+            callback = (CallBackListener) getActivity();
+        }
+        if (callback != null) {
+            dia = callback.onCallBackMostrarDia("MostrarInfoDay");
+            mostrando = callback.onCallBackMostrar("MostrarInfoDay");
+            Log.e("Llega a "," MostrarInfoDay <<<<<<< "+mostrando);
+        }
+        AgregarDia();
     }
 
     /**
@@ -126,25 +113,15 @@ public class MostrarInfoDay extends Fragment {
      * @param view vista
      */
     public void inicializarID(View view){
-
-        enun1txt = view.findViewById(R.id.enun1_minfoDay);
-        enun2txt = view.findViewById(R.id.enun2_minfoDay);
-        enun3txt = view.findViewById(R.id.enun3_minfoDay);
-        lview1 = view.findViewById(R.id.list1_minfoDay);
-        lview2 = view.findViewById(R.id.list2_minfoDay);
+        txPeriodo = view.findViewById(R.id.tx3_per_infoday);
+        txMes = view.findViewById(R.id.tx5_mes_infoday);
+        txSemana = view.findViewById(R.id.tx7_sem_infoday);
+        txDia = view.findViewById(R.id.tx1_diainfo);
+        txHabilidades = view.findViewById(R.id.tx9_hab_infoday);
         salir = view.findViewById(R.id.avan_minfoDay);
         retroceder = view.findViewById(R.id.retro_minfoDay);
-        opciones = view.findViewById(R.id.opc_minfoDay);
 
-        diasAgua = new ArrayList<String>();
-        adaptadorAgua = new ArrayAdapter<String>(getContext(),R.layout.mes_trabajo,diasAgua);
-        lview2.setAdapter(adaptadorAgua);
-
-        diasTierra = new ArrayList<String>();
-        adaptadorTierra = new ArrayAdapter<String>(getContext(),R.layout.mes_trabajo,diasTierra);
-        lview1.setAdapter(adaptadorTierra);
-
-
+        dia = null;
     }
 
     /**
@@ -156,6 +133,11 @@ public class MostrarInfoDay extends Fragment {
         retroceder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                dia = null;
+                int largo = mostrando.length() - 2;
+                mostrando = mostrando.substring(0,largo);
+                callback.onCallBack("MostrarInfoDay",mostrando,"",null);
+                mostrando = callback.onCallBackMostrar("MostrarInfoDay");
                 Navigation.findNavController(v).navigate(R.id.nav_showWeeks);
             }
         });
@@ -177,4 +159,79 @@ public class MostrarInfoDay extends Fragment {
 
     }
 
+    public void AgregarDia(){
+
+        if (dia != null){
+
+
+            Log.e("Dia", dia.getFecha()+"<<<<<<<");
+            String[] datos = mostrando.split("-");
+
+            //Periodo
+            txPeriodo.setText(datos[1]);
+
+            //Mes
+            int mes= Integer.parseInt(datos[2]);
+            txMes.setText("Mes"+(mes+1));
+
+            //Semana
+            int semana= Integer.parseInt(datos[3]);
+            txSemana.setText("Semana"+(semana+1));
+
+            //Dia
+            int numDia= Integer.parseInt(datos[4]);
+            txDia.setText("Día"+(numDia+1)+": "+dia.getFecha());
+
+            String habilidades = "";
+
+            if (datos[0].equals("Agua")){
+
+                if (!dia.getVolHabilidad1().isEmpty()){
+                    habilidades = "Resistencia: "+dia.getVolHabilidad1()+"\n";
+                }
+                if (!dia.getVolHabilidad2().isEmpty()){
+                    habilidades = habilidades+"Técnica: "+dia.getVolHabilidad2()+"\n";
+                }
+                if (!dia.getVolHabilidad3().isEmpty()){
+                    habilidades = habilidades+"Velocidad: "+dia.getVolHabilidad3()+"\n";
+                }
+                if (!dia.getVolHabilidad4().isEmpty()){
+                    habilidades = habilidades+"H4: "+dia.getVolHabilidad4()+"\n";
+                }
+                if (!dia.getVolHabilidad5().isEmpty()){
+                    habilidades = habilidades+"H5: "+dia.getVolHabilidad5()+"\n";
+                }
+
+            }else if (datos[0].equals("Tierra")){
+
+                if (!dia.getVolHabilidad1().isEmpty()){
+                    habilidades = "Fuerza de Conversión: "+dia.getVolHabilidad1()+"\n";
+                }
+                if (!dia.getVolHabilidad2().isEmpty()){
+                    habilidades = habilidades+"Fuerza de Construcción: "+dia.getVolHabilidad2()+"\n";
+                }
+                if (!dia.getVolHabilidad3().isEmpty()){
+                    habilidades = habilidades+"Fuerza Máxima: "+dia.getVolHabilidad3()+"\n";
+                }
+                if (!dia.getVolHabilidad4().isEmpty()){
+                    habilidades = habilidades+"H4: "+dia.getVolHabilidad4()+"\n";
+                }
+                if (!dia.getVolHabilidad5().isEmpty()){
+                    habilidades = habilidades+"H5: "+dia.getVolHabilidad5()+"\n";
+                }
+
+            }
+
+            if (habilidades.isEmpty()){
+                habilidades = "No hay actividades para este día";
+            }
+            Log.e("Habilidades", habilidades+"<<<<<<<");
+            txHabilidades.setText(habilidades);
+
+        }else{
+            Toast.makeText(getContext(),"No es posible acceder al día",Toast.LENGTH_LONG).show();
+            Navigation.findNavController(getView()).navigate(R.id.nav_showWeeks);
+        }
+
+    }
 }

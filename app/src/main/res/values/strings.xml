@@ -118,6 +118,7 @@
     <string name="vol_agua">Volumen en agua:</string>
     <string name="info_mes">Info mes</string>
     <string name="info_sem">Info semana</string>
+    <string name="info_dia">Info día</string>
     <string name="salir">Salir</string>
     <string name="info_integ">Información del nadador:</string>
     <string name="opci">Opciones</string>
@@ -132,6 +133,26 @@
     <string name="add_int">Añadir nadador</string>
     <string name="desc_pdf_gen">Descargar pdf general</string>
     <string name="desc_pdf_dia">Descargar pdf día actual</string>
+    <string name="opc_info_porc">Cambiar porcentaje</string>
+    <string name="per_1">Periodo 1</string>
+    <string name="per_2">Periodo 2</string>
+    <string name="per_3">Periodo 3</string>
+    <string name="dia_num">Día # </string>
+    <string name="periodo_num">Periodo # :</string>
+    <string name="mes_num">Mes # :</string>
+    <string name="sem_num">Semana # :</string>
+    <string name="habilidades">Habilidades :</string>
+    <string name="modif_porc_periodo">Seleccione el periodo a modificar :</string>
+    <string name="total">Total :</string>
+    <string name="consul_dia">Consulta día</string>
+    <string name="consul_enun_dia">Consultar el siguiente día: </string>
+
+    <string-array name="periodos">
+        <item>Seleccione</item>
+        <item>Periodo 1</item>
+        <item>Periodo 2</item>
+        <item>Periodo 3</item>
+    </string-array>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

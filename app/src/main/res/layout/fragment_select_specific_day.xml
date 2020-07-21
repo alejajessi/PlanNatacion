@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/calendarioanhadir"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_color"
+        android:orientation="vertical"
+        android:visibility="visible"
+        tools:context="com.dayspecific.SelectSpecificDay">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/text_title_selectspec_day"
+                android:layout_width="250dp"
+                android:fontFamily="@font/bs_regular"
+                android:layout_height="match_parent"
+                android:layout_gravity="left"
+                android:gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:text="@string/consul_dia"
+                android:textColor="@color/colorWhite"
+                android:textSize="27dp" />
+
+            <ImageView
+                android:id="@+id/imgv_previa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:src="@mipmap/logo_foreground" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorWhite"
+            android:textSize="15dp"
+            android:layout_marginTop="25dp"
+            android:id="@+id/enun_dialog_modporc"
+            android:fontFamily="@font/bs_regular"
+            android:gravity="center"
+            android:text="@string/consul_enun_dia"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/borderedondo_txt">
+
+            <Spinner
+                android:id="@+id/periodo_spinner"
+                android:layout_width="fill_parent"
+                android:layout_height="25dp"
+                android:entries="@array/periodos"
+                android:textAlignment="center"
+                />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorWhite"
+            android:textSize="13dp"
+            android:layout_margin="15dp"
+            android:background="@drawable/borderedondo_txt"
+            android:id="@+id/enun_dialog_modporc"
+            android:fontFamily="@font/bs_regular"
+            android:gravity="center"
+            android:text="@string/consul_dia"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="136dp"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="70dp">
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:fontFamily="@font/bs_regular"
+            android:text="@string/opcion7_Retroceder"
+            android:textAllCaps="false"
+            android:id="@+id/btt_retro_volcycle"
+            android:background="@drawable/borderedondo_banner"
+            android:textColor="@color/colorWhite"
+            android:textSize="14dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:fontFamily="@font/bs_regular"
+            android:text="@string/accept"
+            android:textAllCaps="false"
+            android:textSize="14dp"
+            android:id="@+id/btt_avan_volcycle"
+            android:background="@drawable/borderedondo_banner"
+            android:textColor="@color/colorWhite"
+            android:layout_gravity="center"
+            android:gravity="center"/>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
+
+

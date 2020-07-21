@@ -167,8 +167,20 @@
             android:id="@+id/action_nav_showWeeks_to_nav_showMonths"
             app:destination="@id/nav_showMonths" />
         <action
-            android:id="@+id/action_nav_showWeeks_to_nav_addIntegrante"
-            app:destination="@id/nav_addIntegrante" />
+            android:id="@+id/action_nav_showWeeks_to_nav_showDays"
+            app:destination="@id/nav_showDays" />
+    </fragment>
+
+    <fragment android:id="@+id/nav_showDays"
+        android:name="com.cycleshow.MostrarInfoDay"
+        android:label="@string/info_dia"
+        tools:layout="@layout/fragment_mostrar_info_day" >
+        <action
+            android:id="@+id/action_nav_showDays_to_nav_showWeeks"
+            app:destination="@id/nav_showWeeks" />
+        <action
+            android:id="@+id/action_nav_showDays_to_nav_home"
+            app:destination="@id/nav_home" />
     </fragment>
 
     <fragment android:id="@+id/nav_addIntegrante"

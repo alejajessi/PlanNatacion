@@ -1,20 +1,30 @@
 package com.cycleshow;
 
+import android.content.DialogInterface;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.callback.CallBackListener;
 import com.e.periodizacionnatacion.Clases.Cronograma;
@@ -51,6 +61,11 @@ public class MostrarInfoMonths extends Fragment {
     private ListView lview2;
 
     /**
+     * Componente gráfico del xml fragment_mostrar_info_months tipo ListView
+     */
+    private ListView lview3;
+
+    /**
      * Componente gráfico del xml fragment_mostrar_info_months tipo Button
      */
     private Button salir;
@@ -63,28 +78,50 @@ public class MostrarInfoMonths extends Fragment {
     /**
      * Componente gráfico del xml fragment_mostrar_info_day tipo Button
      */
-    private Button opciones;
+    private Button porcentajes;
+
+    /**
+     * Componente gráfico del xml fragment_mostrar_info_day tipo Button
+     */
+    private Button bttDiaTierra;
+
+    /**
+     * Componente gráfico del xml fragment_mostrar_info_day tipo Button
+     */
+    private Button bttDiaAgua;
 
     /**
      * Objeto tipo ArrayAdapter para modificación del ListView 1
      */
-    private ArrayAdapter<String> adaptadorAgua;
+    private ArrayAdapter<String> adaptadorPUno;
 
     /**
      * Objeto tipo ArrayList para  asignar información de la lista del ListView 1
      */
-    private ArrayList<String> diasAgua;
+    private ArrayList<String> mesPuno;
 
     /**
      * Objeto tipo ArrayAdapter para modificación del ListView 2
      */
-    private ArrayAdapter<String> adaptadorTierra;
+    private ArrayAdapter<String> adaptadorPDos;
 
     /**
      * Objeto tipo ArrayList para  asignar información de la lista del ListView 2
      */
-    private ArrayList<String> diasTierra;
+    private ArrayList<String> mesPdos;
 
+    /**
+     * Objeto tipo ArrayAdapter para modificación del ListView 2
+     */
+    private ArrayAdapter<String> adaptadorPTres;
+
+    /**
+     * Objeto tipo ArrayList para  asignar información de la lista del ListView 2
+     */
+    private ArrayList<String> mesPtres;
+
+    //Guarda el dia que esta seleccionado
+    private String seleccionado;
 
     private CallBackListener callback;
 
@@ -115,11 +152,20 @@ public class MostrarInfoMonths extends Fragment {
         if (getActivity() instanceof CallBackListener) {
             callback = (CallBackListener) getActivity();
         }
-
         if (callback != null){
-            ArrayList<Cronograma> cronogramas = callback.onCallBackVistaPrevia("AddVistaPrevia");
-            AgregarCronogramas(cronogramas.get(0),cronogramas.get(1));
+            ArrayList<Cronograma> cronogramas = callback.onCallBackCronograma("MostrarInfoMonths");
+            AgregarCronogramas(cronogramas.get(0));
+
+            //Cambiar background de los botones
+            Resources res = getResources();
+            Drawable drawable = ResourcesCompat.getDrawable(res, R.drawable.borderedondo_banner, null);
+            bttDiaAgua.setBackground(drawable);
+            drawable = ResourcesCompat.getDrawable(res, R.drawable.botonredondo_second,null);
+            bttDiaTierra.setBackground(drawable);
+
+            seleccionado ="Agua";
         }
+
     }
 
     /**
@@ -135,8 +181,13 @@ public class MostrarInfoMonths extends Fragment {
 
         final NavController navController= Navigation.findNavController(view);
 
+        funcionListView(navController);
         funcionBttSalir(navController);
         funcionBttRetroceder(navController);
+
+        funcionDiaAgua();
+        funcionDiaTierra();
+        funcionBttPorcentajes();
 
     }
 
@@ -151,17 +202,24 @@ public class MostrarInfoMonths extends Fragment {
         enun3txt = view.findViewById(R.id.enun3_minfoMonth);
         lview1 = view.findViewById(R.id.list1_minfoMonth);
         lview2 = view.findViewById(R.id.list2_minfoMonth);
+        lview3 = view.findViewById(R.id.list3_minfoMonth);
         salir = view.findViewById(R.id.avan_minfoMonth);
         retroceder = view.findViewById(R.id.retro_minfoMonth);
-        opciones = view.findViewById(R.id.opc_minfoMonth);
+        porcentajes = view.findViewById(R.id.opc_porinfoMonth);
+        bttDiaAgua = view.findViewById(R.id.DA_infoMonth);
+        bttDiaTierra = view.findViewById(R.id.DT_infoMonth);
 
-        diasAgua = new ArrayList<String>();
-        adaptadorAgua = new ArrayAdapter<String>(getContext(),R.layout.mes_trabajo,diasAgua);
-        lview2.setAdapter(adaptadorAgua);
+        mesPuno = new ArrayList<String>();
+        adaptadorPUno = new ArrayAdapter<String>(getContext(),R.layout.mes_trabajo, mesPuno);
+        lview1.setAdapter(adaptadorPUno);
 
-        diasTierra = new ArrayList<String>();
-        adaptadorTierra = new ArrayAdapter<String>(getContext(),R.layout.mes_trabajo,diasTierra);
-        lview1.setAdapter(adaptadorTierra);
+        mesPdos = new ArrayList<String>();
+        adaptadorPDos = new ArrayAdapter<String>(getContext(),R.layout.mes_trabajo, mesPdos);
+        lview2.setAdapter(adaptadorPDos);
+
+        mesPtres = new ArrayList<String>();
+        adaptadorPTres = new ArrayAdapter<String>(getContext(),R.layout.mes_trabajo, mesPtres);
+        lview3.setAdapter(adaptadorPTres);
     }
 
     /**
@@ -185,7 +243,7 @@ public class MostrarInfoMonths extends Fragment {
      */
     public void funcionBttSalir(NavController navController){
 
-        retroceder.setOnClickListener(new View.OnClickListener() {
+        salir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Navigation.findNavController(v).navigate(R.id.nav_home);
@@ -194,41 +252,150 @@ public class MostrarInfoMonths extends Fragment {
 
     }
 
-    public void AgregarCronogramas(Cronograma agua, Cronograma tierra) {
-
-        llenarArray(agua.getPeriodo1(),agua.getPeriodo2(),agua.getPeriodo3(), diasAgua);
-        adaptadorAgua.notifyDataSetChanged();
-
-        llenarArray(tierra.getPeriodo1(),tierra.getPeriodo2(),tierra.getPeriodo3(), diasTierra);
-        adaptadorTierra.notifyDataSetChanged();
+    public void funcionBttPorcentajes() {
+        porcentajes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog dialog= crearDialogoModificar();
+                dialog.show();
+            }
+        });
     }
 
-    public void llenarArray (Dato periodo1, Dato periodo2, Dato periodo3, ArrayList<String> dia){
+    public AlertDialog  crearDialogoModificar(){
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+
+        LayoutInflater inflater = getActivity().getLayoutInflater();
+
+        View v= inflater.inflate(R.layout.dialog_modporc, null);
+
+        Spinner spSeleccion = v.findViewById(R.id.periodo_spinner);
+
+        EditText edPeriodo1 = v.findViewById(R.id.ed1_p1_modporc);
+        TextView txPeriodo1 = v.findViewById(R.id.tx2_p1_modporc);
+
+        EditText edPeriodo2 = v.findViewById(R.id.ed2_p2_modporc);
+        TextView txPeriodo2 = v.findViewById(R.id.tx4_p2_modporc);
+
+        EditText edPeriodo3 = v.findViewById(R.id.ed3_p3_modporc);
+        TextView txPeriodo3 = v.findViewById(R.id.tx6_p3_modporc);
+
+        TextView txTotal1 = v.findViewById(R.id.tx8_t_modporc);
+        TextView txTotal2 = v.findViewById(R.id.tx9_t_modporc);
+
+        builder.setView(v);
+
+        builder.setPositiveButton("Modificar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        builder.setNegativeButton("Cancelar",null);
+        return  builder.create();
+    }
+
+    public void funcionDiaAgua(){
+
+        bttDiaAgua.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Resources res = getResources();
+                Drawable drawable = ResourcesCompat.getDrawable(res, R.drawable.borderedondo_banner, null);
+                bttDiaAgua.setBackground(drawable);
+                drawable = ResourcesCompat.getDrawable(res, R.drawable.botonredondo_second,null);
+                bttDiaTierra.setBackground(drawable);
+                if (callback != null){
+                    ArrayList<Cronograma> cronogramas = callback.onCallBackCronograma("MostrarInfoMonths");
+                    AgregarCronogramas(cronogramas.get(0));
+                }
+                seleccionado = "Agua";
+            }
+        });
+    }
+
+    public void funcionDiaTierra(){
+
+        bttDiaTierra.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Resources res = getResources();
+                Drawable drawable = ResourcesCompat.getDrawable(res, R.drawable.borderedondo_banner, null);
+                bttDiaTierra.setBackground(drawable);
+                drawable = ResourcesCompat.getDrawable(res, R.drawable.botonredondo_second, null);
+                bttDiaAgua.setBackground(drawable);
+                if (callback != null){
+                    ArrayList<Cronograma> cronogramas = callback.onCallBackCronograma("MostrarInfoMonths");
+                    AgregarCronogramas(cronogramas.get(1));
+                }
+                seleccionado = "Tierra";
+            }
+        });
+
+    }
+
+    public void AgregarCronogramas(Cronograma cronograma) {
+
+        llenarArray(cronograma.getPeriodo1(), mesPuno);
+        adaptadorPUno.notifyDataSetChanged();
+
+        llenarArray(cronograma.getPeriodo2(), mesPdos);
+        adaptadorPDos.notifyDataSetChanged();
+
+        llenarArray(cronograma.getPeriodo3(), mesPtres);
+        adaptadorPTres.notifyDataSetChanged();
+    }
+
+    public void llenarArray (Dato periodo, ArrayList<String> dia) {
         String dato = "";
         int numMes = 1;
-
-        //Periodo 1
-        ArrayList<Dato> mesesPeriodo = periodo1.getFecha();
-        for (int i=0;i<mesesPeriodo.size();i++){
-            dato = "(Periodo 1) Mes"+numMes+": "+mesesPeriodo.get(i).getVolumen()+" ("+mesesPeriodo.get(i).getPorcentaje()+"%)";
+        dia.clear();
+        ArrayList<Dato> mesesPeriodo = periodo.getFecha();
+        for (int i = 0; i < mesesPeriodo.size(); i++) {
+            dato = "Mes" + numMes + ": " + mesesPeriodo.get(i).getVolumen() + " (" + mesesPeriodo.get(i).getPorcentaje() + "%)";
             dia.add(dato);
             numMes++;
         }
+    }
 
-        //Periodo 2
-        mesesPeriodo = periodo2.getFecha();
-        for (int i=0;i<mesesPeriodo.size();i++){
-            dato = "(Periodo 2) Mes"+numMes+": "+mesesPeriodo.get(i).getVolumen()+" ("+mesesPeriodo.get(i).getPorcentaje()+"%)";
-            dia.add(dato);
-            numMes++;
-        }
+    /**
+     * Método funcionListView: Encargado de habilitar la visualización del ListView
+     * @param nav
+     */
+    public void funcionListView(NavController nav){
 
-        //Periodo 3
-        mesesPeriodo = periodo3.getFecha();
-        for (int i=0;i<mesesPeriodo.size();i++){
-            dato = "(Periodo 3) Mes"+numMes+": "+mesesPeriodo.get(i).getVolumen()+" ("+mesesPeriodo.get(i).getPorcentaje()+"%)";
-            dia.add(dato);
-            numMes++;
-        }
+        lview1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (callback != null){
+                    callback.onCallBack("MostrarInfoMonths",seleccionado,"-Periodo1","-"+position);
+                }
+                Toast.makeText(getContext(),seleccionado+"-Periodo1-"+position,Toast.LENGTH_SHORT).show();
+                Navigation.findNavController(view).navigate(R.id.nav_showWeeks);
+            }
+        });
+
+        lview2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (callback != null){
+                    callback.onCallBack("MostrarInfoMonths",seleccionado,"-Periodo2","-"+position);
+                }
+                Toast.makeText(getContext(),seleccionado+"-Periodo2-"+position,Toast.LENGTH_SHORT).show();
+                Navigation.findNavController(view).navigate(R.id.nav_showWeeks);
+            }
+        });
+
+        lview3.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (callback != null){
+                    callback.onCallBack("MostrarInfoMonths",seleccionado,"-Periodo3","-"+position);
+                }
+                Toast.makeText(getContext(),seleccionado+"-Periodo3-"+position,Toast.LENGTH_SHORT).show();
+                Navigation.findNavController(view).navigate(R.id.nav_showWeeks);
+            }
+        });
     }
 }

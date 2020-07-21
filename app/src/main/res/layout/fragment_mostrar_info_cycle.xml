@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -211,6 +217,20 @@
             android:textSize="14dp" />
     </LinearLayout>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/botonredondo_second"
+        android:fontFamily="@font/bs_regular"
+        android:gravity="center"
+        android:id="@+id/del_infocycle"
+        android:layout_marginLeft="10dp"
+        android:text="@string/menu_eliminarMC"
+        android:textAllCaps="false"
+        android:layout_gravity="center"
+        android:textColor="@color/colorWhite"
+        android:textSize="14dp" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="90dp"
@@ -246,18 +266,5 @@
 
     </LinearLayout>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/borderedondo_banner"
-        android:fontFamily="@font/bs_regular"
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:id="@+id/opc_infocycle"
-        android:layout_marginLeft="10dp"
-        android:text="@string/opci"
-        android:textAllCaps="false"
-        android:textColor="@color/colorWhite"
-        android:textSize="14dp" />
-
 </LinearLayout>
+</ScrollView>

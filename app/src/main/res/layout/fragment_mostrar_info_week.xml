@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -54,6 +60,17 @@
             android:layout_marginTop="30dp"
             android:text="@string/previous_visual"
             android:textColor="@color/colorWhite" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:background="@drawable/borderedondo_txt"
+            android:fontFamily="@font/bs_regular"
+            android:textSize="15dp"
+            android:id="@+id/enun2_minfoWeek"
+            android:layout_margin="20dp"
+            android:textColor="@color/colorBanner" />
 
         <LinearLayout
             android:layout_width="300dp"
@@ -63,21 +80,10 @@
             android:layout_gravity="center"
             android:gravity="center">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:id="@+id/enun2_minfoWeek"
-                android:fontFamily="@font/bs_regular"
-                android:textSize="14dp"
-                android:layout_margin="2dp"
-                android:text="@string/opcion0_anhadir_DT"
-                android:textColor="@color/colorWhite" />
 
             <ListView
                 android:layout_width="wrap_content"
-                android:layout_height="100dp"
+                android:layout_height="250dp"
                 android:background="@drawable/borderedondo_txt"
                 android:id="@+id/list1_minfoWeek">
 
@@ -85,38 +91,23 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/botonredondo_second"
-            android:layout_gravity="center"
-            android:gravity="center">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:fontFamily="@font/bs_regular"
-                android:textSize="14dp"
-                android:id="@+id/enun3_minfoWeek"
-                android:layout_margin="2dp"
-                android:text="@string/opcion0_anhadir_DA"
-                android:textColor="@color/colorWhite" />
-
-            <ListView
-                android:layout_width="wrap_content"
-                android:layout_height="100dp"
-                android:background="@drawable/borderedondo_txt"
-                android:id="@+id/list2_minfoWeek">
-
-            </ListView>
-
-        </LinearLayout>
-
-
     </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/botonredondo_second"
+        android:fontFamily="@font/bs_regular"
+        android:gravity="center"
+        android:enabled="false"
+        android:layout_marginTop="15dp"
+        android:layout_gravity="center"
+        android:id="@+id/opc_minfoWeek"
+        android:layout_marginLeft="10dp"
+        android:text="@string/modi_porce"
+        android:textAllCaps="false"
+        android:textColor="@color/colorWhite"
+        android:textSize="14dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -153,18 +144,5 @@
 
     </LinearLayout>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/borderedondo_banner"
-        android:fontFamily="@font/bs_regular"
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:id="@+id/opc_minfoWeek"
-        android:layout_marginLeft="10dp"
-        android:text="@string/opci"
-        android:textAllCaps="false"
-        android:textColor="@color/colorWhite"
-        android:textSize="14dp" />
-
 </LinearLayout>
+</ScrollView>

@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/fragment_mostrar_info_months"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:background="@drawable/bg_color"
+        android:visibility="visible"
+        tools:context="com.cycleshow.MostrarInfoDay">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/text_title_vprevia"
+                android:layout_width="250dp"
+                android:fontFamily="@font/bs_regular"
+                android:layout_height="match_parent"
+                android:layout_gravity="left"
+                android:gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:text="@string/consul_dia"
+                android:textColor="@color/colorWhite"
+                android:textSize="27dp" />
+
+            <ImageView
+                android:id="@+id/banner_vprevia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:src="@mipmap/logo_foreground" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="5dp"
+                android:layout_gravity="center"
+                android:background="@drawable/botonredondo_second">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:fontFamily="@font/bs_regular"
+                    android:background="@color/colorSecond"
+                    android:textSize="14dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:id="@+id/tx1_diainfo"
+                    android:text="@string/dia_num"
+                    android:textColor="@color/colorWhite"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_margin="5dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/botonredondo_second">
+
+                    <TextView
+                        android:layout_width="70dp"
+                        android:layout_height="25dp"
+                        android:layout_marginRight="30dp"
+                        android:background="@drawable/botonredondo_second"
+                        android:textColor="@color/colorWhite"
+                        android:id="@+id/tx2_perinfoday"
+                        android:fontFamily="@font/bs_regular"
+                        android:textSize="14dp"
+                        android:text="@string/periodo_num"
+                        android:layout_marginTop="15dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:background="@drawable/borderedondo_txt"
+                        android:textColor="@color/colorBanner"
+                        android:id="@+id/tx3_per_infoday"
+                        android:fontFamily="@font/bs_regular"
+                        android:textSize="14dp"
+                        android:layout_marginTop="15dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_margin="5dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/botonredondo_second">
+                    <TextView
+                        android:layout_width="70dp"
+                        android:layout_height="25dp"
+                        android:layout_marginRight="30dp"
+                        android:background="@drawable/botonredondo_second"
+                        android:textColor="@color/colorWhite"
+                        android:id="@+id/tx4_mes_infoday"
+                        android:fontFamily="@font/bs_regular"
+                        android:textSize="14dp"
+                        android:text="@string/mes_num"
+                        android:layout_marginTop="15dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:background="@drawable/borderedondo_txt"
+                        android:textColor="@color/colorBanner"
+                        android:id="@+id/tx5_mes_infoday"
+                        android:fontFamily="@font/bs_regular"
+                        android:textSize="14dp"
+                        android:layout_marginTop="15dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_margin="5dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/botonredondo_second">
+                    <TextView
+                        android:layout_width="70dp"
+                        android:layout_height="25dp"
+                        android:layout_marginRight="30dp"
+                        android:background="@drawable/botonredondo_second"
+                        android:textColor="@color/colorWhite"
+                        android:id="@+id/tx6_sem_infoday"
+                        android:fontFamily="@font/bs_regular"
+                        android:textSize="14dp"
+                        android:text="@string/sem_num"
+                        android:layout_marginTop="15dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:background="@drawable/borderedondo_txt"
+                        android:textColor="@color/colorBanner"
+                        android:id="@+id/tx7_sem_infoday"
+                        android:fontFamily="@font/bs_regular"
+                        android:textSize="14dp"
+                        android:layout_marginTop="15dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_margin="5dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/botonredondo_second">
+
+                    <TextView
+                        android:layout_width="80dp"
+                        android:layout_height="25dp"
+                        android:layout_marginRight="21dp"
+                        android:background="@drawable/botonredondo_second"
+                        android:textColor="@color/colorWhite"
+                        android:id="@+id/tx8_hab_infoday"
+                        android:fontFamily="@font/bs_regular"
+                        android:textSize="14dp"
+                        android:text="@string/habilidades"
+                        android:layout_marginTop="15dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:background="@drawable/borderedondo_txt"
+                        android:textColor="@color/colorBanner"
+                        android:id="@+id/tx9_hab_infoday"
+                        android:fontFamily="@font/bs_regular"
+                        android:textSize="14dp"
+                        android:layout_marginTop="15dp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/botonredondo_second"
+                android:fontFamily="@font/bs_regular"
+                android:gravity="center"
+                android:id="@+id/del_infocycle"
+                android:layout_marginLeft="10dp"
+                android:text="@string/desc_pdf_dia"
+                android:textAllCaps="false"
+                android:layout_gravity="center"
+                android:textColor="@color/colorWhite"
+                android:textSize="14dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+
+                <Button
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/borderedondo_banner"
+                    android:fontFamily="@font/bs_regular"
+                    android:gravity="center"
+                    android:text="@string/opcion7_Retroceder"
+                    android:textAllCaps="false"
+                    android:id="@+id/retro_minfoDay"
+                    android:textColor="@color/colorWhite"
+                    android:layout_marginRight="10dp"
+                    android:textSize="14dp" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/borderedondo_banner"
+                    android:fontFamily="@font/bs_regular"
+                    android:gravity="center"
+                    android:id="@+id/avan_minfoDay"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/salir"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="14dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_color"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/logo_dialogo"
+        android:src="@mipmap/logo_foreground"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorWhite"
+        android:textSize="13dp"
+        android:id="@+id/enun_dialog_modporc"
+        android:fontFamily="@font/bs_regular"
+        android:gravity="center"
+        android:text="@string/modif_porc_periodo"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/borderedondo_txt">
+
+        <Spinner
+            android:id="@+id/periodo_spinner"
+            android:layout_width="fill_parent"
+            android:layout_height="25dp"
+            android:entries="@array/periodos"
+            android:textAlignment="center"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="5dp"
+        android:layout_gravity="center"
+        android:background="@drawable/botonredondo_second">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="5dp"
+            android:layout_gravity="center"
+            android:background="@drawable/botonredondo_second">
+
+            <TextView
+                android:layout_width="70dp"
+                android:layout_height="25dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/botonredondo_second"
+                android:textColor="@color/colorWhite"
+                android:id="@+id/tx1_p1_modporc"
+                android:fontFamily="@font/bs_regular"
+                android:textSize="14dp"
+                android:text="@string/per_1"/>
+
+            <EditText
+                android:layout_width="80dp"
+                android:layout_height="25dp"
+                android:background="@drawable/borderedondo_txt"
+                android:textColor="@color/colorBanner"
+                android:id="@+id/ed1_p1_modporc"
+                android:fontFamily="@font/bs_regular"
+                android:textSize="14dp"
+                android:enabled="false"/>
+
+            <TextView
+                android:layout_width="90dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/botonredondo_second"
+                android:textColor="@color/colorWhite"
+                android:id="@+id/tx2_p1_modporc"
+                android:fontFamily="@font/bs_regular"
+                android:textSize="14dp"
+                android:text="porcentaje x"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="5dp"
+            android:layout_gravity="center"
+            android:background="@drawable/botonredondo_second">
+
+            <TextView
+                android:layout_width="70dp"
+                android:layout_height="25dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/botonredondo_second"
+                android:textColor="@color/colorWhite"
+                android:id="@+id/tx3_p2_modporc"
+                android:fontFamily="@font/bs_regular"
+                android:textSize="14dp"
+                android:text="@string/per_2"
+                android:layout_marginTop="15dp"/>
+
+            <EditText
+                android:layout_width="80dp"
+                android:layout_height="25dp"
+                android:background="@drawable/borderedondo_txt"
+                android:textColor="@color/colorBanner"
+                android:id="@+id/ed2_p2_modporc"
+                android:fontFamily="@font/bs_regular"
+                android:textSize="14dp"
+                android:enabled="false"
+                android:layout_marginTop="15dp"/>
+
+            <TextView
+                android:layout_width="90dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/botonredondo_second"
+                android:textColor="@color/colorWhite"
+                android:id="@+id/tx4_p2_modporc"
+                android:fontFamily="@font/bs_regular"
+                android:textSize="14dp"
+                android:text="porcentaje x"
+                android:layout_marginTop="15dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="5dp"
+            android:layout_gravity="center"
+            android:background="@drawable/botonredondo_second">
+            <TextView
+                android:layout_width="70dp"
+                android:layout_height="25dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/botonredondo_second"
+                android:textColor="@color/colorWhite"
+                android:id="@+id/tx5_p3_modporc"
+                android:fontFamily="@font/bs_regular"
+                android:textSize="14dp"
+                android:text="@string/per_3"
+                android:layout_marginTop="15dp"/>
+
+            <EditText
+                android:layout_width="80dp"
+                android:layout_height="25dp"
+                android:enabled="false"
+                android:background="@drawable/borderedondo_txt"
+                android:textColor="@color/colorBanner"
+                android:id="@+id/ed3_p3_modporc"
+                android:fontFamily="@font/bs_regular"
+                android:textSize="14dp"
+                android:layout_marginTop="15dp"/>
+
+            <TextView
+                android:layout_width="90dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/botonredondo_second"
+                android:textColor="@color/colorWhite"
+                android:id="@+id/tx6_p3_modporc"
+                android:fontFamily="@font/bs_regular"
+                android:textSize="14dp"
+                android:text="porcentaje x"
+                android:layout_marginTop="15dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="5dp"
+            android:layout_gravity="center"
+            android:background="@drawable/botonredondo_second">
+
+            <TextView
+                android:layout_width="70dp"
+                android:layout_height="25dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/botonredondo_second"
+                android:textColor="@color/colorWhite"
+                android:id="@+id/tx7_t_modporc"
+                android:fontFamily="@font/bs_regular"
+                android:textSize="14dp"
+                android:text="@string/total"
+                android:layout_marginTop="15dp"/>
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="25dp"
+                android:background="@drawable/borderedondo_txt"
+                android:textColor="@color/colorBanner"
+                android:id="@+id/tx8_t_modporc"
+                android:fontFamily="@font/bs_regular"
+                android:textSize="14dp"
+                android:layout_marginTop="15dp"/>
+
+            <TextView
+                android:layout_width="90dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/botonredondo_second"
+                android:textColor="@color/colorWhite"
+                android:id="@+id/tx9_t_modporc"
+                android:fontFamily="@font/bs_regular"
+                android:textSize="14dp"
+                android:text="porcentaje x"
+                android:layout_marginTop="15dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

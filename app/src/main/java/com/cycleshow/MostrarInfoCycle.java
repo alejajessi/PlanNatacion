@@ -67,7 +67,7 @@ public class MostrarInfoCycle extends Fragment {
     /**
      * Componente gráfico del xml fragment_mostrar_info_day tipo Button
      */
-    private Button opciones;
+    private Button eliminar;
 
     /**
      * Objeto tipo MacroCiclo
@@ -136,7 +136,7 @@ public class MostrarInfoCycle extends Fragment {
 
         funcionBttAvanzar(navController);
         funcionBttRetroceder(navController);
-        funcionBttOpciones(navController);
+        funcionEliminarMacro(navController);
 
     }
 
@@ -153,7 +153,7 @@ public class MostrarInfoCycle extends Fragment {
         txVolTierra = view.findViewById(R.id.tx8_nomb_infocycle);
         avanzar = view.findViewById(R.id.avan_infocycle);
         retroceder = view.findViewById(R.id.retro_infocycle);
-        opciones = view.findViewById(R.id.opc_infocycle);
+        eliminar = view.findViewById(R.id.del_infocycle);
 
     }
 
@@ -179,6 +179,7 @@ public class MostrarInfoCycle extends Fragment {
         if (callback != null){
             callback.onCallBack("MostrarInfoCycle", null, null, null);
         }
+        Log.e("InfoCycle"," LISTO");
 
     }
 
@@ -211,86 +212,21 @@ public class MostrarInfoCycle extends Fragment {
 
     }
 
-    public void funcionBttOpciones(final NavController navController){
-        opciones.setOnClickListener(new View.OnClickListener() {
+    /**
+     * Método funcionEliminarMacro: Encargado de realizar la eliminación del macro ciclo que se está visualizando
+     * @param navController
+     */
+    public void funcionEliminarMacro(NavController navController){
+        eliminar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog dialog= crearDialogoOpciones(navController);
-                dialog.show();
+                if (callback != null){
+                    callback.onCallBackDeleteMacroCiclo(macroClico);
+                }
+                Navigation.findNavController(v).navigate(R.id.nav_home);
             }
         });
     }
 
-    public AlertDialog crearDialogoOpciones(NavController navController){
-
-        final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-
-        LayoutInflater inflater = getActivity().getLayoutInflater();
-
-        View v= inflater.inflate(R.layout.dialog_opcionesmc, null);
-
-        builder.setView(v);
-
-        Button modificar = v.findViewById(R.id.opc_porcentaje);
-        funcionBttModificar(modificar, navController);
-        Button anhadir = v.findViewById(R.id.opc_addinteg);
-        funcionBttAnhadir(anhadir, navController);
-        Button general = v.findViewById(R.id.opc_pdfgeneral);
-        funcionBttGeneral(general);
-        Button dia = v.findViewById(R.id.opc_pdfdia);
-        funcionBttDia(dia);
-        Button delete = v.findViewById(R.id.opc_delete);
-        funcionBttDelete (delete);
-        builder.setNegativeButton("Cancelar",null);
-
-        return  builder.create();
-    }
-
-    public void funcionBttAnhadir(Button anhadir, NavController navController){
-
-        anhadir.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.nav_addIntegrante);
-            }
-        });
-    }
-
-    public void funcionBttModificar(Button modificar, NavController navController){
-
-        modificar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.nav_modifcycle);
-            }
-        });
-    }
-
-    public void funcionBttGeneral(Button general){
-        general.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-    }
-
-    public void funcionBttDia(Button dia){
-        dia.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-    }
-
-    public void funcionBttDelete(Button delete){
-        delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-    }
 
 }

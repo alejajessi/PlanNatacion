@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -72,12 +78,12 @@
                 android:fontFamily="@font/bs_regular"
                 android:textSize="14dp"
                 android:layout_margin="2dp"
-                android:text="@string/opcion0_anhadir_DT"
+                android:text="@string/per_1"
                 android:textColor="@color/colorWhite" />
 
             <ListView
                 android:layout_width="wrap_content"
-                android:layout_height="150dp"
+                android:layout_height="90dp"
                 android:background="@drawable/borderedondo_txt"
                 android:id="@+id/list1_minfoMonth">
 
@@ -102,17 +108,35 @@
                 android:textSize="14dp"
                 android:id="@+id/enun3_minfoMonth"
                 android:layout_margin="2dp"
-                android:text="@string/opcion0_anhadir_DA"
+                android:text="@string/per_2"
                 android:textColor="@color/colorWhite" />
 
             <ListView
                 android:layout_width="wrap_content"
-                android:layout_height="150dp"
+                android:layout_height="90dp"
                 android:background="@drawable/borderedondo_txt"
                 android:id="@+id/list2_minfoMonth">
 
             </ListView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:fontFamily="@font/bs_regular"
+                android:textSize="14dp"
+                android:id="@+id/enun3_minfoMonth"
+                android:layout_margin="2dp"
+                android:text="@string/per_3"
+                android:textColor="@color/colorWhite" />
 
+            <ListView
+                android:layout_width="wrap_content"
+                android:layout_height="90dp"
+                android:background="@drawable/borderedondo_txt"
+                android:id="@+id/list3_minfoMonth">
+
+            </ListView>
         </LinearLayout>
 
 
@@ -120,7 +144,56 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="90dp"
+        android:layout_height="70dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/botonredondo_second"
+            android:fontFamily="@font/bs_regular"
+            android:gravity="center"
+            android:text="@string/opcion0_anhadir_DT"
+            android:textAllCaps="false"
+            android:id="@+id/DT_infoMonth"
+            android:textColor="@color/colorWhite"
+            android:layout_marginRight="10dp"
+            android:textSize="13dp" />
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/botonredondo_second"
+            android:fontFamily="@font/bs_regular"
+            android:gravity="center"
+            android:id="@+id/DA_infoMonth"
+            android:layout_marginLeft="10dp"
+            android:text="@string/opcion0_anhadir_DA"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhite"
+            android:textSize="13dp" />
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/botonredondo_second"
+        android:fontFamily="@font/bs_regular"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:id="@+id/opc_porinfoMonth"
+        android:layout_marginLeft="10dp"
+        android:text="@string/modi_porce"
+        android:textAllCaps="false"
+        android:textColor="@color/colorWhite"
+        android:textSize="14dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
         android:layout_gravity="center"
         android:gravity="center"
         android:orientation="horizontal">
@@ -153,18 +226,5 @@
 
     </LinearLayout>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/borderedondo_banner"
-        android:fontFamily="@font/bs_regular"
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:id="@+id/opc_minfoMonth"
-        android:layout_marginLeft="10dp"
-        android:text="@string/opci"
-        android:textAllCaps="false"
-        android:textColor="@color/colorWhite"
-        android:textSize="14dp" />
-
 </LinearLayout>
+</ScrollView>

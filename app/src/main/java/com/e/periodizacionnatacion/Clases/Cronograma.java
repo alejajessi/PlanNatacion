@@ -391,6 +391,159 @@ public class Cronograma implements Serializable {
         return diferencia;
     }
 
+    public int calcularDias(Calendar inicio, Calendar fin){
+        int dias = 0;
+        while (inicio.before(fin)||inicio.equals(fin)){
+            dias++;
+            inicio.add(Calendar.DATE,1);
+        }
+        return dias;
+    }
+
+    public void generarDias(DatoBasico Trabajo1,DatoBasico Trabajo2,DatoBasico Trabajo3){
+
+        String [] trabajo1 = Trabajo1.getDato1().split("-");
+        String [] trabajo2 = Trabajo2.getDato1().split("-");
+        String [] trabajo3 = Trabajo3.getDato1().split("-");
+
+        agregarDiasASemanas(Periodo1,trabajo1,trabajo2,trabajo3);
+        agregarDiasASemanas(Periodo2,trabajo1,trabajo2,trabajo3);
+        agregarDiasASemanas(Periodo3,trabajo1,trabajo2,trabajo3);
+
+    }
+
+    public void agregarDiasASemanas(Dato periodo, String[] trabajo1, String[] trabajo2, String[] trabajo3){
+
+        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+
+        ArrayList<Dato> meses = periodo.getFecha();
+        int numMeses = meses.size();
+
+        for (int i=0; i< numMeses; i++){
+
+            ArrayList<Dato> semanas = meses.get(i).getFecha();
+            int numSemanas = semanas.size();
+
+            for (int j=0; j<numSemanas; j++){
+
+                Dato semana = semanas.get(j);
+
+                int repiteTrabajo1 = 0;
+                int repiteTrabajo2 = 0;
+                int repiteTrabajo3 = 0;
+
+                //Se separa la fecha en dia-mes-año
+                String[] inicioSemana = semana.getInicio().split("-");
+                String[] finSemana = semana.getFin().split("-");
+
+                //Se configura la variable con la fecha de inicio
+                Calendar inicio = Calendar.getInstance();
+                inicio.set(Integer.parseInt(inicioSemana[2]),Integer.parseInt(inicioSemana[1])-1,Integer.parseInt(inicioSemana[0]));
+
+                //Se configura la variable con la fecha de fin
+                Calendar fin = Calendar.getInstance();
+                fin.set(Integer.parseInt(finSemana[2]),Integer.parseInt(finSemana[1])-1,Integer.parseInt(finSemana[0]));
+
+                //Fecha para incrementar
+                Calendar fechaIncremento = Calendar.getInstance();
+                fechaIncremento.set(inicio.get(Calendar.YEAR),inicio.get(Calendar.MONTH),inicio.get(Calendar.DATE));
+
+                ArrayList<Dia> dias = new ArrayList<Dia>();
+                int diaDeSemana = 0;
+
+                //VAgrego el dia de la semana y verifico si algun trabajo se realiza ese dia
+                while (fechaIncremento.before(fin)||fechaIncremento.equals(fin)){
+
+                    //Agrego el dia al array de dias
+                    Dia dia = new Dia(df.format(fechaIncremento.getTime()));
+                    dias.add(dia);
+
+                    //Consulto que dia de la semana es (Lunes,Martes,Miercoles,Jueves o Viernes)
+                    diaDeSemana = fechaIncremento.get(Calendar.DAY_OF_WEEK);
+
+                    //Sumo la cantidad devuelta a la variable respectiva
+                    repiteTrabajo1= repiteTrabajo1+verificarCoincidenciaDiaDeSemana(diaDeSemana,trabajo1);
+                    repiteTrabajo2= repiteTrabajo2+verificarCoincidenciaDiaDeSemana(diaDeSemana,trabajo2);
+                    repiteTrabajo3= repiteTrabajo3+verificarCoincidenciaDiaDeSemana(diaDeSemana,trabajo3);
+
+                    //Incremento un dia
+                    fechaIncremento.add(Calendar.DATE,1);
+                }
+
+                float volumen = Float.parseFloat(semana.getVolumen());
+                //CAMBIAR PORCENTAJES DESPUES
+                float volTrabajo1 = (volumen*((float)(65.00/100.00)))/repiteTrabajo1;
+                float volTrabajo2 = (volumen*((float)(33.00/100.00)))/repiteTrabajo2;
+                float volTrabajo3 = (volumen*((float)(2.00/100.00)))/repiteTrabajo3;
+
+                int numDias = dias.size();
+                for (int k=0;k<numDias;k++){
+
+                    ////Consulto que dia de la semana es (Lunes,Martes,Miercoles,Jueves o Viernes)
+                    diaDeSemana = inicio.get(Calendar.DAY_OF_WEEK);
+
+                    //Agrego el volumen del trabajo1 si este se realiza ese dia
+                    if (verificarCoincidenciaDiaDeSemana(diaDeSemana,trabajo1)>0){
+                        dias.get(k).setVolHabilidad1(volTrabajo1+"");
+                    }
+
+                    //Agrego el volumen del trabajo2 si este se realiza ese dia
+                    if (verificarCoincidenciaDiaDeSemana(diaDeSemana,trabajo2)>0){
+                        dias.get(k).setVolHabilidad2(volTrabajo2+"");
+                    }
+
+                    //Agrego el volumen del trabajo3 si este se realiza ese dia
+                    if (verificarCoincidenciaDiaDeSemana(diaDeSemana,trabajo3)>0){
+                        dias.get(k).setVolHabilidad3(volTrabajo3+"");
+                    }
+
+                    //Incremento 1 dia
+                    inicio.add(Calendar.DATE,1);
+                }
+
+                //Agrego los dias a la semana recpectiva
+                semana.setDias(dias);
+            }
+
+        }
+
+    }
+
+    public int verificarCoincidenciaDiaDeSemana(int diaDeSemana, String[] trabajo){
+        int resultado = 0;
+        String dia ="";
+        switch (diaDeSemana) {
+            case 1:
+                dia = "Domingo";
+                break;
+            case 2:
+                dia = "Lunes";
+                break;
+            case 3:
+                dia = "Martes";
+                break;
+            case 4:
+                dia = "Miércoles";
+                break;
+            case 5:
+                dia = "Jueves";
+                break;
+            case 6:
+                dia = "Viernes";
+                break;
+            case 7:
+                dia = "Sábado";
+                break;
+        }
+        for (int i=0;i<trabajo.length;i++){
+            if (trabajo[i].equals(dia)){
+                resultado++;
+                break;
+            }
+        }
+        return resultado;
+    }
+
     @Override
     public String toString() {
         return "Cronograma{" +

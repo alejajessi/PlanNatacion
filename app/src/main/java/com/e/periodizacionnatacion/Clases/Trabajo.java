@@ -131,6 +131,9 @@ public class Trabajo implements Serializable {
         //Generar cronograma
         cronogramaDias.generarCronogramaPeriodo();
 
+        //Generar los dias del cronograma a partir de las habilidades
+        cronogramaDias.generarDias(Trabajo1,Trabajo2,Trabajo3);
+
         return cronogramaDias;
     }
 

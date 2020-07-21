@@ -15,6 +15,7 @@ public class Dato implements Serializable {
     private String Volumen;
     private boolean Modificado;
     private ArrayList<Dato> fecha;
+    private ArrayList<Dia> dias;
 
     /**
      * Constructor vacio
@@ -26,6 +27,7 @@ public class Dato implements Serializable {
         Modificado = false;
         this.fecha = null;
         this.fin = "";
+        this.dias = null;
     }
 
     /**
@@ -44,21 +46,7 @@ public class Dato implements Serializable {
         Modificado = modificado;
         this.fecha = fecha;
         this.fin = fin;
-    }
-
-    /**
-     * Constructor Dia
-     * @param inicio
-     * @param volumen
-     * @param modificado
-     */
-    public Dato(String inicio, String volumen, boolean modificado) {
-        this.inicio = inicio;
-        this.porcentaje = "";
-        Volumen = volumen;
-        Modificado = modificado;
-        this.fecha = null;
-        this.fin = "";
+        this.dias = null;
     }
 
     public String getInicio() {
@@ -86,6 +74,10 @@ public class Dato implements Serializable {
         return fin;
     }
 
+    public ArrayList<Dia> getDias() {
+        return dias;
+    }
+
     public void setInicio(String inicio) {
         this.inicio = inicio;
     }
@@ -108,6 +100,10 @@ public class Dato implements Serializable {
 
     public void setFin(String fin) {
         this.fin = fin;
+    }
+
+    public void setDias(ArrayList<Dia> dias) {
+        this.dias = dias;
     }
 
     public void agregarVolumenFecha(){
