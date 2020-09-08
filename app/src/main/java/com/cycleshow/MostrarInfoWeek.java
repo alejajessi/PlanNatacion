@@ -222,6 +222,7 @@ public class MostrarInfoWeek extends Fragment {
                     mostrando = mostrando.substring(0,largo);
                     callback.onCallBack("MostrarInfoWeek",mostrando,"",null);
                     mostrando = callback.onCallBackMostrar("MostrarInfoWeek");
+                    AgregarCronogramas();
 
                 }
             }
@@ -313,7 +314,7 @@ public class MostrarInfoWeek extends Fragment {
             if (estado.equals("semanas")){
                 dato = "Semana" + num + ": " + datosPeriodo.get(i).getVolumen() + " (" + datosPeriodo.get(i).getPorcentaje() + "%)";
             }else{
-                dato = "Día" + num + ": " + dias.get(i).getVolumen();
+                dato = "Día" + num + " ("+dias.get(i).getDiaDeSemana()+"): " + dias.get(i).getVolumen();
             }
             dia.add(dato);
             num++;

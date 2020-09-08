@@ -158,30 +158,26 @@ public class AddVistaPrevia extends Fragment {
 
     public void llenarArray (Dato periodo1, Dato periodo2, Dato periodo3, ArrayList<String> dia){
         String dato = "";
-        int numMes = 1;
 
         //Periodo 1
         ArrayList<Dato> mesesPeriodo = periodo1.getFecha();
         for (int i=0;i<mesesPeriodo.size();i++){
-            dato = "(Periodo 1) Mes"+numMes+": "+mesesPeriodo.get(i).getVolumen()+" ("+mesesPeriodo.get(i).getPorcentaje()+"%)";
+            dato = "(Periodo 1) Mes"+(i+1)+": "+mesesPeriodo.get(i).getVolumen()+" ("+mesesPeriodo.get(i).getPorcentaje()+"%)";
             dia.add(dato);
-            numMes++;
         }
 
         //Periodo 2
         mesesPeriodo = periodo2.getFecha();
         for (int i=0;i<mesesPeriodo.size();i++){
-            dato = "(Periodo 2) Mes"+numMes+": "+mesesPeriodo.get(i).getVolumen()+" ("+mesesPeriodo.get(i).getPorcentaje()+"%)";
+            dato = "(Periodo 2) Mes"+(i+1)+": "+mesesPeriodo.get(i).getVolumen()+" ("+mesesPeriodo.get(i).getPorcentaje()+"%)";
             dia.add(dato);
-            numMes++;
         }
 
         //Periodo 3
         mesesPeriodo = periodo3.getFecha();
         for (int i=0;i<mesesPeriodo.size();i++){
-            dato = "(Periodo 3) Mes"+numMes+": "+mesesPeriodo.get(i).getVolumen()+" ("+mesesPeriodo.get(i).getPorcentaje()+"%)";
+            dato = "(Periodo 3) Mes"+(i+1)+": "+mesesPeriodo.get(i).getVolumen()+" ("+mesesPeriodo.get(i).getPorcentaje()+"%)";
             dia.add(dato);
-            numMes++;
         }
     }
 }

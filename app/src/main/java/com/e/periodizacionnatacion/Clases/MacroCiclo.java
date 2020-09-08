@@ -144,104 +144,78 @@ public class MacroCiclo implements Serializable {
         Calendar fechaIncremento = Calendar.getInstance();
         fechaIncremento.set(Integer.parseInt(inicio[2]),Integer.parseInt(inicio[1])-1,Integer.parseInt(inicio[0]));
 
-        //Se calcula cuantos meses hay entre las fechas
-        int meses = calcularMes(fecha1, fecha2);
+        //Inicializo los periodos
         Dato periodo1 = new Dato();
         Dato periodo2 = new Dato();
         Dato periodo3 = new Dato();
 
-        //Calcular el piso de meses/3
-        double duracion = Math.floor(meses/3);
+        //Se calcula cuantos meses dura el macrociclo
+        int duracionMacroCiclo = calcularMes(fecha1, fecha2);
 
-        //Duración de cada periodo
-        int duracion1 = (int)duracion;
-        int duracion2 = (int)duracion;
-        int duracion3 = (int)duracion;
-
+        //Inicializa las variables
         SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-        boolean dura3meses = false;
         int [] fecha = null;
         String inicioPeriodo ="";
         String finPeriodo = "";
 
-        if (meses<12){
-            if (meses==3){
+        //Disminuir 1 dia a la fecha2
+        fecha = FechaDisminucionDia(1,fecha2);
+        fecha2.set(fecha[2],fecha[1],fecha[0]);
 
-                //Periodo 1 dura 1 mes y 1 semana
-                inicioPeriodo = df.format(fechaIncremento.getTime());
-                fecha = FechaIncrementoMesSemana(1,1,fechaIncremento);
-                fechaIncremento.set(fecha[2],fecha[1],fecha[0]);
-                finPeriodo = df.format(fechaIncremento.getTime());
-                //Agrego las fechas al periodo
-                periodo1.setInicio(inicioPeriodo);
-                periodo1.setFin(finPeriodo);
+        //Agregar fecha de fin del periodo 3
+        finPeriodo = df.format(fecha2.getTime());
+        periodo3.setFin(finPeriodo);
 
-                //Aumento 1 dia
-                fecha = FechaIncrementoDia(1,fechaIncremento);
-                fechaIncremento.set(fecha[2],fecha[1],fecha[0]);
+        //Disminuir 2 semanas y agregar fecha de inicio del periodo 3
+        fecha = FechaDisminucionDia(14,fecha2);
+        fecha2.set(fecha[2],fecha[1],fecha[0]);
+        inicioPeriodo = df.format(fecha2.getTime());
+        periodo3.setInicio(inicioPeriodo);
 
-                //Periodo 2 dura 1 mes y 1 semana
-                inicioPeriodo = df.format(fechaIncremento.getTime());
-                fecha = FechaIncrementoMesSemana(1,1,fechaIncremento);
-                fechaIncremento.set(fecha[2],fecha[1],fecha[0]);
-                finPeriodo = df.format(fechaIncremento.getTime());
-                //Agrego las fechas al periodo
-                periodo2.setInicio(inicioPeriodo);
-                periodo2.setFin(finPeriodo);
+        Log.e("Periodo3",inicioPeriodo+">>>>"+finPeriodo);
 
-                //Aumento 1 dia
-                fecha = FechaIncrementoDia(1,fechaIncremento);
-                fechaIncremento.set(fecha[2],fecha[1],fecha[0]);
+        //Disminuir 1 dia a la fecha2
+        fecha = FechaDisminucionDia(1,fecha2);
+        fecha2.set(fecha[2],fecha[1],fecha[0]);
 
-                //Periodo 3 dura 2 semanas
-                inicioPeriodo = df.format(fechaIncremento.getTime());
-                fecha = FechaIncrementoMesSemana(0,2,fechaIncremento);
-                fechaIncremento.set(fecha[2],fecha[1],fecha[0]);
-                finPeriodo = df.format(fechaIncremento.getTime());
-                //Agrego las fechas al periodo
-                periodo3.setInicio(inicioPeriodo);
-                periodo3.setFin(finPeriodo);
+        //Se calcula cuantos meses hay entre las fechas sin contar los 15 dias del periodo 3
+        int meses = calcularMes(fecha1, fecha2);
 
-                //Aviso que el macrociclo dura 3 meses
-                dura3meses = true;
+        //Calcular el piso de meses/2 para la duración de los primeros periodos
+        double duracion = Math.floor(meses/2);
 
-            }else if ((meses%3)==0){
+        //Duración de cada periodo
+        int duracion1 = (int)duracion;
+        int duracion2 = (int)duracion;
 
-                double calculo = meses*0.3;
-                //duracion3 se resta 1 hasta ser menor a calculo
-                while (!(duracion3<calculo)){
-                    duracion3--;
-                }
-            }else if (meses==7 || meses==10){
-                duracion3--;
-            }
-        }else{
+        if (duracionMacroCiclo==3){
+            //Periodo 1 dura 1 mes y 1 semana
+            inicioPeriodo = df.format(fechaIncremento.getTime());
+            fecha = FechaIncrementoMesSemana(1,1,fechaIncremento);
+            fechaIncremento.set(fecha[2],fecha[1],fecha[0]);
+            finPeriodo = df.format(fechaIncremento.getTime());
+            //Agrego las fechas al periodo
+            periodo1.setInicio(inicioPeriodo);
+            periodo1.setFin(finPeriodo);
 
-            double calculo = meses*0.2;
-            //duracion3 se resta 1 hasta ser menor a calculo
-            while (!(duracion3<calculo)){
-                duracion3--;
-            }
+            Log.e("Periodo1",inicioPeriodo+">>>>"+finPeriodo);
 
-        }
+            //Aumento 1 dia
+            fecha = FechaIncrementoDia(1,fechaIncremento);
+            fechaIncremento.set(fecha[2],fecha[1],fecha[0]);
 
-        //Pregunto si el macrociclo dura 3 meses, en caso de sel falso incrementa la duracion del periodo 1 y 2
-        if (!dura3meses){
-            //Define si se incrementa duracion1(false) o duracion2(true)
-            boolean acual = true;
-            double suma = duracion1+duracion2+duracion3;
-            //sumar 1 a duracion2 y despues a duracion1 hasta que suma sea igual a meses
-            while (!(suma == meses)){
-                if (acual){
-                    duracion2++;
-                    suma = duracion1+duracion2+duracion3;
-                    acual=false;
-                }else{
-                    duracion1++;
-                    suma = duracion1+duracion2+duracion3;
-                    acual=true;
-                }
-            }
+            //Periodo 2 dura 1 mes y 1 semana
+            inicioPeriodo = df.format(fechaIncremento.getTime());
+            fecha = FechaIncrementoMesSemana(1,1,fechaIncremento);
+            fechaIncremento.set(fecha[2],fecha[1],fecha[0]);
+            finPeriodo = df.format(fechaIncremento.getTime());
+            //Agrego las fechas al periodo
+            periodo2.setInicio(inicioPeriodo);
+            periodo2.setFin(finPeriodo);
+
+            Log.e("Periodo2",inicioPeriodo+">>>>"+finPeriodo);
+
+        } else {
 
             //Agregar fechas de inicio y fin a los periodos
 
@@ -279,24 +253,7 @@ public class MacroCiclo implements Serializable {
             periodo2.setFin(finPeriodo);
 
             Log.e("Periodo2",inicioPeriodo+">>>>"+finPeriodo);
-            //Aumento 1 dia
-            fecha = FechaIncrementoDia(1,fechaIncremento);
-            fechaIncremento.set(fecha[2],fecha[1],fecha[0]);
 
-            //Periodo 3 dura duracion3
-            inicioPeriodo = df.format(fechaIncremento.getTime());
-            fecha = FechaIncrementoMesSemana(duracion3,0,fechaIncremento);
-            fechaIncremento.set(fecha[2],fecha[1],fecha[0]);
-
-            //Disminuyo 1 dia
-            fecha = FechaDisminucionDia(1, fechaIncremento);
-            fechaIncremento.set(fecha[2],fecha[1],fecha[0]);
-            finPeriodo = df.format(fechaIncremento.getTime());
-
-            //Agrego las fechas al periodo3
-            periodo3.setInicio(inicioPeriodo);
-            periodo3.setFin(finPeriodo);
-            Log.e("Periodo3",inicioPeriodo+">>>>"+finPeriodo);
         }
 
         //Calcular las fechas cuando no son meses exactos
@@ -334,23 +291,10 @@ public class MacroCiclo implements Serializable {
             finPeriodo = df.format(fechaIncremento.getTime());
             periodo2.setFin(finPeriodo);
 
-            //Modificar inicio de periodo 3
-            fecha = FechaIncrementoDia(1,fechaIncremento);
-            fechaIncremento.set(fecha[2],fecha[1],fecha[0]);
-            finPeriodo = df.format(fechaIncremento.getTime());
-            periodo3.setInicio(finPeriodo);
-
-            //Modificar fin de periodo 3
-            fin = periodo3.getFin().split("-");
-            fechaIncremento.set(Integer.parseInt(fin[2]),Integer.parseInt(fin[1])-1,Integer.parseInt(fin[0]));
-
-            //Aumento dias en la cantidad de diferenciaDias
-            fecha = FechaIncrementoDia(diferenciaDias,fechaIncremento);
-            fechaIncremento.set(fecha[2],fecha[1],fecha[0]);
-            finPeriodo = df.format(fechaIncremento.getTime());
-            periodo3.setFin(finPeriodo);
         }
 
+        DiasAgua.setTipo("Agua");
+        DiasTierra.setTipo("Tierra");
         cronogramas.add(DiasAgua.generarCronograma(periodo1,periodo2,periodo3));
         cronogramas.add(DiasTierra.generarCronograma(periodo1,periodo2,periodo3));
         return cronogramas;
@@ -435,7 +379,7 @@ public class MacroCiclo implements Serializable {
                 fecha[1]= 12-fecha[1];
             }
             inicio.set(fecha[2],(fecha[1]-1),1);
-            fecha[0] = inicio.getActualMaximum(Calendar.DAY_OF_MONTH)-fecha[0];
+            fecha[0] = inicio.getActualMaximum(Calendar.DAY_OF_MONTH)+fecha[0];
         }
         fecha[1]  = fecha[1]-1;
         return fecha;

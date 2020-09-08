@@ -181,6 +181,9 @@
         <action
             android:id="@+id/action_nav_showDays_to_nav_home"
             app:destination="@id/nav_home" />
+        <action
+            android:id="@+id/action_nav_showDays_to_nav_home2"
+            app:destination="@id/nav_home" />
     </fragment>
 
     <fragment android:id="@+id/nav_addIntegrante"
@@ -190,6 +193,25 @@
 
         <action
             android:id="@+id/action_nav_addIntegrante_to_nav_home"
+            app:destination="@id/nav_home" />
+    </fragment>
+
+    <fragment android:id="@+id/nav_menuMacroCiclo"
+        android:name="com.e.periodizacionnatacion.MenuMacroCiclo"
+        android:label="@string/menu_macrociclo"
+        tools:layout="@layout/fragment_menu_macro_ciclo">
+
+        <action
+            android:id="@+id/action_nav_menuMacroCiclo_to_nav_vistaprevia"
+            app:destination="@id/nav_vistaprevia" />
+        <action
+            android:id="@+id/action_nav_menuMacroCiclo_to_nav_modifcycle"
+            app:destination="@id/nav_modifcycle" />
+        <action
+            android:id="@+id/action_nav_menuMacroCiclo_to_nav_showcycle"
+            app:destination="@id/nav_showcycle" />
+        <action
+            android:id="@+id/action_nav_menuMacroCiclo_to_nav_home"
             app:destination="@id/nav_home" />
     </fragment>
 </navigation>

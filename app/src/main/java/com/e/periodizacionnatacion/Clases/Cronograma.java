@@ -10,6 +10,7 @@ import java.util.Calendar;
 public class Cronograma implements Serializable {
 
     private String ID;
+    private String tipo;
     private Dato Periodo1;
     private Dato Periodo2;
     private Dato Periodo3;
@@ -19,6 +20,7 @@ public class Cronograma implements Serializable {
      */
     public Cronograma() {
         this.ID = "";
+        tipo ="";
         Periodo1 = new Dato();
         Periodo2 = new Dato();
         Periodo3 = new Dato();
@@ -30,6 +32,7 @@ public class Cronograma implements Serializable {
      */
     public Cronograma(String ID) {
         this.ID = ID;
+        tipo = "";
         Periodo1 = new Dato();
         Periodo2 = new Dato();
         Periodo3 = new Dato();
@@ -44,6 +47,7 @@ public class Cronograma implements Serializable {
      */
     public Cronograma(String ID, Dato periodo1, Dato periodo2, Dato periodo3) {
         this.ID = ID;
+        this.tipo = "";
         Periodo1 = periodo1;
         Periodo2 = periodo2;
         Periodo3 = periodo3;
@@ -51,6 +55,10 @@ public class Cronograma implements Serializable {
 
     public String getID() {
         return ID;
+    }
+
+    public String getTipo() {
+        return tipo;
     }
 
     public Dato getPeriodo1() {
@@ -67,6 +75,10 @@ public class Cronograma implements Serializable {
 
     public void setID(String ID) {
         this.ID = ID;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public void setPeriodo1(Dato periodo1) {
@@ -400,19 +412,29 @@ public class Cronograma implements Serializable {
         return dias;
     }
 
-    public void generarDias(DatoBasico Trabajo1,DatoBasico Trabajo2,DatoBasico Trabajo3){
+    public void generarDias(DatoBasico Trabajo1,DatoBasico Trabajo2,DatoBasico Trabajo3,DatoBasico Trabajo4,DatoBasico Trabajo5){
 
         String [] trabajo1 = Trabajo1.getDato1().split("-");
         String [] trabajo2 = Trabajo2.getDato1().split("-");
         String [] trabajo3 = Trabajo3.getDato1().split("-");
+        String [] trabajo4 = null;
+        String [] trabajo5 = null;
 
-        agregarDiasASemanas(Periodo1,trabajo1,trabajo2,trabajo3);
-        agregarDiasASemanas(Periodo2,trabajo1,trabajo2,trabajo3);
-        agregarDiasASemanas(Periodo3,trabajo1,trabajo2,trabajo3);
+        if (tipo.equals("Tierra")){
+            trabajo4 = Trabajo4.getDato1().split("-");
+            trabajo5 = Trabajo5.getDato1().split("-");
+        }
+        agregarDiasASemanas("Periodo1",Periodo1,trabajo1,trabajo2,trabajo3,trabajo4,trabajo5);
+        agregarDiasASemanas("Periodo2",Periodo2,trabajo1,trabajo2,trabajo3,trabajo4,trabajo5);
+        if (tipo.equals("Agua")){
+            definirFinalPeriodo2DiasAgua();
+        }
+        agregarDiasASemanas("Periodo3",Periodo3,trabajo1,trabajo2,trabajo3,trabajo4,trabajo5);
 
     }
 
-    public void agregarDiasASemanas(Dato periodo, String[] trabajo1, String[] trabajo2, String[] trabajo3){
+    public void agregarDiasASemanas(String actual, Dato periodo, String[] trabajo1, String[] trabajo2, String[] trabajo3,
+                                    String[] trabajo4, String[] trabajo5){
 
         SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
 
@@ -431,6 +453,8 @@ public class Cronograma implements Serializable {
                 int repiteTrabajo1 = 0;
                 int repiteTrabajo2 = 0;
                 int repiteTrabajo3 = 0;
+                int repiteTrabajo4 = 0;
+                int repiteTrabajo5 = 0;
 
                 //Se separa la fecha en dia-mes-año
                 String[] inicioSemana = semana.getInicio().split("-");
@@ -449,52 +473,125 @@ public class Cronograma implements Serializable {
                 fechaIncremento.set(inicio.get(Calendar.YEAR),inicio.get(Calendar.MONTH),inicio.get(Calendar.DATE));
 
                 ArrayList<Dia> dias = new ArrayList<Dia>();
-                int diaDeSemana = 0;
+                int valorDiaDeSemana = 0;
+                String diaDeLaSemana = "";
 
                 //VAgrego el dia de la semana y verifico si algun trabajo se realiza ese dia
                 while (fechaIncremento.before(fin)||fechaIncremento.equals(fin)){
 
                     //Agrego el dia al array de dias
                     Dia dia = new Dia(df.format(fechaIncremento.getTime()));
-                    dias.add(dia);
 
                     //Consulto que dia de la semana es (Lunes,Martes,Miercoles,Jueves o Viernes)
-                    diaDeSemana = fechaIncremento.get(Calendar.DAY_OF_WEEK);
+                    valorDiaDeSemana = fechaIncremento.get(Calendar.DAY_OF_WEEK);
 
+                    //Agrego el dia de la semana correspondiente al objeto dia
+                    dia.setDiaDeSemana(definirDiaDeSemana(valorDiaDeSemana));
+                    dias.add(dia);
+
+                    diaDeLaSemana = dia.getDiaDeSemana();
                     //Sumo la cantidad devuelta a la variable respectiva
-                    repiteTrabajo1= repiteTrabajo1+verificarCoincidenciaDiaDeSemana(diaDeSemana,trabajo1);
-                    repiteTrabajo2= repiteTrabajo2+verificarCoincidenciaDiaDeSemana(diaDeSemana,trabajo2);
-                    repiteTrabajo3= repiteTrabajo3+verificarCoincidenciaDiaDeSemana(diaDeSemana,trabajo3);
+                    repiteTrabajo1= repiteTrabajo1+verificarCoincidenciaDiaDeSemana(diaDeLaSemana,trabajo1);
+                    repiteTrabajo2= repiteTrabajo2+verificarCoincidenciaDiaDeSemana(diaDeLaSemana,trabajo2);
+                    repiteTrabajo3= repiteTrabajo3+verificarCoincidenciaDiaDeSemana(diaDeLaSemana,trabajo3);
+
+                    if (tipo.equals("Tierra")){
+                        repiteTrabajo4= repiteTrabajo4+verificarCoincidenciaDiaDeSemana(diaDeLaSemana,trabajo4);
+                        repiteTrabajo5= repiteTrabajo5+verificarCoincidenciaDiaDeSemana(diaDeLaSemana,trabajo5);
+                    }
 
                     //Incremento un dia
                     fechaIncremento.add(Calendar.DATE,1);
                 }
 
                 float volumen = Float.parseFloat(semana.getVolumen());
-                //CAMBIAR PORCENTAJES DESPUES
-                float volTrabajo1 = (volumen*((float)(65.00/100.00)))/repiteTrabajo1;
-                float volTrabajo2 = (volumen*((float)(33.00/100.00)))/repiteTrabajo2;
-                float volTrabajo3 = (volumen*((float)(2.00/100.00)))/repiteTrabajo3;
+
+                //Porcentajes de cada trabajo
+                float volTrabajo1 = 0;
+                float volTrabajo2 = 0;
+                float volTrabajo3 = 0;
+                float volTrabajo4 = 0;
+                float volTrabajo5 = 0;
+
+                if (tipo.equals("Agua")) {
+                    volTrabajo1 = (volumen * ((float) (65.00 / 100.00))) / repiteTrabajo1;
+                    volTrabajo2 = (volumen * ((float) (33.00 / 100.00))) / repiteTrabajo2;
+                    volTrabajo3 = (volumen * ((float) (2.00 / 100.00))) / repiteTrabajo3;
+                }else{
+                    volTrabajo1 = (volumen * ((float) ( 50.00 / 100.00))) / repiteTrabajo1;
+                    volTrabajo2 = (volumen * ((float) ( 15.00 / 100.00))) / repiteTrabajo2;
+                    volTrabajo3 = (volumen * ((float) ( 15.00 / 100.00))) / repiteTrabajo3;
+                    volTrabajo4 = (volumen * ((float) ( 10.00 / 100.00))) / repiteTrabajo4;
+                    volTrabajo5 = (volumen * ((float) ( 10.00 / 100.00))) / repiteTrabajo5;
+                }
 
                 int numDias = dias.size();
+                boolean cualResis = true; //Se utiliza en el preriodo1 para variar entre resistencias
+                int incremento = 1;
+                if (actual.equals("Periodo3") && j==1){
+                    incremento = 8;
+                }
+
                 for (int k=0;k<numDias;k++){
 
                     ////Consulto que dia de la semana es (Lunes,Martes,Miercoles,Jueves o Viernes)
-                    diaDeSemana = inicio.get(Calendar.DAY_OF_WEEK);
+                    diaDeLaSemana = definirDiaDeSemana(inicio.get(Calendar.DAY_OF_WEEK));
+
 
                     //Agrego el volumen del trabajo1 si este se realiza ese dia
-                    if (verificarCoincidenciaDiaDeSemana(diaDeSemana,trabajo1)>0){
-                        dias.get(k).setVolHabilidad1(volTrabajo1+"");
+                    if (verificarCoincidenciaDiaDeSemana(diaDeLaSemana,trabajo1)>0){
+                        if (tipo.equals("Agua")){
+
+                            //Pregunto si estoy en las ultimas dos semanas del Periodo2
+                            //Los valores de estas semanas se agregan despues
+                            if (actual.equals("Periodo2") && i==(numMeses-1) && j>=(numSemanas-2)){
+                                dias.get(k).setTipoHabilidad1("Pendiente");
+                                dias.get(k).setVolHabilidad1(volTrabajo1+"");
+                            }else{
+
+                                //AGREGAR VOLUMEN DEPENDIENDO DE LA RESISTENCIA
+                                String[] resistencia = definirResistencia(actual,numMeses,i,numSemanas,j,cualResis,incremento);
+                                dias.get(k).setTipoHabilidad1(resistencia[0]);
+
+                                float volResis = Float.parseFloat(resistencia[1]);
+                                float volDiferencia = volTrabajo1-volResis;
+
+                                if (volDiferencia>=0){
+                                    dias.get(k).setVolHabilidad1(resistencia[1]);
+                                }else {
+                                    dias.get(k).setVolHabilidad1((volResis+volDiferencia)+"");
+                                }
+                            }
+
+                        }else {
+                            dias.get(k).setVolHabilidad1(volTrabajo1 + "");
+                        }
                     }
 
                     //Agrego el volumen del trabajo2 si este se realiza ese dia
-                    if (verificarCoincidenciaDiaDeSemana(diaDeSemana,trabajo2)>0){
+                    if (verificarCoincidenciaDiaDeSemana(diaDeLaSemana,trabajo2)>0){
                         dias.get(k).setVolHabilidad2(volTrabajo2+"");
                     }
 
                     //Agrego el volumen del trabajo3 si este se realiza ese dia
-                    if (verificarCoincidenciaDiaDeSemana(diaDeSemana,trabajo3)>0){
+                    if (verificarCoincidenciaDiaDeSemana(diaDeLaSemana,trabajo3)>0){
                         dias.get(k).setVolHabilidad3(volTrabajo3+"");
+                    }
+
+                    if (tipo.equals("Tierra")){
+                        //Agrego el volumen del trabajo4 si este se realiza ese dia
+                        if (verificarCoincidenciaDiaDeSemana(diaDeLaSemana,trabajo4)>0){
+                            dias.get(k).setVolHabilidad4(volTrabajo4+"");
+                        }
+
+                        //Agrego el volumen del trabajo5 si este se realiza ese dia
+                        if (verificarCoincidenciaDiaDeSemana(diaDeLaSemana,trabajo5)>0){
+                            dias.get(k).setVolHabilidad5(volTrabajo5+"");
+                        }
+                    }
+
+                    if (actual.equals("Periodo3")){
+                        incremento++;
                     }
 
                     //Incremento 1 dia
@@ -509,8 +606,7 @@ public class Cronograma implements Serializable {
 
     }
 
-    public int verificarCoincidenciaDiaDeSemana(int diaDeSemana, String[] trabajo){
-        int resultado = 0;
+    public String definirDiaDeSemana(int diaDeSemana){
         String dia ="";
         switch (diaDeSemana) {
             case 1:
@@ -535,13 +631,258 @@ public class Cronograma implements Serializable {
                 dia = "Sábado";
                 break;
         }
+        return dia;
+    }
+
+    public int verificarCoincidenciaDiaDeSemana(String diaDeSemana, String[] trabajo){
+        int resultado = 0;
         for (int i=0;i<trabajo.length;i++){
-            if (trabajo[i].equals(dia)){
+            if (trabajo[i].equals(diaDeSemana)){
                 resultado++;
                 break;
             }
         }
         return resultado;
+    }
+
+    public String[] definirResistencia(String periodo, int numMeses, int mes, int numSemanas, int semana, boolean cualResis, int incremento){
+        String[] resistencia = new String[2]; // [0] es la resistencia y [1] es el volumen
+
+        //Pregunto en que periodo estamos
+        if (periodo.equals("Periodo1")){ //Si el periodo es 1
+
+            //Pregunto la cantidad de meses del periodo para saber
+            // en que momento asiganar una resistencia diferente
+            if (numMeses>2){
+
+                int mitad = (int) Math.floor(numMeses/2);
+                //Pregunto si el mes actual es manor, mayor o igual a la mitad
+                if (mes < mitad){ //Si es menor, agrego R1
+
+                    resistencia[0]="R1";
+                    resistencia[1]="5000";
+
+                }else if (mes > mitad){ //Si es mayor, agrego R2
+
+                    resistencia[0]="R2";
+                    resistencia[1]="3000";
+
+                }else{ //Si es igual, varia entre R1 y R2
+
+                    if (cualResis){//Si es TRUE agrega R1
+
+                        resistencia[0]="R1";
+                        resistencia[1]="5000";
+
+                    }else{//Si es FALSE agrega R2
+
+                        resistencia[0]="R2";
+                        resistencia[1]="3000";
+                    }
+                    cualResis = !cualResis;
+                }
+            }else if (numMeses>1){
+
+                //Pregunto si la semana actual y el mes para definir las reistencias
+                if (mes==0 && semana<(numSemanas-1)){
+
+                    resistencia[0]="R1";
+                    resistencia[1]="5000";
+
+                }else if (mes==1 && semana>0){
+
+                    resistencia[0]="R2";
+                    resistencia[1]="3000";
+
+                }else{ //Si es igual, varia entre R1 y R2
+
+                    if (cualResis){//Si es TRUE agrega R1
+
+                        resistencia[0]="R1";
+                        resistencia[1]="5000";
+
+                    }else{//Si es FALSE agrega R2
+
+                        resistencia[0]="R2";
+                        resistencia[1]="3000";
+                    }
+                    cualResis = !cualResis;
+                }
+            }else{
+
+                int mitad = (int) Math.floor(numSemanas/2);
+
+                //Pregunto si la semana actual es manor, mayor o igual a la mitad
+                if (semana < mitad){ //Si es menor, agrego R1
+
+                    resistencia[0]="R1";
+                    resistencia[1]="5000";
+
+                }else if (semana > mitad){ //Si es mayor, agrego R2
+
+                    resistencia[0]="R2";
+                    resistencia[1]="3000";
+
+                }else{ //Si es igual, varia entre R1 y R2
+
+                    if (cualResis){//Si es TRUE agrega R1
+
+                        resistencia[0]="R1";
+                        resistencia[1]="5000";
+
+                    }else{//Si es FALSE agrega R2
+
+                        resistencia[0]="R2";
+                        resistencia[1]="3000";
+                    }
+                    cualResis = !cualResis;
+                }
+
+            }
+        }else if (periodo.equals("Periodo2")){
+
+            if (mes==(numMeses-1) && semana>=(numSemanas-2)){
+
+                resistencia[0]="pendiente";
+                resistencia[1]="0";
+
+            }else{
+                resistencia[0]="R2";
+                resistencia[1]="3000";
+            }
+        }else{ //Si esta en periodo3
+
+            //Pregunto el valor del incremento para asignar la resistencia correspondiente
+            if (incremento == 1 || incremento == 4 || incremento == 6 || incremento == 9){
+
+                resistencia[0]="R2";
+                resistencia[1]="3000";
+
+            }else if (incremento == 2 || incremento == 5){
+
+                resistencia[0]="RL";
+                resistencia[1]="1200";
+
+            }else if (incremento == 3 || incremento == 7 || incremento == 10){
+
+                resistencia[0]="R3";
+                resistencia[1]="2000";
+
+            }else if (incremento == 8 || incremento == 11){
+
+                resistencia[0]="TL";
+                resistencia[1]="400";
+
+            }else{
+
+                resistencia[0]="R1";
+                resistencia[1]="5000";
+            }
+        }
+         return resistencia;
+    }
+
+    public void definirFinalPeriodo2DiasAgua(){
+
+        //Pido el numero de meses del periodo y el ultimo mes
+        int numMeses = Periodo2.getFecha().size();
+        Dato mes = Periodo2.getFecha().get(numMeses-1);
+
+        //Pido el numero de semanas del ultimo mes
+        int numSemanas = mes.getFecha().size();
+
+        //Penultima semana del ultimo mes y pido los dias de esa semana
+        Dato semana1 = mes.getFecha().get(numSemanas-2);
+        ArrayList<Dia> diasSem1 = semana1.getDias();
+
+        //Ultima semana del ultimo mes y pido los dias de esa semana
+        Dato semana2 = mes.getFecha().get(numSemanas-1);
+        ArrayList<Dia> diasSem2 = semana2.getDias();
+
+        //Sumo la cantidad de dias de las dos semanas
+        int dias = diasSem1.size()+diasSem2.size();
+
+        //Verifico si la cantidad de dias es igual, menos o mayor a 14
+        int decremento = 14;
+        int diferencia = dias-decremento;
+        if (diferencia>0){ //Si es mayor, agrego la diferencia a la variable decremento
+            decremento = decremento+diferencia;
+        }else if (diferencia<0){ //Si es menor, disminuto la diferencia a la variable decremento
+            decremento = decremento+diferencia;
+        }
+
+        float volHabilidad1 = Float.parseFloat(diasSem1.get(0).getVolHabilidad1());
+        String volumenDia = "";
+
+        //Agrego las resistencias dependiendo del valor
+        // de la variable decremento a los dias en la penultima semana
+        for (int i=0; i<diasSem1.size(); i++){
+
+            if (decremento==11 || decremento==9 || decremento==7 || decremento==5 ||
+                    decremento==3 || decremento==1){ //En estos casos agrego R3 al tipo y volumen de habilidad1
+
+                diasSem1.get(i).setTipoHabilidad1("R3");
+                volumenDia = "2000";
+
+            }else if (decremento==4){ //En este caso agrego RL al tipo y volumen de habilidad1
+
+                diasSem1.get(i).setTipoHabilidad1("RL");
+                volumenDia = "1200";
+
+            }else{//Para el resto de casos agrego R2 al tipo y volumen de habilidad1
+
+                diasSem1.get(i).setTipoHabilidad1("R2");
+                volumenDia = "3000";
+            }
+
+            //Verificar si todavia hay volumen disponible
+            float volResis = Float.parseFloat(volumenDia);
+            float volDiferencia = volHabilidad1-volResis;
+            if (volDiferencia>=0){
+                diasSem1.get(i).setVolHabilidad1(volumenDia);
+            }else {
+                diasSem1.get(i).setVolHabilidad1((volResis+volDiferencia)+"");
+            }
+
+            //resto 1 a la variable decremento
+            decremento--;
+        }
+
+        volHabilidad1 = Float.parseFloat(diasSem2.get(0).getVolHabilidad1());
+        //Agrego las resistencias dependiendo del valor
+        // de la variable decremento a los dias en la ultima semana
+        for (int i=0; i<diasSem2.size(); i++){
+
+            if (decremento==11 || decremento==9 || decremento==7 || decremento==5 ||
+                    decremento==3 || decremento==1){ //En estos casos agrego R3 al tipo y volumen de habilidad1
+
+                diasSem2.get(i).setTipoHabilidad1("R3");
+                volumenDia = "2000";
+
+            }else if (decremento==4){ //En este caso agrego RL al tipo y volumen de habilidad1
+
+                diasSem2.get(i).setTipoHabilidad1("RL");
+                volumenDia = "1200";
+
+            }else{//Para el resto de casos agrego R2 al tipo y volumen de habilidad1
+
+                diasSem2.get(i).setTipoHabilidad1("R2");
+                volumenDia = "3000";
+            }
+
+            //Verificar si todavia hay volumen disponible
+            float volResis = Float.parseFloat(volumenDia);
+            float volDiferencia = volHabilidad1-volResis;
+
+            if (volDiferencia>=0){
+                diasSem2.get(i).setVolHabilidad1(volumenDia);
+            }else {
+                diasSem2.get(i).setVolHabilidad1((volResis+volDiferencia)+"");
+            }
+
+            //resto 1 a la variable decremento
+            decremento--;
+        }
     }
 
     @Override

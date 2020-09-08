@@ -146,6 +146,8 @@
     <string name="total">Total :</string>
     <string name="consul_dia">Consulta día</string>
     <string name="consul_enun_dia">Consultar el siguiente día: </string>
+    <string name="menu_macrociclo">Menú Macro Ciclo</string>
+    <string name="enun_menuciclo">Seleccione la función que desea realizar:</string>
 
     <string-array name="periodos">
         <item>Seleccione</item>

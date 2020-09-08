@@ -349,13 +349,11 @@ public class MostrarInfoMonths extends Fragment {
 
     public void llenarArray (Dato periodo, ArrayList<String> dia) {
         String dato = "";
-        int numMes = 1;
         dia.clear();
         ArrayList<Dato> mesesPeriodo = periodo.getFecha();
         for (int i = 0; i < mesesPeriodo.size(); i++) {
-            dato = "Mes" + numMes + ": " + mesesPeriodo.get(i).getVolumen() + " (" + mesesPeriodo.get(i).getPorcentaje() + "%)";
+            dato = "Mes" + (i+1) + ": " + mesesPeriodo.get(i).getVolumen() + " (" + mesesPeriodo.get(i).getPorcentaje() + "%)";
             dia.add(dato);
-            numMes++;
         }
     }
 

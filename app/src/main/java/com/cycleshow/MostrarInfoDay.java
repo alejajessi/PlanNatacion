@@ -180,26 +180,20 @@ public class MostrarInfoDay extends Fragment {
 
             //Dia
             int numDia= Integer.parseInt(datos[4]);
-            txDia.setText("Día"+(numDia+1)+": "+dia.getFecha());
+            txDia.setText("Día"+(numDia+1)+": "+dia.getDiaDeSemana()+"  "+dia.getFecha());
 
             String habilidades = "";
 
             if (datos[0].equals("Agua")){
 
                 if (!dia.getVolHabilidad1().isEmpty()){
-                    habilidades = "Resistencia: "+dia.getVolHabilidad1()+"\n";
+                    habilidades = "Resistencia: "+dia.getVolHabilidad1()+" ("+dia.getTipoHabilidad1()+")\n";
                 }
                 if (!dia.getVolHabilidad2().isEmpty()){
                     habilidades = habilidades+"Técnica: "+dia.getVolHabilidad2()+"\n";
                 }
                 if (!dia.getVolHabilidad3().isEmpty()){
                     habilidades = habilidades+"Velocidad: "+dia.getVolHabilidad3()+"\n";
-                }
-                if (!dia.getVolHabilidad4().isEmpty()){
-                    habilidades = habilidades+"H4: "+dia.getVolHabilidad4()+"\n";
-                }
-                if (!dia.getVolHabilidad5().isEmpty()){
-                    habilidades = habilidades+"H5: "+dia.getVolHabilidad5()+"\n";
                 }
 
             }else if (datos[0].equals("Tierra")){
@@ -214,10 +208,10 @@ public class MostrarInfoDay extends Fragment {
                     habilidades = habilidades+"Fuerza Máxima: "+dia.getVolHabilidad3()+"\n";
                 }
                 if (!dia.getVolHabilidad4().isEmpty()){
-                    habilidades = habilidades+"H4: "+dia.getVolHabilidad4()+"\n";
+                    habilidades = habilidades+"Flexibilidad: "+dia.getVolHabilidad4()+"\n";
                 }
                 if (!dia.getVolHabilidad5().isEmpty()){
-                    habilidades = habilidades+"H5: "+dia.getVolHabilidad5()+"\n";
+                    habilidades = habilidades+"Coordinación: "+dia.getVolHabilidad5()+"\n";
                 }
 
             }

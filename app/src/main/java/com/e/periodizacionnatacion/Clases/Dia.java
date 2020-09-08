@@ -5,6 +5,8 @@ import java.io.Serializable;
 public class Dia implements Serializable {
 
     private String fecha;
+    private String diaDeSemana;
+    private String tipoHabilidad1;
     private String volHabilidad1;
     private String volHabilidad2;
     private String volHabilidad3;
@@ -16,6 +18,8 @@ public class Dia implements Serializable {
      */
     public Dia() {
         fecha = "";
+        diaDeSemana = "";
+        tipoHabilidad1 = "";
         volHabilidad1 = "";
         volHabilidad2 = "";
         volHabilidad3 = "";
@@ -29,6 +33,8 @@ public class Dia implements Serializable {
      */
     public Dia(String fecha) {
         this.fecha = fecha;
+        diaDeSemana = "";
+        tipoHabilidad1 = "";
         volHabilidad1 = "";
         volHabilidad2 = "";
         volHabilidad3 = "";
@@ -47,6 +53,8 @@ public class Dia implements Serializable {
      */
     public Dia(String fecha, String volHabilidad1, String volHabilidad2, String volHabilidad3, String volHabilidad4, String volHabilidad5) {
         this.fecha = fecha;
+        diaDeSemana = "";
+        tipoHabilidad1 = "";
         this.volHabilidad1 = volHabilidad1;
         this.volHabilidad2 = volHabilidad2;
         this.volHabilidad3 = volHabilidad3;
@@ -56,6 +64,14 @@ public class Dia implements Serializable {
 
     public String getFecha() {
         return fecha;
+    }
+
+    public String getDiaDeSemana() {
+        return diaDeSemana;
+    }
+
+    public String getTipoHabilidad1() {
+        return tipoHabilidad1;
     }
 
     public String getVolHabilidad1() {
@@ -100,6 +116,14 @@ public class Dia implements Serializable {
 
     public void setFecha(String fecha) {
         this.fecha = fecha;
+    }
+
+    public void setDiaDeSemana(String diaDeSemana) {
+        this.diaDeSemana = diaDeSemana;
+    }
+
+    public void setTipoHabilidad1(String tipoHabilidad1) {
+        this.tipoHabilidad1 = tipoHabilidad1;
     }
 
     public void setVolHabilidad1(String volHabilidad1) {
