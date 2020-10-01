@@ -83,6 +83,8 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
      */
     private boolean existe;
 
+    private DialogCargando carga;
+
     private String mostrando;
 
     /**
@@ -108,6 +110,7 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
         nombreUsuario = (TextView) navigationView.getHeaderView(0).findViewById(R.id.nombreUser);
         correoUsuario = (TextView) navigationView.getHeaderView(0).findViewById(R.id.correoUser);
 
+        carga = new DialogCargando(this);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         updateUI(user);
         
@@ -118,6 +121,7 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
      * @param user usuario de FireBase
      */
     public void  updateUI(FirebaseUser user){
+        carga.iniciar();
         FirebaseDatabase.getInstance().getReference().child("Usuario").child(user.getUid())
                 .addValueEventListener(new ValueEventListener() {
             @Override
@@ -125,6 +129,7 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
                 usuario = dataSnapshot.getValue(Usuario.class);
                 if (usuario != null){
                     Log.e(">>>>>>", usuario.toString());
+                    carga.detener();
                 }
                 cambiarValorHeader();
             }
