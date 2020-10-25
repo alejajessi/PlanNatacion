@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "839820764075-0l2iicpo1dl8c69jji7gnq4babv85osd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.e.periodizacionnatacion",
+            "certificate_hash": "7082db477fa8bf705b1b919f7489a43721f08df3"
+          }
+        },
+        {
           "client_id": "839820764075-nbl3mc16cd7aptv4hg4qblfbmrf5jb16.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
