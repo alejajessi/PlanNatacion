@@ -426,11 +426,11 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
      * @param id Cadena de caracteres que indica el id del macro ciclo seleccionado
      */
     public void pedirMacroCiclo(String id){
-        carga.iniciar();
+
         if (MacroCiclo != null && MacroCiclo.getID().equals(id)){
-            carga.detener();
             return;
         }
+        carga.iniciar();
         Query query = FirebaseDatabase.getInstance().getReference().child("MacroCiclo").child(id);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -452,12 +452,13 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
      * @param posicion Cadena de caracteres que representa un valor númerico que indica si es tierra ó agua
      */
     public void pedirCronograma(String id, final int posicion){
-        carga.iniciar();
         if (!cronogramas.isEmpty() && cronogramas.size()>posicion
                 && cronogramas.get(posicion).getID().equals(id)){
            // cambioDeFragment = false;
-            carga.detener();
             return;
+        }
+        if (posicion==0){
+            carga.iniciar();
         }
         Query query = FirebaseDatabase.getInstance().getReference().child("Cronograma").child(id);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -465,7 +466,9 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Cronograma cronograma = dataSnapshot.getValue(Cronograma.class);
                 cronogramas.set(posicion,cronograma);
-                carga.detener();
+                if (posicion==1){
+                    carga.detener();
+                }
             //    cambioDeFragment = false;
             }
             @Override
