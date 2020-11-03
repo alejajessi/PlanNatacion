@@ -1,13 +1,181 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.cyclenotification.AddTestNotification">
+    android:fillViewport="true">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/add_cycle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:background="@drawable/bg_color"
+        android:orientation="vertical"
+        android:visibility="visible"
+        tools:context="com.cycleadd.AddCycle">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-</FrameLayout>
+            <TextView
+                android:id="@+id/tittle_anhadir_ciclo"
+                android:layout_width="250dp"
+                android:fontFamily="@font/bs_regular"
+                android:layout_height="match_parent"
+                android:layout_gravity="left"
+                android:gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:text="Notificación test"
+                android:textColor="@color/colorWhite"
+                android:textSize="27dp" />
+
+            <ImageView
+                android:id="@+id/banner_addcycle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:src="@mipmap/logo_foreground" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:fontFamily="@font/bs_regular"
+                android:textSize="14dp"
+                android:layout_margin="20dp"
+                android:layout_marginTop="30dp"
+                android:id="@+id/tx_enun_addcycle"
+                android:text="A continuación ingrese la información necesaria para añadir una notificación de test"
+                android:textColor="@color/colorWhite" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:fontFamily="@font/bs_regular"
+                android:background="@color/colorSecond"
+                android:textSize="14dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:id="@+id/tx_nomb_addcycle"
+                android:text="@string/opcion2_nombre"
+                android:textColor="@color/colorWhite"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginLeft="30dp"
+                android:background="@drawable/borderedondo_txt"
+                android:textColor="@color/colorBanner"
+                android:layout_gravity="center"
+                android:id="@+id/et_nomb_addcycle"
+                android:fontFamily="@font/bs_regular"
+                android:textSize="14dp"
+                android:gravity="center"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:fontFamily="@font/bs_regular"
+                android:background="@color/colorSecond"
+                android:textSize="14dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:id="@+id/tx_inicio_addcyle"
+                android:text="Seleccione la fecha a realizar:"
+                android:textColor="@color/colorWhite"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorSecond"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:orientation="vertical">
+
+                <EditText
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/borderedondo_txt"
+                    android:layout_margin="5dp"
+                    android:id="@+id/ed_date1"
+                    android:textSize="14dp"
+                    android:textColor="@color/colorBanner"
+                    android:gravity="center"
+                    android:enabled="false"
+                    android:layout_gravity="center"/>
+
+                <ImageButton
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/btt_cal1_addcycle"
+                    android:src="@mipmap/calendario"
+                    android:background="@drawable/borderedondo_banner"
+                    android:layout_gravity="center"
+
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="136dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/borderedondo_banner"
+                    android:fontFamily="@font/bs_regular"
+                    android:gravity="center"
+                    android:text="@string/opcion7_Retroceder"
+                    android:textAllCaps="false"
+                    android:id="@+id/retro_addcycle"
+                    android:textColor="@color/colorWhite"
+                    android:layout_marginRight="10dp"
+                    android:textSize="14dp" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/borderedondo_banner"
+                    android:fontFamily="@font/bs_regular"
+                    android:gravity="center"
+                    android:id="@+id/avan_addcycle"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/opcion8_Avanzar"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="14dp" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
