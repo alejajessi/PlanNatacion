@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                carga.detener();
             }
         });
     }
@@ -392,15 +392,17 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
      */
     public void verificarSiExisteId(String rama, final String id){
 
+        carga.iniciar();
         Query query = FirebaseDatabase.getInstance().getReference().child(rama);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 existe = dataSnapshot.hasChild(id);
+                carga.detener();
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                carga.detener();
             }
         });
     }
@@ -424,18 +426,22 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
      * @param id Cadena de caracteres que indica el id del macro ciclo seleccionado
      */
     public void pedirMacroCiclo(String id){
+
         if (MacroCiclo != null && MacroCiclo.getID().equals(id)){
             return;
         }
+        carga.iniciar();
         Query query = FirebaseDatabase.getInstance().getReference().child("MacroCiclo").child(id);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 MacroCiclo = dataSnapshot.getValue(MacroCiclo.class);
+                carga.detener();
                 Log.e("Main","MacroCiclo LISTO");
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+                carga.detener();
             }
         });
     }
@@ -451,16 +457,23 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
            // cambioDeFragment = false;
             return;
         }
+        if (posicion==0){
+            carga.iniciar();
+        }
         Query query = FirebaseDatabase.getInstance().getReference().child("Cronograma").child(id);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Cronograma cronograma = dataSnapshot.getValue(Cronograma.class);
                 cronogramas.set(posicion,cronograma);
+                if (posicion==1){
+                    carga.detener();
+                }
             //    cambioDeFragment = false;
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+                carga.detener();
             }
         });
     }
