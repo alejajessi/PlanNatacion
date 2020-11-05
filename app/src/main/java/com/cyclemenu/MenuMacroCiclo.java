@@ -1,4 +1,4 @@
-package com.e.periodizacionnatacion;
+package com.cyclemenu;
 
 import android.os.Bundle;
 
@@ -47,7 +47,6 @@ public class MenuMacroCiclo extends Fragment {
 
         final NavController navController= Navigation.findNavController(view);
         funcionBttAddMacroCiclo(navController);
-        funcionBttEditMacroCiclo(navController);
         funcionBttViewMacroCiclo(navController);
         funcionDeleteMacroCiclo(navController);
         funcionBttRegresar(navController);
@@ -67,15 +66,6 @@ public class MenuMacroCiclo extends Fragment {
             @Override
             public void onClick(View v) {
                 Navigation.findNavController(v).navigate(R.id.nav_addcyle);
-            }
-        });
-    }
-
-    public void funcionBttEditMacroCiclo(NavController navigation){
-        bttEditMacroCiclo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.nav_modifcycle);
             }
         });
     }

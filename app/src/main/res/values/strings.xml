@@ -14,7 +14,7 @@
     <string name="view_MacroCiclo">Visualizar macro ciclo para competencia fundamental</string>
     <string name="edit_MacroCiclo">Modificar macro ciclo para competencia fundamental</string>
     <string name="view_stadistics">Visualizar estadisticas</string>
-    <string name="menu_controlP">Control de pruebas</string>
+    <string name="menu_controlP">Menú pruebas</string>
     <string name="menu_añadirP">Añadir pruebas</string>
     <string name="menu_cancelarT">Cancelar tiempo</string>
     <string name="menu_mostrarP">Mostrar pruebas</string>

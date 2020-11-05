@@ -8,13 +8,13 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/add_cycle"
+        android:id="@+id/menupruebas"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/bg_color"
         android:orientation="vertical"
         android:visibility="visible"
-        tools:context="com.cyclemenu.MenuMacroCiclo">
+        tools:context="com.cyclemenu.Menu_Pruebas">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -30,7 +30,7 @@
                 android:gravity="center"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="15dp"
-                android:text="@string/menu_macrociclo"
+                android:text="Menú pruebas"
                 android:textColor="@color/colorWhite"
                 android:textSize="27dp" />
 
@@ -74,9 +74,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40dp"
                     android:fontFamily="@font/bs_regular"
-                    android:text="@string/add_MacroCiclo"
+                    android:text="Añadir notificación test"
                     android:textAllCaps="false"
-                    android:id="@+id/bttadd_menu_macrociclo"
+                    android:id="@+id/bttadd_notificaction"
                     android:background="@drawable/botonredondo_second"
                     android:textColor="@color/colorWhite"
                     android:textSize="14dp"/>
@@ -86,8 +86,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40dp"
                     android:fontFamily="@font/bs_regular"
-                    android:text="@string/view_MacroCiclo"
-                    android:id="@+id/bttview_menu_macrociclo"
+                    android:text="Ver pruebas realizadas"
+                    android:id="@+id/bttview_pruebas"
                     android:textAllCaps="false"
                     android:background="@drawable/botonredondo_second"
                     android:textColor="@color/colorWhite"
@@ -98,21 +98,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40dp"
                     android:fontFamily="@font/bs_regular"
-                    android:text="@string/edit_MacroCiclo"
+                    android:text="Ver estadisticas"
                     android:textAllCaps="false"
-                    android:id="@+id/bttedit_menu_macrociclo"
-                    android:background="@drawable/botonredondo_second"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="14dp"/>
-
-                <Button
-                    android:layout_width="210dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="40dp"
-                    android:fontFamily="@font/bs_regular"
-                    android:text="@string/menu_eliminarMC"
-                    android:textAllCaps="false"
-                    android:id="@+id/bttdelete_menu_macrociclo"
+                    android:id="@+id/bttestadisticas"
                     android:background="@drawable/botonredondo_second"
                     android:textColor="@color/colorWhite"
                     android:textSize="14dp"/>

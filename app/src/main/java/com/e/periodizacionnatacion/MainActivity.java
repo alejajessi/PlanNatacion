@@ -99,8 +99,8 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_menuMacroCiclo, R.id.nav_control_p, R.id.nav_addprueba, R.id.nav_controlpruebas,
-                R.id.nav_canceltiempo, R.id.nav_mostrarpruebas, R.id.nav_deletecycle,
+                R.id.nav_home, R.id.nav_menuMacroCiclo, R.id.nav_menuPruebas,
+                R.id.nav_canceltiempo, R.id.nav_deletecycle,
                 R.id.nav_legalinfo).setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);

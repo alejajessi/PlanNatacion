@@ -8,13 +8,13 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/fragment_mostrar_ciclo"
+        android:id="@+id/fragment_select_cycle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/bg_color"
         android:orientation="vertical"
         android:visibility="visible"
-        tools:context="com.cycleshow.MostrarCiclo">
+        tools:context="com.cyclenotification.SelectCycle">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -30,7 +30,7 @@
                 android:gravity="center"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="15dp"
-                android:text="@string/mostrar_ciclo"
+                android:text="Selección ciclo"
                 android:textColor="@color/colorWhite"
                 android:textSize="25dp" />
 
@@ -48,7 +48,7 @@
             android:layout_height="300dp"
             android:background="@drawable/botonredondo_second"
             android:layout_margin="30dp"
-            android:id="@+id/list_show"
+            android:id="@+id/list_select_cycle"
             />
 
         <LinearLayout
@@ -66,7 +66,7 @@
                 android:gravity="center"
                 android:text="@string/opcion7_Retroceder"
                 android:textAllCaps="false"
-                android:id="@+id/retro_showCyclee"
+                android:id="@+id/retro_selectCycle"
                 android:textColor="@color/colorWhite"
                 android:textSize="14dp" />
 

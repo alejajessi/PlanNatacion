@@ -37,17 +37,6 @@
             app:destination="@id/nav_addwater" />
     </fragment>
 
-    <fragment android:id="@+id/nav_addprueba"
-        android:name="com.e.periodizacionnatacion.AddPrueba"
-        android:label="@string/add_pruebas"
-        tools:layout="@layout/fragment_add_prueba" >
-        <action
-            android:id="@+id/action_nav_addprueba_to_nav_home"
-            app:destination="@id/nav_home" />
-        <action
-            android:id="@+id/action_nav_addprueba_to_nav_mostrarP"
-            app:destination="@id/nav_mostrarP" />
-    </fragment>
 
     <fragment android:id="@+id/nav_addwater"
         android:name="com.cycleadd.AddWaterCycle"
@@ -87,15 +76,6 @@
             app:destination="@id/nav_vistaprevia" />
     </fragment>
 
-    <fragment android:id="@+id/nav_modifcycle"
-        android:name="com.cycleoptions.ModifMacro"
-        android:label="@string/modificar_plan"
-        tools:layout="@layout/fragment_modif_macro" >
-        <action
-            android:id="@+id/action_nav_modifcycle_to_nav_home"
-            app:destination="@id/nav_home" />
-    </fragment>
-
     <fragment android:id="@+id/nav_vistaprevia"
         android:name="com.cycleadd.AddVistaPrevia"
         android:label="@string/resumen"
@@ -118,12 +98,6 @@
         <action
             android:id="@+id/action_nav_addinteg_to_nav_home"
             app:destination="@id/nav_home" />
-    </fragment>
-
-    <fragment android:id="@+id/nav_mostrarP"
-        android:name="com.e.periodizacionnatacion.ListPruebas"
-        android:label="@string/sel_prue"
-        tools:layout="@layout/fragment_list_pruebas" >
     </fragment>
 
     <fragment android:id="@+id/nav_showCycles"
@@ -197,7 +171,7 @@
     </fragment>
 
     <fragment android:id="@+id/nav_menuMacroCiclo"
-        android:name="com.e.periodizacionnatacion.MenuMacroCiclo"
+        android:name="com.cyclemenu.MenuMacroCiclo"
         android:label="@string/menu_macrociclo"
         tools:layout="@layout/fragment_menu_macro_ciclo">
 
@@ -205,13 +179,15 @@
             android:id="@+id/action_nav_menuMacroCiclo_to_nav_vistaprevia"
             app:destination="@id/nav_vistaprevia" />
         <action
-            android:id="@+id/action_nav_menuMacroCiclo_to_nav_modifcycle"
-            app:destination="@id/nav_modifcycle" />
-        <action
             android:id="@+id/action_nav_menuMacroCiclo_to_nav_showcycle"
             app:destination="@id/nav_showcycle" />
         <action
             android:id="@+id/action_nav_menuMacroCiclo_to_nav_home"
             app:destination="@id/nav_home" />
     </fragment>
+
+    <fragment android:id="@+id/nav_menuPruebas"
+        android:name="com.cyclemenu.Menu_Pruebas"
+        android:label="@string/menu_controlP"
+        tools:layout="@layout/fragment_menu__pruebas"/>
 </navigation>
