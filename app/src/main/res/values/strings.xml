@@ -148,6 +148,8 @@
     <string name="consul_enun_dia">Consultar el siguiente día: </string>
     <string name="menu_macrociclo">Menú Macro Ciclo</string>
     <string name="enun_menuciclo">Seleccione la función que desea realizar:</string>
+    <string name="select_cycle">Select cycle</string>
+    <string name="anadir_notification">Añadir notificación</string>
 
     <string-array name="periodos">
         <item>Seleccione</item>

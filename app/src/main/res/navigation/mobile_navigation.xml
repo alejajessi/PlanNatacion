@@ -189,5 +189,33 @@
     <fragment android:id="@+id/nav_menuPruebas"
         android:name="com.cyclemenu.Menu_Pruebas"
         android:label="@string/menu_controlP"
-        tools:layout="@layout/fragment_menu__pruebas"/>
+        tools:layout="@layout/fragment_menu__pruebas">
+        <action
+            android:id="@+id/action_nav_menuPruebas_to_nav_select_Cycle"
+            app:destination="@id/nav_select_Cycle" />
+        <action
+            android:id="@+id/action_nav_menuPruebas_to_nav_home"
+            app:destination="@id/nav_home" />
+    </fragment>
+
+    <fragment android:id="@+id/nav_select_Cycle"
+        android:name="com.cyclenotification.SelectCycle"
+        android:label="@string/select_cycle"
+        tools:layout="@layout/fragment_select_cycle">
+        <action
+            android:id="@+id/action_nav_select_Cycle_to_nav_menuPruebas"
+            app:destination="@id/nav_menuPruebas" />
+        <action
+            android:id="@+id/action_nav_select_Cycle_to_nav_add_notification"
+            app:destination="@id/nav_add_notification" />
+    </fragment>
+
+    <fragment android:id="@+id/nav_add_notification"
+        android:name="com.cyclenotification.AddTestNotification"
+        android:label="@string/select_cycle"
+        tools:layout="@layout/fragment_add_test_notification">
+        <action
+            android:id="@+id/action_nav_add_notification_to_nav_select_Cycle"
+            app:destination="@id/nav_select_Cycle" />
+    </fragment>
 </navigation>

@@ -104,7 +104,7 @@ public class SelectCycle extends Fragment {
                 callback.onCallBack("MostrarMacroCiclo",ciclos.get(position).getDato2(),null,null);
                 Log.e("Mostrar MacroCiclos", "InfoCycle");
                 Toast.makeText(getContext(),"Cargando MacroCiclo...",Toast.LENGTH_SHORT).show();
-                Navigation.findNavController(view).navigate(R.id.nav_showCycles);
+                Navigation.findNavController(view).navigate(R.id.nav_add_notification);
             }
         });
     }
@@ -114,11 +114,10 @@ public class SelectCycle extends Fragment {
         retroceder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.nav_home);
+                Navigation.findNavController(v).navigate(R.id.nav_menuPruebas);
             }
         });
 
     }
-
 
 }
