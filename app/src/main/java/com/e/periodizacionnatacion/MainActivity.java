@@ -83,6 +83,8 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
      */
     private boolean existe;
 
+    private DialogCargando carga;
+
     private String mostrando;
 
     /**
@@ -108,6 +110,7 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
         nombreUsuario = (TextView) navigationView.getHeaderView(0).findViewById(R.id.nombreUser);
         correoUsuario = (TextView) navigationView.getHeaderView(0).findViewById(R.id.correoUser);
 
+        carga = new DialogCargando(this);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         updateUI(user);
         
@@ -118,6 +121,7 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
      * @param user usuario de FireBase
      */
     public void  updateUI(FirebaseUser user){
+        carga.iniciar();
         FirebaseDatabase.getInstance().getReference().child("Usuario").child(user.getUid())
                 .addValueEventListener(new ValueEventListener() {
             @Override
@@ -125,13 +129,14 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
                 usuario = dataSnapshot.getValue(Usuario.class);
                 if (usuario != null){
                     Log.e(">>>>>>", usuario.toString());
+                    carga.detener();
                 }
                 cambiarValorHeader();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                carga.detener();
             }
         });
     }
@@ -270,6 +275,7 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
 
         //Generar y verificar si existen las ID de cronograma
         //Se genera un ID para el cronograma y se verifica si existe en la BD
+        carga.iniciar();
         String id =  UUID.randomUUID()+"";
         verificarSiExisteId("Cronograma", id);
         while (existe){
@@ -282,10 +288,12 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
         cronogramas.get(0).setID(id);
 
         //Se genera un ID para el cronograma y se verifica si existe en la BD
+        carga.iniciar();
         id =  UUID.randomUUID()+"";
         verificarSiExisteId("Cronograma", id);
         if (id.equals( MacroCiclo.getDiasAgua().getCronograma())){
             existe = true;
+            carga.iniciar();
         }
         while (existe){
             id =  UUID.randomUUID()+"";
@@ -335,6 +343,7 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
         for (int i = 0; i < integrantes.size(); i++){
 
             //Se genera un ID para el integrante y se verifica si existe en la BD
+            carga.iniciar();
             String id =  UUID.randomUUID()+"";
             verificarSiExisteId("Integrantes", id);
             while (existe){
@@ -360,6 +369,7 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
     public void agregarMacrocicloBD(){
 
         //Genera una ID para el MacroCiclo y verifica que no exista
+        carga.iniciar();
         String id =  UUID.randomUUID()+"";
         verificarSiExisteId("MacroCiclo", id);
         while (existe){
@@ -392,10 +402,13 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 existe = dataSnapshot.hasChild(id);
+                if (!existe){
+                    carga.detener();
+                }
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                carga.detener();
             }
         });
     }
@@ -419,18 +432,22 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
      * @param id Cadena de caracteres que indica el id del macro ciclo seleccionado
      */
     public void pedirMacroCiclo(String id){
+
         if (MacroCiclo != null && MacroCiclo.getID().equals(id)){
             return;
         }
+        carga.iniciar();
         Query query = FirebaseDatabase.getInstance().getReference().child("MacroCiclo").child(id);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 MacroCiclo = dataSnapshot.getValue(MacroCiclo.class);
+                carga.detener();
                 Log.e("Main","MacroCiclo LISTO");
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+                carga.detener();
             }
         });
     }
@@ -446,16 +463,23 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
            // cambioDeFragment = false;
             return;
         }
+        if (posicion==0){
+            carga.iniciar();
+        }
         Query query = FirebaseDatabase.getInstance().getReference().child("Cronograma").child(id);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Cronograma cronograma = dataSnapshot.getValue(Cronograma.class);
                 cronogramas.set(posicion,cronograma);
+                if (posicion==1){
+                    carga.detener();
+                }
             //    cambioDeFragment = false;
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+                carga.detener();
             }
         });
     }
