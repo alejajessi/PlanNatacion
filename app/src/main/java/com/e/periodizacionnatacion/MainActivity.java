@@ -83,6 +83,8 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
      */
     private boolean existe;
 
+    private boolean cambioFrag;
+
     private DialogCargando carga;
 
     private String mostrando;
@@ -433,7 +435,9 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
      */
     public void pedirMacroCiclo(String id){
 
+        cambioFrag = false;
         if (MacroCiclo != null && MacroCiclo.getID().equals(id)){
+            cambioFrag = true;
             return;
         }
         carga.iniciar();
@@ -442,6 +446,7 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 MacroCiclo = dataSnapshot.getValue(MacroCiclo.class);
+                cambioFrag=true;
                 carga.detener();
                 Log.e("Main","MacroCiclo LISTO");
             }
@@ -560,5 +565,10 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
 
         diaSeleccionado = periodo.getFecha().get(mes).getFecha().get(semana).getDias().get(dia);
         return diaSeleccionado;
+    }
+
+    @Override
+    public boolean onCallBackCambioFragment() {
+        return cambioFrag;
     }
 }

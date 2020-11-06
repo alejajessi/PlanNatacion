@@ -17,4 +17,5 @@ public interface CallBackListener {
     void onCallBackDeleteMacroCiclo(MacroCiclo macroCiclo);
     String onCallBackMostrar(String fragmento);
     Dia onCallBackMostrarDia(String fragmento);
+    boolean onCallBackCambioFragment();
 }
