@@ -47,6 +47,11 @@ public class Menu_Pruebas extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         inicializarID(view);
+
+        final NavController navController= Navigation.findNavController(view);
+
+        funcionBttAnhadir(navController);
+        funcionBttRetroceder(navController);
     }
 
     public void inicializarID(View view){

@@ -23,14 +23,18 @@ import com.e.periodizacionnatacion.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Timer;
 
 public class AddTestNotification extends Fragment {
 
 
     private ImageButton bttDate1;
+    private ImageButton bttDate2;
     private EditText edtNom;
     private EditText edtDate1;
+    private EditText edtDate2;
     private Calendar cal;
+    private Timer time;
     private DatePickerDialog pickerDialog;
     private CallBackListener callback;
     private Button avanzar;
@@ -63,22 +67,20 @@ public class AddTestNotification extends Fragment {
         inicializarID(view);
 
         funcionBttDate1();
-
+        funcionBttDate2();
         final NavController navController= Navigation.findNavController(view);
-
-        funcionBttAvanzar(navController);
-
-        funcionBttRetroceder(navController);
 
     }
 
     public void inicializarID(View view){
 
         edtNom = view.findViewById(R.id.et_nomb_addtest);
-        edtDate1 = view.findViewById(R.id.ed_date1);
-        bttDate1 = view.findViewById(R.id.btt_cal1_addcycle);
+        edtDate1 = view.findViewById(R.id.ed_date1_test);
+        edtDate2 = view.findViewById(R.id.ed_date2_test);
+        bttDate1 = view.findViewById(R.id.btt_cal1_test);
+        bttDate2 = view.findViewById(R.id.btt_cal2_test);
         avanzar = view.findViewById(R.id.avan_addcycle);
-        retroceder = view.findViewById(R.id.retro_addcycle);
+        retroceder = view.findViewById(R.id.retro_addtest);
         actualizacionFecha();
 
     }
@@ -107,14 +109,16 @@ public class AddTestNotification extends Fragment {
                     public void onDateSet(DatePicker view, int myear, int mMonth, int mDay) {
 
                         edtDate1.setText(mDay+"-"+(mMonth+1)+"-"+myear);
-                        if (validarFechaActual(mDay,mMonth,myear)){
-                            Toast.makeText(getContext(),"La fecha de inicio debe ser mayor o igual a la fecha actual",Toast.LENGTH_LONG).show();
-                        }
                     }
                 }, year, month, day);
                 pickerDialog.show();
             }
         });
+    }
+
+    public void funcionBttDate2(){
+
+        //bttDate2.setOnClickListener();
     }
 
     //PENDIENTE OPCIÓN HORA

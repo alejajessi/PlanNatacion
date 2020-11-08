@@ -150,6 +150,8 @@
     <string name="enun_menuciclo">Seleccione la función que desea realizar:</string>
     <string name="select_cycle">Select cycle</string>
     <string name="anadir_notification">Añadir notificación</string>
+    <string name="flexibilidad">Flexibilidad</string>
+    <string name="coordinacion">Coordinación</string>
 
     <string-array name="periodos">
         <item>Seleccione</item>

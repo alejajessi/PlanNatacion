@@ -36,6 +36,8 @@ public class AddEarthCycle extends Fragment {
     private Button fconversionbtt;
     private Button fconstruccionbtt;
     private Button fmaxbtt;
+    private Button coordi;
+    private Button flexi;
     private Button avanzar;
     private Button retroceder;
 
@@ -82,6 +84,10 @@ public class AddEarthCycle extends Fragment {
 
         funcionFMax();
 
+        funcionCoordi();
+
+        funcionFlexi();
+
         final NavController navController= Navigation.findNavController(view);
 
         funcionBttAvanzar(navController);
@@ -97,6 +103,7 @@ public class AddEarthCycle extends Fragment {
         fconstruccionbtt = view.findViewById(R.id.fuer_const_earthcycle);
         fconversionbtt = view.findViewById(R.id.fuer_conv_earthcycle);
         fmaxbtt = view.findViewById(R.id.fuer_max_earthcycle);
+        coordi = view.findViewById(R.id.coo)
         avanzar = view.findViewById(R.id.avan_earthcycle);
         retroceder = view.findViewById(R.id.retro_earthcycle);
         diasTierra = new ArrayList<ArrayList>();
@@ -125,6 +132,30 @@ public class AddEarthCycle extends Fragment {
             @Override
             public void onClick(View v) {
                 cualBoton = "Conversion";
+                AlertDialog dialog= crearDialogo();
+                dialog.show();
+            }
+        });
+    }
+    public  void funcionCoordi(){
+
+        fmaxbtt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cualBoton = "Coordinacion";
+                AlertDialog dialog= crearDialogo();
+                dialog.show();
+            }
+        });
+
+    }
+
+    public void funcionFlexi(){
+
+        fconversionbtt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cualBoton = "Flexibilidad";
                 AlertDialog dialog= crearDialogo();
                 dialog.show();
             }
