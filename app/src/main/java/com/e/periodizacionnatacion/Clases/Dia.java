@@ -1,5 +1,7 @@
 package com.e.periodizacionnatacion.Clases;
 
+import androidx.annotation.NonNull;
+
 import java.io.Serializable;
 
 public class Dia implements Serializable {
@@ -144,5 +146,19 @@ public class Dia implements Serializable {
 
     public void setVolHabilidad5(String volHabilidad5) {
         this.volHabilidad5 = volHabilidad5;
+    }
+
+    @Override
+    public String toString() {
+        return "Dia{" +
+                "fecha='" + fecha + '\'' +
+                ", diaDeSemana='" + diaDeSemana + '\'' +
+                ", tipoHabilidad1='" + tipoHabilidad1 + '\'' +
+                ", volHabilidad1='" + volHabilidad1 + '\'' +
+                ", volHabilidad2='" + volHabilidad2 + '\'' +
+                ", volHabilidad3='" + volHabilidad3 + '\'' +
+                ", volHabilidad4='" + volHabilidad4 + '\'' +
+                ", volHabilidad5='" + volHabilidad5 + '\'' +
+                '}';
     }
 }
