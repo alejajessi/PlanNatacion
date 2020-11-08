@@ -24,6 +24,8 @@ import com.e.periodizacionnatacion.Clases.DatoBasico;
 import com.e.periodizacionnatacion.R;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MostrarCiclo extends Fragment {
 
@@ -156,11 +158,19 @@ public class MostrarCiclo extends Fragment {
 
         listCycle.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
                 callback.onCallBack("MostrarMacroCiclo",ciclos.get(position).getDato2(),null,null);
-                Log.e("Mostrar MacroCiclos", "InfoCycle");
-                Toast.makeText(getContext(),"Cargando MacroCiclo...",Toast.LENGTH_SHORT).show();
-                Navigation.findNavController(view).navigate(R.id.nav_showCycles);
+              //Log.e("Mostrar MacroCiclos", "InfoCycle");
+              //Toast.makeText(getContext(),"Cargando MacroCiclo...",Toast.LENGTH_SHORT).show();
+                new Timer().schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        if (callback.onCallBackCambioFragment()){
+                            Navigation.findNavController(view).navigate(R.id.nav_showCycles);
+                            cancel();
+                        }
+                    }
+                }, 1000);
             }
         });
     }
