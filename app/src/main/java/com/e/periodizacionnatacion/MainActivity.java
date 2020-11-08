@@ -34,6 +34,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity implements CallBackListener {
@@ -290,19 +292,11 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
         cronogramas.get(0).setID(id);
 
         //Se genera un ID para el cronograma y se verifica si existe en la BD
-        carga.iniciar();
         id =  UUID.randomUUID()+"";
         verificarSiExisteId("Cronograma", id);
-        if (id.equals( MacroCiclo.getDiasAgua().getCronograma())){
-            existe = true;
-            carga.iniciar();
-        }
         while (existe){
             id =  UUID.randomUUID()+"";
             verificarSiExisteId("Cronograma", id);
-            if (id.equals( MacroCiclo.getDiasAgua().getCronograma())){
-                existe = true;
-            }
         }
 
         //Agregar ID a DiasTierra y al cronograma respectivo
@@ -397,14 +391,25 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
      * @param rama Cadena de caracteres que indica dónde debe buscar en la base de datos
      * @param id Cadena de caracteres que representa un ID
      */
-    public void verificarSiExisteId(String rama, final String id){
+    public void verificarSiExisteId(final String rama, final String id){
+
+        //Verificar si la id generada para el cronograma de dias tierra es diferente a la del
+        //cronograma de dias agua cuando generan los cronogramas
+        if (rama.equals("Cronograma") && !MacroCiclo.getDiasAgua().getCronograma().isEmpty()
+                && MacroCiclo.getDiasTierra().getCronograma().isEmpty()
+                && id.equals( MacroCiclo.getDiasAgua().getCronograma())){
+            existe = true;
+            return;
+        }
 
         Query query = FirebaseDatabase.getInstance().getReference().child(rama);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 existe = dataSnapshot.hasChild(id);
-                if (!existe){
+                if (rama.equals("Cronograma") && !MacroCiclo.getDiasAgua().getCronograma().isEmpty() && !existe){
+                    carga.detener();
+                }else if (!rama.equals("Cronograma") && !existe){
                     carga.detener();
                 }
             }
@@ -487,6 +492,7 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
                 carga.detener();
             }
         });
+
     }
 
     /**
