@@ -1,6 +1,7 @@
 package com.e.periodizacionnatacion.Clases;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
@@ -225,8 +226,6 @@ public class Cronograma implements Serializable {
                 //Agrego el mes al array de meses
                 meses.add(mes);
                 numSemanas=0;
-                Log.e("Mes"+meses.size(),"inicio >> "+mes.getInicio());
-                Log.e("Mes"+meses.size(),"Fin >> "+mes.getFin());
                 Log.e("Meses>>"+meses.size(),"Semanas>>"+maximoSemanas);
             }
             //Incremento 1 dia
@@ -243,7 +242,6 @@ public class Cronograma implements Serializable {
                 mes.setFin(semanas.get(i).getFin());
             }
             meses.set(meses.size()-1,mes);
-            Log.v("Mes"+meses.size(),"Fin >> "+mes.getFin());
         }
 
         //Calcular las fechas cuando no son semanas exactas
@@ -293,7 +291,6 @@ public class Cronograma implements Serializable {
             //Modifico el ultimo mes
             int posUltimoMes = meses.size()-1;
             meses.set(posUltimoMes,mes);
-            Log.v("Mes"+meses.size(),"Fin >> "+mes.getFin());
             Log.v("Meses>>"+meses.size(),"Semanas>>"+meses.get(meses.size()-1).getFecha().size());
 
         }
@@ -566,6 +563,14 @@ public class Cronograma implements Serializable {
                         }else {
                             dias.get(k).setVolHabilidad1(volTrabajo1 + "");
                         }
+                    }else if (tipo.equals("Agua")) {
+
+                        //Pregunto si estoy en las ultimas dos semanas del Periodo2
+                        //y dejo aviso que en este dia no hay trabajo
+                        if (actual.equals("Periodo2") && i == (numMeses - 1) && j >= (numSemanas - 2)) {
+                            dias.get(k).setTipoHabilidad1("NoTrabajo");
+                            dias.get(k).setVolHabilidad1(volTrabajo1+"");
+                        }
                     }
 
                     //Agrego el volumen del trabajo2 si este se realiza ese dia
@@ -794,7 +799,6 @@ public class Cronograma implements Serializable {
         //Penultima semana del ultimo mes y pido los dias de esa semana
         Dato semana1 = mes.getFecha().get(numSemanas-2);
         ArrayList<Dia> diasSem1 = semana1.getDias();
-
         //Ultima semana del ultimo mes y pido los dias de esa semana
         Dato semana2 = mes.getFecha().get(numSemanas-1);
         ArrayList<Dia> diasSem2 = semana2.getDias();
@@ -838,12 +842,17 @@ public class Cronograma implements Serializable {
             //Verificar si todavia hay volumen disponible
             float volResis = Float.parseFloat(volumenDia);
             float volDiferencia = volHabilidad1-volResis;
-            if (volDiferencia>=0){
-                diasSem1.get(i).setVolHabilidad1(volumenDia);
-            }else {
-                diasSem1.get(i).setVolHabilidad1((volResis+volDiferencia)+"");
+            //Verifica si trabaja ese dia
+            if (!diasSem1.get(i).getTipoHabilidad1().equals("NoTrabajo")){
+                if (volDiferencia>=0){
+                    diasSem1.get(i).setVolHabilidad1(volumenDia);
+                }else {
+                    diasSem1.get(i).setVolHabilidad1((volResis+volDiferencia)+"");
+                }
+            }else{
+                diasSem1.get(i).setTipoHabilidad1("");
+                diasSem1.get(i).setVolHabilidad1("");
             }
-
             //resto 1 a la variable decremento
             decremento--;
         }
@@ -873,11 +882,16 @@ public class Cronograma implements Serializable {
             //Verificar si todavia hay volumen disponible
             float volResis = Float.parseFloat(volumenDia);
             float volDiferencia = volHabilidad1-volResis;
-
-            if (volDiferencia>=0){
-                diasSem2.get(i).setVolHabilidad1(volumenDia);
-            }else {
-                diasSem2.get(i).setVolHabilidad1((volResis+volDiferencia)+"");
+            //Verifica si trabaja ese dia
+            if (!diasSem2.get(i).getTipoHabilidad1().equals("NoTrabajo")){
+                if (volDiferencia>=0){
+                    diasSem2.get(i).setVolHabilidad1(volumenDia);
+                }else {
+                    diasSem2.get(i).setVolHabilidad1((volResis+volDiferencia)+"");
+                }
+            }else{
+                diasSem2.get(i).setTipoHabilidad1("");
+                diasSem2.get(i).setVolHabilidad1("");
             }
 
             //resto 1 a la variable decremento
