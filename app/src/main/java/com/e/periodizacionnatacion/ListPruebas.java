@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link ListPruebas#newInstance} factory method to
+ * Use the  factory method to
  * create an instance of this fragment.
  */
 public class ListPruebas extends Fragment {
@@ -52,7 +52,7 @@ public class ListPruebas extends Fragment {
         listaFiltro = v.findViewById(R.id.list_listp);
         edFiltro = v.findViewById(R.id.filt_listp);
         nombresdePrueba();
-        adapter = new ArrayAdapter<String>(getContext(),R.id.list_listp, nombres);
+        adapter = new ArrayAdapter<String>(getContext(),R.layout.mes_trabajo, nombres); //Cambiar el R.layout.mes_trabajo
         listaFiltro.setAdapter(adapter);
     }
 

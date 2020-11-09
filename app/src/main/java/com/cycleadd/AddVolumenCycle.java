@@ -22,7 +22,7 @@ import com.e.periodizacionnatacion.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link AddVolumenCycle#newInstance} factory method to
+ * Use the  factory method to
  * create an instance of this fragment.
  */
 public class AddVolumenCycle extends Fragment {

@@ -26,7 +26,7 @@ import java.util.Date;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link AddPrueba#newInstance} factory method to
+ * Use the  factory method to
  * create an instance of this fragment.
  */
 public class AddPrueba extends Fragment {
