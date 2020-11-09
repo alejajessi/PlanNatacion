@@ -29,10 +29,8 @@ public class AddTestNotification extends Fragment {
 
 
     private ImageButton bttDate1;
-    private ImageButton bttDate2;
     private EditText edtNom;
     private EditText edtDate1;
-    private EditText edtDate2;
     private Calendar cal;
     private Timer time;
     private DatePickerDialog pickerDialog;
@@ -67,7 +65,6 @@ public class AddTestNotification extends Fragment {
         inicializarID(view);
 
         funcionBttDate1();
-        funcionBttDate2();
         final NavController navController= Navigation.findNavController(view);
 
     }
@@ -76,9 +73,7 @@ public class AddTestNotification extends Fragment {
 
         edtNom = view.findViewById(R.id.et_nomb_addtest);
         edtDate1 = view.findViewById(R.id.ed_date1_test);
-        edtDate2 = view.findViewById(R.id.ed_date2_test);
         bttDate1 = view.findViewById(R.id.btt_cal1_test);
-        bttDate2 = view.findViewById(R.id.btt_cal2_test);
         avanzar = view.findViewById(R.id.avan_addcycle);
         retroceder = view.findViewById(R.id.retro_addtest);
         actualizacionFecha();
@@ -116,11 +111,5 @@ public class AddTestNotification extends Fragment {
         });
     }
 
-    public void funcionBttDate2(){
-
-        //bttDate2.setOnClickListener();
-    }
-
-    //PENDIENTE OPCIÓN HORA
 
 }

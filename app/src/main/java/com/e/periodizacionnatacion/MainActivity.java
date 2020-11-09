@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.callback.CallBackListener;
 import com.bumptech.glide.Glide;
+import com.cyclelogin.Login;
 import com.e.periodizacionnatacion.Clases.Cronograma;
 import com.e.periodizacionnatacion.Clases.Dato;
 import com.e.periodizacionnatacion.Clases.DatoBasico;
@@ -34,8 +35,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity implements CallBackListener {

@@ -103,7 +103,7 @@ public class AddEarthCycle extends Fragment {
         fconstruccionbtt = view.findViewById(R.id.fuer_const_earthcycle);
         fconversionbtt = view.findViewById(R.id.fuer_conv_earthcycle);
         fmaxbtt = view.findViewById(R.id.fuer_max_earthcycle);
-        coordi = view.findViewById(R.id.coo)
+        coordi = view.findViewById(R.id.coordi_earthcycle);
         avanzar = view.findViewById(R.id.avan_earthcycle);
         retroceder = view.findViewById(R.id.retro_earthcycle);
         diasTierra = new ArrayList<ArrayList>();
