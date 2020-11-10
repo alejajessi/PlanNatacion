@@ -21,6 +21,7 @@ public class Usuario implements Serializable {
         foto = "";
         this.id = "";
         MacroCiclos = new ArrayList<DatoBasico>();
+        token = "";
     }
 
     /**
@@ -35,6 +36,7 @@ public class Usuario implements Serializable {
         this.foto = foto;
         this.id = ID;
         MacroCiclos = new ArrayList<DatoBasico>();
+        token = "";
     }
 
     /**
@@ -50,6 +52,7 @@ public class Usuario implements Serializable {
         this.foto = foto;
         this.id = ID;
         MacroCiclos = macroCiclos;
+        token = "";
     }
 
     public String getNombre() {

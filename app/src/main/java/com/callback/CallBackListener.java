@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 public interface CallBackListener {
     void onCallBack(String fragmento, String dato1, String dato2, String dato3);
+    void onCallBackExtendido(String fragmento, String dato1, String dato2, String dato3, String dato4, String dato5);
     void onCallBackIntegrante(String fragmento, ArrayList<Integrante> array);
     ArrayList<Cronograma> onCallBackCronograma(String fragmento);
     ArrayList<DatoBasico> onCallBackMostrarCiclo(String fragmento);

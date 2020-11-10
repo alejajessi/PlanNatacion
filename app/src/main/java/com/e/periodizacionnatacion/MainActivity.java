@@ -193,9 +193,6 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
             case "AddWaterCycle":
                 agregarDiasAgua(dato1,dato2,dato3);
                 break;
-            case "AddEarthCycle":
-                agregarDiasTierra(dato1,dato2,dato3);
-                break;
             case "AddVolumenCycle":
                 agregarVolumen(dato1,dato2);
                 break;
@@ -220,6 +217,15 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
             case "MostrarInfoDay":
                 mostrando = dato1+dato2+"";
                 Log.e("Mostrando",">>>>>>> "+mostrando);
+                break;
+        }
+    }
+
+    @Override
+    public void onCallBackExtendido(String fragmento, String dato1, String dato2, String dato3, String dato4, String dato5) {
+        switch (fragmento){
+            case "AddEarthCycle":
+                agregarDiasTierra(dato1,dato2,dato3,dato4,dato5);
                 break;
         }
     }
@@ -255,11 +261,13 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
      * @param conversion Cadena de caracteres con los días a trabajar la habilidad de conversión
      * @param maximo Cadena de caracteres con los días a trabajar la habilidad de máximo
      */
-    public void agregarDiasTierra(String construccion, String conversion, String maximo){
+    public void agregarDiasTierra(String construccion, String conversion, String maximo, String coordinacion, String flexibilidad){
 
         MacroCiclo.getDiasTierra().getTrabajo1().setDato1(construccion.substring(0,construccion.length()-1));
         MacroCiclo.getDiasTierra().getTrabajo2().setDato1(conversion.substring(0,conversion.length()-1));
         MacroCiclo.getDiasTierra().getTrabajo3().setDato1(maximo.substring(0,maximo.length()-1));
+        MacroCiclo.getDiasTierra().getTrabajo4().setDato1(maximo.substring(0,coordinacion.length()-1));
+        MacroCiclo.getDiasTierra().getTrabajo5().setDato1(maximo.substring(0,flexibilidad.length()-1));
 
     }
 

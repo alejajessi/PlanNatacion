@@ -49,6 +49,10 @@ public class AddEarthCycle extends Fragment {
 
     private ArrayList<String> max;
 
+    private ArrayList<String> coor;
+
+    private ArrayList<String> flex;
+
     private String cualBoton;
 
     private CallBackListener callback;
@@ -104,6 +108,7 @@ public class AddEarthCycle extends Fragment {
         fconversionbtt = view.findViewById(R.id.fuer_conv_earthcycle);
         fmaxbtt = view.findViewById(R.id.fuer_max_earthcycle);
         coordi = view.findViewById(R.id.coordi_earthcycle);
+        flexi = view.findViewById(R.id.flexi_earthcycle);
         avanzar = view.findViewById(R.id.avan_earthcycle);
         retroceder = view.findViewById(R.id.retro_earthcycle);
         diasTierra = new ArrayList<ArrayList>();
@@ -181,10 +186,13 @@ public class AddEarthCycle extends Fragment {
             @Override
             public void onClick(View v) {
                     //crearMacroCiclo(actividad);
-                if (!conv.isEmpty() && !cons.isEmpty() && !max.isEmpty()) {
+                if (!conv.isEmpty() && !cons.isEmpty() && !max.isEmpty()
+                    && !coor.isEmpty() && !flex.isEmpty()) {
                     diasTierra.add(conv);
                     diasTierra.add(cons);
                     diasTierra.add(max);
+                    diasTierra.add(coor);
+                    diasTierra.add(flex);
                     agregarDiasTierra();
                     Navigation.findNavController(v).navigate(R.id.nav_volumen);
                 }else{
@@ -235,6 +243,12 @@ public class AddEarthCycle extends Fragment {
                     cualBoton = "";
                 }else if (cualBoton.equals("Maxima")){
                     max = itemSelected;
+                    cualBoton = "";
+                }else if (cualBoton.equals("Coordinacion")){
+                    coor = itemSelected;
+                    cualBoton = "";
+                }else if (cualBoton.equals("Flexibilidad")){
+                    flex = itemSelected;
                     cualBoton = "";
                 }
             }
@@ -292,6 +306,24 @@ public class AddEarthCycle extends Fragment {
                     }
                 }
             }
+        }else if (cualBoton.equals("Coordinacion") && !coor.isEmpty()){
+            for (int i=0;i<semana.size();i++){
+                for (int j=0;j<coor.size();j++){
+                    if (semana.get(i).getText().toString().trim().equals(coor.get(j))){
+                        semana.get(i).setChecked(true);
+                        break;
+                    }
+                }
+            }
+        }else if (cualBoton.equals("Flexibilidad") && !flex.isEmpty()){
+            for (int i=0;i<semana.size();i++){
+                for (int j=0;j<flex.size();j++){
+                    if (semana.get(i).getText().toString().trim().equals(flex.get(j))){
+                        semana.get(i).setChecked(true);
+                        break;
+                    }
+                }
+            }
         }
 
         return semana;
@@ -302,6 +334,8 @@ public class AddEarthCycle extends Fragment {
         String construccion = "";
         String conversion = "";
         String maxima = "";
+        String coordinacion = "";
+        String flexibilidad = "";
 
         for (int i=0;i<diasTierra.size();i++){
             ArrayList<String> trabajo = diasTierra.get(i);
@@ -310,13 +344,17 @@ public class AddEarthCycle extends Fragment {
                     construccion += trabajo.get(j)+"-";
                 }else if (i==1){
                     conversion += trabajo.get(j)+"-";
-                }else {
+                }else if (i==2){
                     maxima += trabajo.get(j)+"-";
+                }else if (i==3){
+                    coordinacion += trabajo.get(j)+"-";
+                }else {
+                    flexibilidad += trabajo.get(j)+"-";
                 }
             }
         }
         if (callback != null){
-            callback.onCallBack("AddEarthCycle",construccion, conversion, maxima);
+            callback.onCallBackExtendido("AddEarthCycle",construccion, conversion, maxima,coordinacion,flexibilidad);
         }
     }
 
