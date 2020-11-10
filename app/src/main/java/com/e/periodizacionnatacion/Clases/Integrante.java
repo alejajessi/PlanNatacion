@@ -28,7 +28,7 @@ public class Integrante implements Serializable {
     /**
      * Constructor basico
      * @param nombre
-     * @param ID
+     * @param id
      */
     public Integrante(String nombre, String id, String descripcion) {
         this.nombre = nombre;
@@ -41,7 +41,7 @@ public class Integrante implements Serializable {
     /**
      * Constructor Completo
      * @param nombre
-     * @param ID
+     * @param id
      * @param prueba
      */
     public Integrante(String nombre, String id, ArrayList<Prueba> prueba) {

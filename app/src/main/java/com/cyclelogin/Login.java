@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -101,9 +102,10 @@ public class Login extends AppCompatActivity {
         startActivityForResult (signInIntent, RC_SIGN_IN);
     }
 
+    @SuppressLint("MissingSuperCall")
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-       // super.onActivityResult(requestCode, resultCode, data);
+        // super.onActivityResult(requestCode, resultCode, data);
         // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
             // The Task returned from this call is always completed, no need to attach

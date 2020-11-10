@@ -49,7 +49,7 @@
             android:textColor="@color/colorWhite"
             android:textSize="15dp"
             android:layout_marginTop="25dp"
-            android:id="@+id/enun_dialog_modporc"
+            android:id="@+id/enun_dialog1_modporc"
             android:fontFamily="@font/bs_regular"
             android:gravity="center"
             android:text="@string/consul_enun_dia"/>
@@ -76,7 +76,7 @@
             android:textSize="13dp"
             android:layout_margin="15dp"
             android:background="@drawable/borderedondo_txt"
-            android:id="@+id/enun_dialog_modporc"
+            android:id="@+id/enun_dialog2_modporc"
             android:fontFamily="@font/bs_regular"
             android:gravity="center"
             android:text="@string/consul_dia"/>

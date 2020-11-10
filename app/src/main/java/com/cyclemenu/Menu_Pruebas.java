@@ -29,6 +29,7 @@ public class Menu_Pruebas extends Fragment {
     private Button retroceder;
     private Button anhadir;
     private Button ver;
+    private Button prueba;
     private Button estadisticas;
 
 
@@ -52,6 +53,7 @@ public class Menu_Pruebas extends Fragment {
 
         funcionBttAnhadir(navController);
         funcionBttRetroceder(navController);
+        funcionBttPrueba(navController);
     }
 
     public void inicializarID(View view){
@@ -59,6 +61,7 @@ public class Menu_Pruebas extends Fragment {
         retroceder = view.findViewById(R.id.retro_menu_pruebas);
         anhadir = view.findViewById(R.id.bttadd_notificaction);
         ver = view.findViewById(R.id.bttview_pruebas);
+        prueba = view.findViewById(R.id.bttadd_prueba);
         estadisticas = view.findViewById(R.id.btt_view_stadistics);
 
     }
@@ -80,6 +83,15 @@ public class Menu_Pruebas extends Fragment {
             @Override
             public void onClick(View v) {
                 Navigation.findNavController(v).navigate(R.id.nav_select_Cycle);
+            }
+        });
+    }
+
+    public void funcionBttPrueba(NavController navController){
+        prueba.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigate(R.id.nav_select_cycle_test);
             }
         });
     }

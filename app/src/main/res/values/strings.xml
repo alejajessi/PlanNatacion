@@ -152,6 +152,7 @@
     <string name="anadir_notification">Añadir notificación</string>
     <string name="flexibilidad">Flexibilidad</string>
     <string name="coordinacion">Coordinación</string>
+    <string name="selectcycletest">Select cycle test</string>
 
     <string-array name="periodos">
         <item>Seleccione</item>

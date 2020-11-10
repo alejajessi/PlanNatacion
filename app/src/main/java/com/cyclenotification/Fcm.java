@@ -1,9 +1,14 @@
 package com.cyclenotification;
 
+import android.os.Bundle;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
+import com.callback.CallBackListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.messaging.FirebaseMessagingService;
@@ -19,9 +24,13 @@ public class Fcm extends FirebaseMessagingService {
     }
 
     public void guardarToken (String s){
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("token");
-        ref.child("Jess").setValue(s);
+        Log.e("Jess","JESSICA PASO POR AQUÍ");
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        DatabaseReference ref= FirebaseDatabase.getInstance().getReference().child("Usuario");
+        ref.child(user.getUid()).child("token").setValue(s);
     }
+
+
     @Override
     public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
