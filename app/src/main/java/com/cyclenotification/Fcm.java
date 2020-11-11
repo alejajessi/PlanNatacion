@@ -19,7 +19,7 @@ public class Fcm extends FirebaseMessagingService {
     @Override
     public void onNewToken(@NonNull String s) {
         super.onNewToken(s);
-        Log.e("token", "mi token es" + s);
+        Log.e("token", "mi token es: " + s);
         guardarToken(s);
     }
 
@@ -27,12 +27,14 @@ public class Fcm extends FirebaseMessagingService {
         Log.e("Jess","JESSICA PASO POR AQUÍ");
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference ref= FirebaseDatabase.getInstance().getReference().child("Usuario");
-        if(user != null){
+        if(user == null){
+            Log.e("Error",">>>>>> Problemas en autenticación <<<<<<");
+        }
+        if(ref == null){
+            Log.e("Error",">>>>>> Problemas en base de datos <<<<<<");
+        }
         ref.child(user.getUid()).child("token").setValue(s);
-    } else{
-            
-        }
-        }
+    }
 
 
     @Override
