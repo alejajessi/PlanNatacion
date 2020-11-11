@@ -43,9 +43,6 @@ public class Fcm extends FirebaseMessagingService {
                 }
             }, 1000);
         }
-        if(ref == null){
-            Log.e("Error",">>>>>> Problemas en base de datos <<<<<<");
-        }
     }
 
 
