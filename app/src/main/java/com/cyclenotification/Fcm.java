@@ -1,12 +1,8 @@
 package com.cyclenotification;
 
-import android.os.Bundle;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
-import com.callback.CallBackListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -14,7 +10,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class Fcm extends FirebaseMessagingService {
+
+    FirebaseUser user;
 
     @Override
     public void onNewToken(@NonNull String s) {
@@ -25,14 +26,26 @@ public class Fcm extends FirebaseMessagingService {
 
     public void guardarToken (String s){
         Log.e("Jess","JESSICA PASO POR AQUÍ");
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        user = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference ref= FirebaseDatabase.getInstance().getReference().child("Usuario");
         if(user == null){
             Log.e("Error",">>>>>> Problemas en autenticación <<<<<<");
+            new Timer().schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    if (user != null){
+                        cancel();
+                    }else{
+                        user = FirebaseAuth.getInstance().getCurrentUser();
+                    }
+                }
+            }, 1000);
         }
         if(ref == null){
             Log.e("Error",">>>>>> Problemas en base de datos <<<<<<");
         }
+
+
         ref.child(user.getUid()).child("token").setValue(s);
     }
 
