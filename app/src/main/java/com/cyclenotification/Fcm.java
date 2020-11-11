@@ -27,12 +27,30 @@ public class Fcm extends FirebaseMessagingService {
         Log.e("Jess","JESSICA PASO POR AQUÍ");
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference ref= FirebaseDatabase.getInstance().getReference().child("Usuario");
+        if(user != null){
         ref.child(user.getUid()).child("token").setValue(s);
-    }
+    } else{
+            
+        }
+        }
 
 
     @Override
     public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
+
+        String from = remoteMessage.getFrom();
+        Log.e("TAG","Mensaje de recibido" + from);
+
+        if(remoteMessage.getNotification() != null){
+            Log.e("TAG", "El título es:"+ remoteMessage.getNotification().getTitle());
+            Log.e("TAG", "El detalle es:"+ remoteMessage.getNotification().getBody());
+        }
+
+        if(remoteMessage.getData().size() >0 ){
+            Log.e("TAG", "Título es:" + remoteMessage.getData().get("título"));
+            Log.e("TAG", "detalle es:" + remoteMessage.getData().get("detalle"));
+            Log.e("TAG", "el color es:" + remoteMessage.getData().get("título"));
+        }
     }
 }
