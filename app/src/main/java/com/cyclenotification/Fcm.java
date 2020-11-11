@@ -16,6 +16,7 @@ import java.util.TimerTask;
 public class Fcm extends FirebaseMessagingService {
 
     FirebaseUser user;
+    DatabaseReference ref;
 
     @Override
     public void onNewToken(@NonNull String s) {
@@ -24,16 +25,17 @@ public class Fcm extends FirebaseMessagingService {
         guardarToken(s);
     }
 
-    public void guardarToken (String s){
+    public void guardarToken (final String s){
         Log.e("Jess","JESSICA PASO POR AQUÍ");
         user = FirebaseAuth.getInstance().getCurrentUser();
-        DatabaseReference ref= FirebaseDatabase.getInstance().getReference().child("Usuario");
+        ref= FirebaseDatabase.getInstance().getReference().child("Usuario");
         if(user == null){
             Log.e("Error",">>>>>> Problemas en autenticación <<<<<<");
             new Timer().schedule(new TimerTask() {
                 @Override
                 public void run() {
                     if (user != null){
+                        ref.child(user.getUid()).child("token").setValue(s);
                         cancel();
                     }else{
                         user = FirebaseAuth.getInstance().getCurrentUser();
@@ -44,9 +46,6 @@ public class Fcm extends FirebaseMessagingService {
         if(ref == null){
             Log.e("Error",">>>>>> Problemas en base de datos <<<<<<");
         }
-
-
-        ref.child(user.getUid()).child("token").setValue(s);
     }
 
 
