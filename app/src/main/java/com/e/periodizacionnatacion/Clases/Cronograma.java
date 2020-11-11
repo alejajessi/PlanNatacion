@@ -542,6 +542,7 @@ public class Cronograma implements Serializable {
                             //Pregunto si estoy en las ultimas dos semanas del Periodo2
                             //Los valores de estas semanas se agregan despues
                             if (actual.equals("Periodo2") && i==(numMeses-1) && j>=(numSemanas-2)){
+                                Log.e("Hola", "agregarDiasASemanas: " + volTrabajo1);
                                 dias.get(k).setTipoHabilidad1("Pendiente");
                                 dias.get(k).setVolHabilidad1(volTrabajo1+"");
                             }else{

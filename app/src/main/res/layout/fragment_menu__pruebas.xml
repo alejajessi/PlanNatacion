@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/menupruebas"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_color"
+        android:orientation="vertical"
+        android:visibility="visible"
+        tools:context="com.cyclemenu.Menu_Pruebas">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tittle_menu_pruebas"
+                android:layout_width="250dp"
+                android:fontFamily="@font/bs_regular"
+                android:layout_height="match_parent"
+                android:layout_gravity="left"
+                android:gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:text="Menú pruebas"
+                android:textColor="@color/colorWhite"
+                android:textSize="27dp" />
+
+            <ImageView
+                android:id="@+id/banner_menu_pruebas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:src="@mipmap/logo_foreground" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:id="@+id/tx_enun_menu_pruebas"
+                android:gravity="center"
+                android:fontFamily="@font/bs_regular"
+                android:textSize="14dp"
+                android:layout_margin="20dp"
+                android:layout_marginTop="30dp"
+                android:text="@string/enun_menuciclo"
+                android:textColor="@color/colorWhite" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:gravity="center">
+
+                <Button
+                    android:layout_width="210dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:fontFamily="@font/bs_regular"
+                    android:text="Añadir notificación test"
+                    android:textAllCaps="false"
+                    android:id="@+id/bttadd_notificaction"
+                    android:background="@drawable/botonredondo_second"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="14dp"/>
+
+                <Button
+                    android:layout_width="210dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:fontFamily="@font/bs_regular"
+                    android:text="Añadir prueba"
+                    android:textAllCaps="false"
+                    android:id="@+id/bttadd_prueba"
+                    android:background="@drawable/botonredondo_second"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="14dp"/>
+
+                <Button
+                    android:layout_width="210dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:fontFamily="@font/bs_regular"
+                    android:text="Ver pruebas realizadas"
+                    android:id="@+id/bttview_pruebas"
+                    android:textAllCaps="false"
+                    android:background="@drawable/botonredondo_second"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="14dp"/>
+
+                <Button
+                    android:layout_width="210dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:fontFamily="@font/bs_regular"
+                    android:text="Ver estadisticas"
+                    android:textAllCaps="false"
+                    android:id="@+id/bttestadisticas"
+                    android:background="@drawable/botonredondo_second"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="14dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="136dp"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:gravity="center"
+                >
+
+                <Button
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/bs_regular"
+                    android:text="@string/opcion7_Retroceder"
+                    android:textAllCaps="false"
+                    android:id="@+id/retro_menu_pruebas"
+                    android:background="@drawable/borderedondo_banner"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="14dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

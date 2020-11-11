@@ -83,7 +83,7 @@
             android:textSize="14dp"
             android:fontFamily="@font/bs_regular"
             android:text="@string/seleccion_pruebas"
-            android:id="@+id/tx_enun1_addp"
+            android:id="@+id/tx_enun2_addp"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="20dp"/>
 

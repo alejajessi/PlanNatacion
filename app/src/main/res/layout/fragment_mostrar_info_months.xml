@@ -125,7 +125,7 @@
                 android:gravity="center"
                 android:fontFamily="@font/bs_regular"
                 android:textSize="14dp"
-                android:id="@+id/enun3_minfoMonth"
+                android:id="@+id/enun4_minfoMonth"
                 android:layout_margin="2dp"
                 android:text="@string/per_3"
                 android:textColor="@color/colorWhite" />

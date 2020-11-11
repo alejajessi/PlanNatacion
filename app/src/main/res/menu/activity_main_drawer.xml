@@ -10,29 +10,14 @@
             android:icon="@drawable/anhadir_foreground"
             android:title="@string/menu_macrociclo" />
         <item
-            android:id="@+id/nav_control_p"
+            android:id="@+id/nav_menuPruebas"
             android:icon="@mipmap/control_prueba_foreground"
             android:title="@string/menu_controlP" />
-
-        <item
-            android:id="@+id/nav_addprueba"
-            android:icon="@drawable/anhadir_foreground"
-            android:title="@string/menu_añadirP"/>
-
-        <item
-            android:id="@+id/nav_controlpruebas"
-            android:icon="@mipmap/control_prueba_foreground"
-            android:title="@string/menu_controlP"/>
 
         <item
             android:id="@+id/nav_canceltiempo"
             android:icon="@drawable/cancelar_foreground"
             android:title="@string/menu_cancelarT"/>
-
-        <item
-            android:id="@+id/nav_mostrarpruebas"
-            android:icon="@mipmap/ver_foreground"
-            android:title="@string/menu_mostrarP"/>
 
         <item
             android:id="@+id/nav_deletecycle"

@@ -26,7 +26,7 @@ import java.util.Date;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link AddPrueba#newInstance} factory method to
+ * Use the  factory method to
  * create an instance of this fragment.
  */
 public class AddPrueba extends Fragment {
@@ -88,8 +88,6 @@ public class AddPrueba extends Fragment {
                     if(verificarSoloUno() == false){
                         Toast.makeText(getContext(),"Sólo debe seleccionar un tipo de prueba",Toast.LENGTH_LONG).show();
                     }else{
-
-                        Navigation.findNavController(view).navigate(R.id.nav_mostrarP);
 
                         String nombre = nombrePrueba.toString();
                         String tipo="";

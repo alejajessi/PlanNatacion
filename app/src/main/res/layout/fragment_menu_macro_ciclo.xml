@@ -14,7 +14,7 @@
         android:background="@drawable/bg_color"
         android:orientation="vertical"
         android:visibility="visible"
-        tools:context=".MenuMacroCiclo">
+        tools:context="com.cyclemenu.MenuMacroCiclo">
 
         <LinearLayout
             android:layout_width="match_parent"

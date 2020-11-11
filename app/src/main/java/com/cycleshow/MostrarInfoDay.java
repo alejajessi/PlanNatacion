@@ -208,10 +208,10 @@ public class MostrarInfoDay extends Fragment {
                     habilidades = habilidades+"Fuerza Máxima: "+dia.getVolHabilidad3()+"\n";
                 }
                 if (!dia.getVolHabilidad4().isEmpty()){
-                    habilidades = habilidades+"Flexibilidad: "+dia.getVolHabilidad4()+"\n";
+                    habilidades = habilidades+"Coordinación: "+dia.getVolHabilidad4()+"\n";
                 }
                 if (!dia.getVolHabilidad5().isEmpty()){
-                    habilidades = habilidades+"Coordinación: "+dia.getVolHabilidad5()+"\n";
+                    habilidades = habilidades+"Flexibilidad: "+dia.getVolHabilidad5()+"\n";
                 }
 
             }
