@@ -1,9 +1,11 @@
 package com.cycletest;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -15,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -38,6 +41,7 @@ public class SelectCycleTest extends Fragment {
     private ArrayList<DatoBasico> ciclos;
     private CallBackListener callback;
     private int posicion;
+    private ArrayList<String> testType;
 
     public SelectCycleTest() {
         // Required empty public constructor
@@ -58,12 +62,9 @@ public class SelectCycleTest extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        inicializarID(view);
-
         final NavController navController= Navigation.findNavController(view);
-
-        funcionListView(navController);
+        inicializarID(view);
+        funcionListView(navController, view);
         funcionBttRetroceder(navController);
     }
 
@@ -74,6 +75,10 @@ public class SelectCycleTest extends Fragment {
         macroCiclos = new ArrayList<String>();
         adaptador = new ArrayAdapter<String>(getContext(),R.layout.mes_trabajo,macroCiclos);
         listCycle.setAdapter(adaptador);
+
+
+
+
     }
 
     public void agregarMacroCiclos(){
@@ -92,17 +97,78 @@ public class SelectCycleTest extends Fragment {
         }
     }
 
-    public void funcionListView(NavController nav){
+    public void funcionListView(final NavController nav, View view){
 
         listCycle.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                callback.onCallBack("MostrarMacroCiclo",ciclos.get(position).getDato2(),null,null);
-                Log.e("Mostrar MacroCiclos", "InfoCycle");
-                Toast.makeText(getContext(),"Cargando MacroCiclo...",Toast.LENGTH_SHORT).show();
-                Navigation.findNavController(view).navigate(R.id.nav_add_notification);
+                //callback.onCallBack("MostrarMacroCiclo",ciclos.get(position).getDato2(),null,null);
+                //Log.e("Mostrar MacroCiclos", "InfoCycle");
+               // Toast.makeText(getContext(),"Cargando MacroCiclo...",Toast.LENGTH_SHORT).show();
+                AlertDialog dialog= crearDialogoTipo(nav, view);
+                dialog.show();
             }
         });
+    }
+
+    public AlertDialog crearDialogoTipo(NavController nav,  final View view){
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+
+        LayoutInflater inflater = getActivity().getLayoutInflater();
+
+        final View v= inflater.inflate(R.layout.dialog_int_pruebas, null);
+
+        builder.setView(v);
+
+        final ArrayList<CheckBox> pruebas = organizacionPruebas(v);
+        final ArrayList<String> itemSelected = new ArrayList<String>();
+
+        builder.setPositiveButton("Avanzar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                for (int i = 0; i < pruebas.size(); i++) {
+                    if (pruebas.get(i).isChecked()) {
+                        itemSelected.add(pruebas.get(i).getText().toString().trim());
+                    }
+                }
+                if(itemSelected.size() == 1){
+                    testType = itemSelected;
+                    Log.e("UNO", "Entre al if final");
+                    Navigation.findNavController(view).navigate(R.id.nav_info_test);
+                } else{
+                    Toast.makeText(getContext(),"Debe seleccionar una (1) opción",Toast.LENGTH_SHORT).show();
+
+                }
+                //cualBoton = "";
+                //Mirar problema y función de Cuál Botón
+
+            }
+        });
+
+        builder.setNegativeButton("Cancelar",null);
+
+        return  builder.create();
+    }
+
+    public ArrayList<CheckBox> organizacionPruebas(View v){
+
+        CheckBox aire = v.findViewById(R.id.pru_airelibre);
+        CheckBox combin = v.findViewById(R.id.pru_combin);
+        CheckBox espalda = v.findViewById(R.id.pru_espal);
+        CheckBox mariposa = v.findViewById(R.id.pru_mari);
+        CheckBox pecho = v.findViewById(R.id.pru_pecho);
+
+        final ArrayList<CheckBox> pruebas = new ArrayList<CheckBox>();
+
+        pruebas.add(aire);
+        pruebas.add(combin);
+        pruebas.add(espalda);
+        pruebas.add(mariposa);
+        pruebas.add(pecho);
+
+        //Falta método que chequeé que sólo seleccionó 1 checkbox
+
+        return pruebas;
     }
 
     public void funcionBttRetroceder(NavController navController){

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_color"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/logo_dialogo_infoprueba"
+        android:src="@mipmap/logo_foreground"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorWhite"
+        android:textSize="13dp"
+        android:id="@+id/enun1_infoprueba"
+        android:fontFamily="@font/bs_regular"
+        android:gravity="center"
+        android:text="Ingrese el tiempo obtenido:"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/colorWhite"
+        android:fontFamily="@font/bs_regular"
+        android:textSize="14dp"
+        android:id="@+id/ed1_infoprueba"
+        android:textColor="@color/colorBanner"
+        android:layout_margin="15dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorWhite"
+        android:textSize="13dp"
+        android:layout_marginTop="15dp"
+        android:id="@+id/enun2_infoprueba"
+        android:fontFamily="@font/bs_regular"
+        android:gravity="center"
+        android:text="Seleccione la fecha de realización:"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/colorWhite"
+        android:fontFamily="@font/bs_regular"
+        android:textSize="14dp"
+        android:id="@+id/ed2_infoprueba"
+        android:textColor="@color/colorBanner"
+        android:layout_margin="15dp"/>
+
+    <ImageButton
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:id="@+id/btt_cal1_infoprueba"
+        android:src="@mipmap/calendario"
+        android:background="@drawable/borderedondo_banner"
+        android:layout_gravity="center"
+
+</LinearLayout>
