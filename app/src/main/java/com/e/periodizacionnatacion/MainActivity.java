@@ -199,6 +199,9 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
             case "MostrarMacroCiclo":
                 pedirMacroCiclo(dato1);
                 break;
+            case "SelectCycle":
+                pedirMacroCiclo(dato1);
+                break;
             case "MostrarInfoCycle":
                 cronogramas = new ArrayList<Cronograma>();
                 cronogramas.add(new Cronograma());
@@ -508,7 +511,7 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
      * @return MacroCiclo
      */
     @Override
-    public com.e.periodizacionnatacion.Clases.MacroCiclo onCallBackInfoCycle(String fragmento) {
+    public MacroCiclo onCallBackInfoCycle(String fragmento) {
         if (MacroCiclo != null){
             return MacroCiclo;
         }

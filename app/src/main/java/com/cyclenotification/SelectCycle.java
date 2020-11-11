@@ -23,6 +23,8 @@ import com.e.periodizacionnatacion.Clases.DatoBasico;
 import com.e.periodizacionnatacion.R;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class SelectCycle extends Fragment {
 
@@ -54,7 +56,7 @@ public class SelectCycle extends Fragment {
             callback = (CallBackListener) getActivity();
         }
         if (callback != null){
-            ciclos = callback.onCallBackMostrarCiclo("MostrarMacroCiclo");
+            ciclos = callback.onCallBackMostrarCiclo("SelectCycle");
         }
         agregarMacroCiclos();
     }
@@ -100,11 +102,18 @@ public class SelectCycle extends Fragment {
 
         listCycle.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                callback.onCallBack("MostrarMacroCiclo",ciclos.get(position).getDato2(),null,null);
-                Log.e("Mostrar MacroCiclos", "InfoCycle");
-                Toast.makeText(getContext(),"Cargando MacroCiclo...",Toast.LENGTH_SHORT).show();
-                Navigation.findNavController(view).navigate(R.id.nav_add_notification);
+            public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
+                callback.onCallBack("SelectCycle",ciclos.get(position).getDato2(),null,null);
+                Log.e("Mostrar MacroCiclos", "SelectCycle");
+                new Timer().schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        if (callback.onCallBackCambioFragment()){
+                            Navigation.findNavController(view).navigate(R.id.nav_add_notification);
+                            cancel();
+                        }
+                    }
+                }, 1000);
             }
         });
     }
