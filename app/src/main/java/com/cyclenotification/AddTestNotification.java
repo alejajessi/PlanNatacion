@@ -19,12 +19,25 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.callback.CallBackListener;
 import com.e.periodizacionnatacion.Clases.MacroCiclo;
+import com.e.periodizacionnatacion.Clases.Usuario;
 import com.e.periodizacionnatacion.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Timer;
 
 public class AddTestNotification extends Fragment {
@@ -34,11 +47,11 @@ public class AddTestNotification extends Fragment {
     private EditText edtNom;
     private EditText edtDate1;
     private Calendar cal;
-    private Timer time;
     private DatePickerDialog pickerDialog;
     private CallBackListener callback;
     private Button avanzar;
     private Button retroceder;
+    private  MacroCiclo macro;
 
 
     public AddTestNotification() {
@@ -57,6 +70,12 @@ public class AddTestNotification extends Fragment {
         super.onActivityCreated(savedInstanceState);
         if (getActivity() instanceof CallBackListener) {
             callback = (CallBackListener) getActivity();
+        }
+        if (callback != null){
+            macro = callback.onCallBackInfoCycle("AddTestNotification");
+
+        }else{
+            Log.e("Problemas con el CallBack", "El callback es null en AddTestNotification");
         }
     }
 
@@ -125,13 +144,20 @@ public class AddTestNotification extends Fragment {
             @Override
             public void onClick(View v) {
 
+                boolean campos=verificarCampos();
                 boolean tiempo=validarTiempo();
 
-                if (tiempo == true ){
+                if (campos == true && tiempo == true ){
 
-                    //Agregar Notificacion a la db
-                   Navigation.findNavController(v).navigate(R.id.nav_home);
+                    if (callback != null){
+                        String nombre = edtNom.getText().toString().trim();
+                        String fecha = edtDate1.getText().toString().trim();
+                        callback.onCallBackNotification("AddTestNotification",nombre,fecha,macro.getNombre());
+                    }
+                    Navigation.findNavController(v).navigate(R.id.nav_home);
 
+                }else if(campos==false){
+                    Toast.makeText(getContext(),"Recuerda asignar un nombre al test",Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -149,16 +175,17 @@ public class AddTestNotification extends Fragment {
 
     }
 
+    private boolean verificarCampos() {
+        if (!edtNom.getText().toString().trim().isEmpty()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     public boolean validarTiempo(){
 
         boolean valido = false;
-        MacroCiclo macro = null;
-
-        if (callback != null){
-            macro = callback.onCallBackInfoCycle("AddTestNotification");
-        }else{
-            Log.e("Problemas con el CallBack", "El callback es null");
-        }
 
         if (macro != null){
             String[] inicioMacro = macro.getInicio().split("-");
@@ -186,5 +213,6 @@ public class AddTestNotification extends Fragment {
 
         return valido;
     }
+
 
 }
