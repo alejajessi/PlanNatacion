@@ -1,4 +1,4 @@
-package com.cyclenotification;
+package com.cycletest;
 
 import android.os.Bundle;
 
@@ -23,11 +23,13 @@ import com.e.periodizacionnatacion.Clases.DatoBasico;
 import com.e.periodizacionnatacion.R;
 
 import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
 
-public class SelectCycle extends Fragment {
-
+/**
+ * A simple {@link Fragment} subclass.
+ * Use the {@link SelectCycleTest#newInstance} factory method to
+ * create an instance of this fragment.
+ */
+public class SelectCycleTest extends Fragment {
 
     private ListView listCycle;
     private Button retroceder;
@@ -37,16 +39,8 @@ public class SelectCycle extends Fragment {
     private CallBackListener callback;
     private int posicion;
 
-
-    public SelectCycle() {
+    public SelectCycleTest() {
         // Required empty public constructor
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_select_cycle, container, false);
     }
 
     @Override
@@ -56,7 +50,7 @@ public class SelectCycle extends Fragment {
             callback = (CallBackListener) getActivity();
         }
         if (callback != null){
-            ciclos = callback.onCallBackMostrarCiclo("SelectCycle");
+            ciclos = callback.onCallBackMostrarCiclo("MostrarMacroCiclo");
         }
         agregarMacroCiclos();
     }
@@ -75,8 +69,8 @@ public class SelectCycle extends Fragment {
 
     public void inicializarID(View view){
 
-        listCycle = view.findViewById(R.id.list_select_cycle);
-        retroceder = view.findViewById(R.id.retro_selectCycle);
+        listCycle = view.findViewById(R.id.list_select_cycle_test);
+        retroceder = view.findViewById(R.id.retro_selectCycleTest);
         macroCiclos = new ArrayList<String>();
         adaptador = new ArrayAdapter<String>(getContext(),R.layout.mes_trabajo,macroCiclos);
         listCycle.setAdapter(adaptador);
@@ -102,18 +96,11 @@ public class SelectCycle extends Fragment {
 
         listCycle.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
-                callback.onCallBack("SelectCycle",ciclos.get(position).getDato2(),null,null);
-                Log.e("Mostrar MacroCiclos", "SelectCycle");
-                new Timer().schedule(new TimerTask() {
-                    @Override
-                    public void run() {
-                        if (callback.onCallBackCambioFragment()){
-                            Navigation.findNavController(view).navigate(R.id.nav_add_notification);
-                            cancel();
-                        }
-                    }
-                }, 1000);
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                callback.onCallBack("MostrarMacroCiclo",ciclos.get(position).getDato2(),null,null);
+                Log.e("Mostrar MacroCiclos", "InfoCycle");
+                Toast.makeText(getContext(),"Cargando MacroCiclo...",Toast.LENGTH_SHORT).show();
+                Navigation.findNavController(view).navigate(R.id.nav_add_notification);
             }
         });
     }
@@ -129,4 +116,11 @@ public class SelectCycle extends Fragment {
 
     }
 
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_select_cycle_test, container, false);
+    }
 }

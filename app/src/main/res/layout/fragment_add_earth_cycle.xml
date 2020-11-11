@@ -118,6 +118,30 @@
                 android:textColor="@color/colorWhite"
                 android:textSize="14dp"/>
 
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/bs_regular"
+                android:text="@string/coordinacion"
+                android:textAllCaps="false"
+                android:id="@+id/coordi_earthcycle"
+                android:background="@drawable/botonredondo_second"
+                android:textColor="@color/colorWhite"
+                android:textSize="14dp"/>
+
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/bs_regular"
+                android:text="@string/flexibilidad"
+                android:textAllCaps="false"
+                android:id="@+id/flexi_earthcycle"
+                android:background="@drawable/botonredondo_second"
+                android:textColor="@color/colorWhite"
+                android:textSize="14dp"/>
+
         </LinearLayout>
 
         <LinearLayout

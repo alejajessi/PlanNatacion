@@ -14,7 +14,7 @@
     <string name="view_MacroCiclo">Visualizar macro ciclo para competencia fundamental</string>
     <string name="edit_MacroCiclo">Modificar macro ciclo para competencia fundamental</string>
     <string name="view_stadistics">Visualizar estadisticas</string>
-    <string name="menu_controlP">Control de pruebas</string>
+    <string name="menu_controlP">Menú pruebas</string>
     <string name="menu_añadirP">Añadir pruebas</string>
     <string name="menu_cancelarT">Cancelar tiempo</string>
     <string name="menu_mostrarP">Mostrar pruebas</string>
@@ -148,6 +148,11 @@
     <string name="consul_enun_dia">Consultar el siguiente día: </string>
     <string name="menu_macrociclo">Menú Macro Ciclo</string>
     <string name="enun_menuciclo">Seleccione la función que desea realizar:</string>
+    <string name="select_cycle">Select cycle</string>
+    <string name="anadir_notification">Añadir notificación</string>
+    <string name="flexibilidad">Flexibilidad</string>
+    <string name="coordinacion">Coordinación</string>
+    <string name="selectcycletest">Select cycle test</string>
 
     <string-array name="periodos">
         <item>Seleccione</item>

@@ -1,4 +1,4 @@
-package com.e.periodizacionnatacion;
+package com.cyclelogin;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,6 +15,8 @@ import android.widget.Toast;
 import com.e.periodizacionnatacion.Clases.Cronograma;
 import com.e.periodizacionnatacion.Clases.Trabajo;
 import com.e.periodizacionnatacion.Clases.Usuario;
+import com.e.periodizacionnatacion.MainActivity;
+import com.e.periodizacionnatacion.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;

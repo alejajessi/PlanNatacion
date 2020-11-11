@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.callback.CallBackListener;
 import com.bumptech.glide.Glide;
+import com.cyclelogin.Login;
 import com.e.periodizacionnatacion.Clases.Cronograma;
 import com.e.periodizacionnatacion.Clases.Dato;
 import com.e.periodizacionnatacion.Clases.DatoBasico;
@@ -34,8 +35,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity implements CallBackListener {
@@ -103,8 +102,8 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_menuMacroCiclo, R.id.nav_control_p, R.id.nav_addprueba, R.id.nav_controlpruebas,
-                R.id.nav_canceltiempo, R.id.nav_mostrarpruebas, R.id.nav_deletecycle,
+                R.id.nav_home, R.id.nav_menuMacroCiclo, R.id.nav_menuPruebas,
+                R.id.nav_canceltiempo, R.id.nav_deletecycle,
                 R.id.nav_legalinfo).setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -194,13 +193,13 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
             case "AddWaterCycle":
                 agregarDiasAgua(dato1,dato2,dato3);
                 break;
-            case "AddEarthCycle":
-                agregarDiasTierra(dato1,dato2,dato3);
-                break;
             case "AddVolumenCycle":
                 agregarVolumen(dato1,dato2);
                 break;
             case "MostrarMacroCiclo":
+                pedirMacroCiclo(dato1);
+                break;
+            case "SelectCycle":
                 pedirMacroCiclo(dato1);
                 break;
             case "MostrarInfoCycle":
@@ -221,6 +220,15 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
             case "MostrarInfoDay":
                 mostrando = dato1+dato2+"";
                 Log.e("Mostrando",">>>>>>> "+mostrando);
+                break;
+        }
+    }
+
+    @Override
+    public void onCallBackExtendido(String fragmento, String dato1, String dato2, String dato3, String dato4, String dato5) {
+        switch (fragmento){
+            case "AddEarthCycle":
+                agregarDiasTierra(dato1,dato2,dato3,dato4,dato5);
                 break;
         }
     }
@@ -256,11 +264,13 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
      * @param conversion Cadena de caracteres con los días a trabajar la habilidad de conversión
      * @param maximo Cadena de caracteres con los días a trabajar la habilidad de máximo
      */
-    public void agregarDiasTierra(String construccion, String conversion, String maximo){
+    public void agregarDiasTierra(String construccion, String conversion, String maximo, String coordinacion, String flexibilidad){
 
         MacroCiclo.getDiasTierra().getTrabajo1().setDato1(construccion.substring(0,construccion.length()-1));
         MacroCiclo.getDiasTierra().getTrabajo2().setDato1(conversion.substring(0,conversion.length()-1));
         MacroCiclo.getDiasTierra().getTrabajo3().setDato1(maximo.substring(0,maximo.length()-1));
+        MacroCiclo.getDiasTierra().getTrabajo4().setDato1(maximo.substring(0,coordinacion.length()-1));
+        MacroCiclo.getDiasTierra().getTrabajo5().setDato1(maximo.substring(0,flexibilidad.length()-1));
 
     }
 
@@ -501,7 +511,7 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
      * @return MacroCiclo
      */
     @Override
-    public com.e.periodizacionnatacion.Clases.MacroCiclo onCallBackInfoCycle(String fragmento) {
+    public MacroCiclo onCallBackInfoCycle(String fragmento) {
         if (MacroCiclo != null){
             return MacroCiclo;
         }

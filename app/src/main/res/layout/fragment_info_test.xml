@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/infotest"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_color"
+        android:orientation="vertical"
+        android:visibility="visible"
+        tools:context=".InfoTest">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tittle_infotest"
+                android:layout_width="250dp"
+                android:fontFamily="@font/bs_regular"
+                android:layout_height="match_parent"
+                android:layout_gravity="left"
+                android:gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:text="@string/add_pruebas"
+                android:textColor="@color/colorWhite"
+                android:textSize="27dp" />
+
+            <ImageView
+                android:id="@+id/banner_infotest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:src="@mipmap/logo_foreground" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="25dp"
+            android:layout_gravity="center"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:textColor="@color/colorBanner"
+                android:fontFamily="@font/bs_regular"
+                android:id="@+id/enun1_addtest"
+                android:text="@string/nom_test"
+                android:textSize="14dp"
+                android:background="@color/colorWhite"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorBanner"
+                android:id="@+id/resp1_infotest"
+                android:background="@color/colorWhite"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:textColor="@color/colorBanner"
+                android:fontFamily="@font/bs_regular"
+                android:id="@+id/enun2_addtest"
+                android:text="@string/enun_fecha_test"
+                android:textSize="14dp"
+                android:background="@color/colorWhite"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/resp2_infotest"
+                android:textColor="@color/colorBanner"
+                android:background="@color/colorWhite"/>
+
+            <Button
+                android:layout_width="60dp"
+                android:layout_marginTop="20dp"
+                android:layout_height="60dp"
+                android:id="@+id/date_infotest"
+                android:background="@mipmap/calendario"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_marginTop="70dp">
+
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/bs_regular"
+                android:text="@string/opcion7_Retroceder"
+                android:textAllCaps="false"
+                android:id="@+id/btt_retro_infotest"
+                android:background="@color/colorBanner"
+                android:textColor="@color/colorWhite"
+                android:textSize="17dp"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/bs_regular"
+                android:text="@string/opcion8_Avanzar"
+                android:textAllCaps="false"
+                android:layout_marginLeft="130dp"
+                android:textSize="17dp"
+                android:id="@+id/btt_avan_infotest"
+                android:background="@color/colorBanner"
+                android:textColor="@color/colorWhite"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

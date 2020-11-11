@@ -14,7 +14,7 @@
         android:background="@drawable/bg_color"
         android:orientation="vertical"
         android:visibility="visible"
-        tools:context="com.cyclenotification.SelectCycle">
+        tools:context="com.cycletest.TypeTest">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -22,7 +22,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/text_title_calenanhadir"
+                android:id="@+id/text_title_typetest"
                 android:layout_width="250dp"
                 android:fontFamily="@font/bs_regular"
                 android:layout_height="match_parent"
@@ -30,12 +30,12 @@
                 android:gravity="center"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="15dp"
-                android:text="Selección ciclo"
+                android:text="Selección tipo"
                 android:textColor="@color/colorWhite"
                 android:textSize="25dp" />
 
             <ImageView
-                android:id="@+id/imgv_previa"
+                android:id="@+id/imgv_previa_typetest"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
@@ -43,13 +43,57 @@
 
         </LinearLayout>
 
-        <ListView
+        <CheckBox
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:background="@drawable/botonredondo_second"
-            android:layout_margin="30dp"
-            android:id="@+id/list_select_cycle"
-            />
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:text="@string/prue_airelibre"
+            android:layout_marginTop="20dp"
+            android:id="@+id/type_airelibre"
+            android:textColor="@color/colorWhite"
+            android:fontFamily="@font/bs_regular"
+            android:buttonTint="@color/colorWhite"/>
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:text="@string/prue_comb"
+            android:id="@+id/type_combin"
+            android:textColor="@color/colorWhite"
+            android:fontFamily="@font/bs_regular"
+            android:buttonTint="@color/colorWhite"/>
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:id="@+id/type_espal"
+            android:text="@string/prue_espalda"
+            android:textColor="@color/colorWhite"
+            android:fontFamily="@font/bs_regular"
+            android:buttonTint="@color/colorWhite"/>
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:id="@+id/type_mari"
+            android:text="@string/prue_mari"
+            android:textColor="@color/colorWhite"
+            android:fontFamily="@font/bs_regular"
+            android:buttonTint="@color/colorWhite"/>
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:text="@string/prue_pecho"
+            android:id="@+id/type_pecho"
+            android:textColor="@color/colorWhite"
+            android:fontFamily="@font/bs_regular"
+            android:buttonTint="@color/colorWhite"/>
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -66,7 +110,7 @@
                 android:gravity="center"
                 android:text="@string/opcion7_Retroceder"
                 android:textAllCaps="false"
-                android:id="@+id/retro_selectCycle"
+                android:id="@+id/retro_typeCycleTest"
                 android:textColor="@color/colorWhite"
                 android:textSize="14dp" />
 

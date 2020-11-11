@@ -89,8 +89,6 @@ public class AddPrueba extends Fragment {
                         Toast.makeText(getContext(),"Sólo debe seleccionar un tipo de prueba",Toast.LENGTH_LONG).show();
                     }else{
 
-                        Navigation.findNavController(view).navigate(R.id.nav_mostrarP);
-
                         String nombre = nombrePrueba.toString();
                         String tipo="";
                         String fecha="";
