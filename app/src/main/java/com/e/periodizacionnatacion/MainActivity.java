@@ -204,6 +204,17 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
         }
     }
 
+    @Override
+    public void onCallBackLogout() {
+        carga.iniciar();
+        FirebaseAuth.getInstance().signOut();
+        carga.detener();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user == null){
+            cambioAlLog();
+        }
+    }
+
     /**
      * Método cambioAlLog : Realiza el movimiento de la actividad Main a la actividad login
      */

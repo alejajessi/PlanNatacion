@@ -21,4 +21,5 @@ public interface CallBackListener {
     Dia onCallBackMostrarDia(String fragmento);
     boolean onCallBackCambioFragment();
     void onCallBackNotification(String fragmento, String nombre, String fecha, String macrociclo);
+    void onCallBackLogout();
 }
