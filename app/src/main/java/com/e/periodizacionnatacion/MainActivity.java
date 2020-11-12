@@ -7,6 +7,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.callback.CallBackListener;
 import com.bumptech.glide.Glide;
 import com.cyclelogin.Login;
@@ -16,7 +20,10 @@ import com.e.periodizacionnatacion.Clases.DatoBasico;
 import com.e.periodizacionnatacion.Clases.Dia;
 import com.e.periodizacionnatacion.Clases.Integrante;
 import com.e.periodizacionnatacion.Clases.MacroCiclo;
+import com.e.periodizacionnatacion.Clases.Notificacion;
 import com.e.periodizacionnatacion.Clases.Usuario;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -25,6 +32,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
@@ -34,7 +42,16 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity implements CallBackListener {
@@ -132,6 +149,7 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
                 usuario = dataSnapshot.getValue(Usuario.class);
                 if (usuario != null){
                     Log.e(">>>>>>", usuario.toString());
+                    suscripcionTopic();
                     carga.detener();
                 }
                 cambiarValorHeader();
@@ -144,6 +162,35 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
         });
     }
 
+    private void suscripcionTopic() {
+
+        FirebaseMessaging.getInstance().subscribeToTopic(usuario.getID()).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                Log.w("Suscripción a topic "+usuario.getID(),"Suscripción exitosa");
+            }
+        });
+
+        Query query = FirebaseDatabase.getInstance().getReference().child("Notificaciones").child(usuario.getID());
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+                    Notificacion not = postSnapshot.getValue(Notificacion.class);
+                    if (validarTiempoNotificacion(not.getFecha())){
+                        onCallBackNotification("MainActivity",not.getNombre(),not.getFecha(),not.getMacrociclo());
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
     /**
      * Método cambiarValorHeader  : Encargado de actualizar los datos del header de acuerdo al usuario actual
      */
@@ -153,6 +200,17 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
             correoUsuario.setText(usuario.getCorreo());
             Glide.with(this).load(usuario.getFoto()).into(imagenUsuario);
         }else{
+            cambioAlLog();
+        }
+    }
+
+    @Override
+    public void onCallBackLogout() {
+        carga.iniciar();
+        FirebaseAuth.getInstance().signOut();
+        carga.detener();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user == null){
             cambioAlLog();
         }
     }
@@ -586,5 +644,66 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
     @Override
     public boolean onCallBackCambioFragment() {
         return cambioFrag;
+    }
+
+    @Override
+    public void onCallBackNotification(String fragmento, String nombre, String fecha, String macrociclo) {
+        RequestQueue myrequest = Volley.newRequestQueue(getApplicationContext());
+        JSONObject json = new JSONObject();
+
+        try {
+
+            json.put("to", "/topics/"+usuario.getID());
+            JSONObject notificacion = new JSONObject();
+            notificacion.put("nombre",nombre);
+            notificacion.put("fecha",fecha);
+            notificacion.put("macrociclo",macrociclo);
+
+            json.put("data",notificacion);
+
+            String URL = "https://fcm.googleapis.com/fcm/send";
+
+            JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, URL, json,null,null){
+                @Override
+                public Map<String, String> getHeaders() {
+                    Map<String,String> header = new HashMap<>();
+
+                    header.put("content-type","application/json");
+                    header.put("authorization","key=AAAAw4k346s:APA91bHYlJ9US9NCtbNyFVMXMiXhTSyPrjBGds6mw66Ca9ZckHUh8JkHlBDK4sdOi-wcfju8u8ftDLRNdZNDh7kCWZ5mOay-OpPM2id673iWFgCy0xPa5oYOjtTvKbExMmrWM5wT2Nqq");
+                    return header;
+                }
+            };
+
+            myrequest.add(request);
+
+            if (fragmento.equals("AddTestNotification")){
+                String id =  UUID.randomUUID()+"";
+                Notificacion not = new Notificacion(nombre,fecha,macrociclo,false);
+                FirebaseDatabase.getInstance().getReference().child("Notificaciones").child(usuario.getID()).child(id).setValue(not);
+            }
+
+        }catch (JSONException e){
+            e.printStackTrace();
+        }
+    }
+
+    public boolean validarTiempoNotificacion(String fecha){
+
+        boolean valido = false;
+
+        String[] notTest = fecha.split("-");
+
+        Calendar actual = Calendar.getInstance();
+        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+        String[] act = df.format(actual.getTime()).split("-");
+
+        //Log.e("Actual main",df.format(actual.getTime()));
+        if (Integer.parseInt(notTest[0]) == (Integer.parseInt(act[0]))
+            && Integer.parseInt(notTest[1]) == (Integer.parseInt(act[1]))
+            && Integer.parseInt(notTest[2]) == (Integer.parseInt(act[2]))){
+            valido = true;
+        }
+
+        return valido;
     }
 }

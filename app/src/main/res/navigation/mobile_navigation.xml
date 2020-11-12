@@ -19,6 +19,13 @@
     </fragment>
 
     <fragment
+        android:id="@+id/nav_logout"
+        android:name="com.cyclelogin.Logout"
+        android:label="Logout"
+        tools:layout="@layout/fragment_logout">
+    </fragment>
+
+    <fragment
         android:id="@+id/nav_showcycle"
         android:name="com.cycleshow.MostrarCiclo"
         android:label="@string/mostrar_ciclo"

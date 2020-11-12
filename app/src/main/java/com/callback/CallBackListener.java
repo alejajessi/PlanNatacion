@@ -5,6 +5,7 @@ import com.e.periodizacionnatacion.Clases.DatoBasico;
 import com.e.periodizacionnatacion.Clases.Dia;
 import com.e.periodizacionnatacion.Clases.Integrante;
 import com.e.periodizacionnatacion.Clases.MacroCiclo;
+import com.e.periodizacionnatacion.Clases.Usuario;
 
 import java.util.ArrayList;
 
@@ -19,4 +20,6 @@ public interface CallBackListener {
     String onCallBackMostrar(String fragmento);
     Dia onCallBackMostrarDia(String fragmento);
     boolean onCallBackCambioFragment();
+    void onCallBackNotification(String fragmento, String nombre, String fecha, String macrociclo);
+    void onCallBackLogout();
 }
