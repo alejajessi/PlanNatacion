@@ -23,4 +23,5 @@ public interface CallBackListener {
     void onCallBackNotification(String fragmento, String nombre, String fecha, String macrociclo);
     ArrayList<Integrante> onCallBackIntegrantesPrueba(String fragmento);
     void onCallBackAgregarPruebas(ArrayList<Integrante> integ, ArrayList<String> tiempos);
+    void onCallBackLogout();
 }
