@@ -21,6 +21,7 @@ import com.e.periodizacionnatacion.Clases.Dia;
 import com.e.periodizacionnatacion.Clases.Integrante;
 import com.e.periodizacionnatacion.Clases.MacroCiclo;
 import com.e.periodizacionnatacion.Clases.Notificacion;
+import com.e.periodizacionnatacion.Clases.Prueba;
 import com.e.periodizacionnatacion.Clases.Usuario;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -106,6 +107,12 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
     private DialogCargando carga;
 
     private String mostrando;
+
+    private Prueba prueba;
+
+    private  String tipoPrueba;
+
+    private String fechaPrueba;
 
     /**
      * Método OnCreate
@@ -268,6 +275,12 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
                 mostrando = dato1+dato2+"";
                 Log.e("Mostrando",">>>>>>> "+mostrando);
                 break;
+            case "SelectCycleTest":
+                pedirMacroCiclo(dato1);
+                break;
+            case "InfoTest":
+                tipoPrueba = dato1;
+                fechaPrueba = dato2;
         }
     }
 
@@ -316,8 +329,8 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
         MacroCiclo.getDiasTierra().getTrabajo1().setDato1(construccion.substring(0,construccion.length()-1));
         MacroCiclo.getDiasTierra().getTrabajo2().setDato1(conversion.substring(0,conversion.length()-1));
         MacroCiclo.getDiasTierra().getTrabajo3().setDato1(maximo.substring(0,maximo.length()-1));
-        MacroCiclo.getDiasTierra().getTrabajo4().setDato1(maximo.substring(0,coordinacion.length()-1));
-        MacroCiclo.getDiasTierra().getTrabajo5().setDato1(maximo.substring(0,flexibilidad.length()-1));
+        MacroCiclo.getDiasTierra().getTrabajo4().setDato1(coordinacion.substring(0,coordinacion.length()-1));
+        MacroCiclo.getDiasTierra().getTrabajo5().setDato1(flexibilidad.substring(0,flexibilidad.length()-1));
 
     }
 
@@ -396,7 +409,6 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
         for (int i = 0; i < integrantes.size(); i++){
 
             //Se genera un ID para el integrante y se verifica si existe en la BD
-            carga.iniciar();
             String id =  UUID.randomUUID()+"";
             verificarSiExisteId("Integrantes", id);
             while (existe){
@@ -508,8 +520,7 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 MacroCiclo = dataSnapshot.getValue(MacroCiclo.class);
-                cambioFrag=true;
-                carga.detener();
+                pedirIntegrantes();
                 Log.e("Main","MacroCiclo LISTO");
             }
             @Override
@@ -694,5 +705,121 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
         }
 
         return valido;
+    }
+
+
+    public void pedirIntegrantes(){
+        ArrayList<DatoBasico> integrantesMacro = MacroCiclo.getIntegrantes();
+        integrantes = new ArrayList<Integrante>();
+        final int tamIntMacro = integrantesMacro.size();
+
+        if (tamIntMacro>0){
+            for (int i = 0; i<integrantesMacro.size();i++){
+                String id = integrantesMacro.get(i).getDato2();
+                Query query = FirebaseDatabase.getInstance().getReference().child("Integrantes").child(id);
+                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        Integrante integrante = dataSnapshot.getValue(Integrante.class);
+                        integrantes.add(integrante);
+                        if (tamIntMacro == integrantes.size()){
+                            cambioFrag = true;
+                            carga.detener();
+                        }
+                        //    cambioDeFragment = false;
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        carga.detener();
+                    }
+                });
+            }
+        }else {
+            Toast.makeText(this,"No hay integrantes asociados a este macrociclo",Toast.LENGTH_LONG).show();
+        }
+    }
+
+    @Override
+    public ArrayList<Integrante> onCallBackIntegrantesPrueba(String fragmento) {
+        ArrayList<Integrante> integrantesPrueba = new ArrayList<Integrante>();
+        int tamInt = integrantes.size();
+        for (int i=0; i<tamInt;i++){
+            int tamTip = integrantes.get(i).getTiposPruebas().size();
+            for (int j=0;j<tamTip;j++){
+                if (integrantes.get(i).getTiposPruebas().get(j).equals(tipoPrueba)){
+                    integrantesPrueba.add(integrantes.get(i));
+                    break;
+                }
+            }
+        }
+        if (integrantesPrueba.size()==0){
+            return null;
+        }
+        return integrantesPrueba;
+    }
+
+    @Override
+    public void onCallBackAgregarPruebas(ArrayList<Integrante> integ, ArrayList<String> tiempos) {
+        Prueba pruebaT = null;
+        DatoBasico dato = null;
+
+        int tamP = integ.size();
+        int tamI = integrantes.size();
+        for (int i=0;i<tamP;i++){
+
+            pruebaT = new Prueba();
+            pruebaT.setNombre(tipoPrueba);
+
+            dato = new DatoBasico();
+            dato.setDato2(fechaPrueba);
+
+            Integrante intPrueba = integ.get(i);
+            for (int j=0;j<tamI;j++){
+
+                Integrante intMacro = integrantes.get(j);
+                //Preguntar si los integrantes son los mismos
+                if (intMacro.getID().equals(intPrueba.getID())){
+
+                    int tamPruebas = intMacro.getPruebas().size();
+                    //Preguntar si tiene pruebas guardadas
+                    if (tamPruebas>0){
+
+                        int pos = -1;
+                        for (int k=0;k<tamPruebas;k++){
+
+                            //Preguntar si alguna de las pruebas guardadas es igual a la prueba actual
+                            if (intMacro.getPruebas().get(k).getNombre().equals(tipoPrueba)){
+                                pos = k;
+                                break;
+                            }
+                        }
+
+                        //Pregunta si no hay pruebas del tipo actual
+                        if (pos == -1){
+                            dato.setDato1(tiempos.get(i));
+                            pruebaT.getResultadosPruebas().add(dato);
+                            intMacro.getPruebas().add(pruebaT);
+                        }else{
+                            dato.setDato1(tiempos.get(i));
+                            intMacro.getPruebas().get(pos).getResultadosPruebas().add(dato);
+                        }
+                    }else{
+                        dato.setDato1(tiempos.get(i));
+                        pruebaT.getResultadosPruebas().add(dato);
+                        intMacro.getPruebas().add(pruebaT);
+                    }
+                    break;
+                }
+            }
+        }
+        //Actualizar la informacion de los integrantes en la base de datos
+        actualizarIntegrantesDB();
+    }
+
+    public void actualizarIntegrantesDB(){
+        int tam = integrantes.size();
+        for (int i=0;i<tam;i++){
+            FirebaseDatabase.getInstance().getReference().child("Integrantes").child(integrantes.get(i).getID()).setValue(integrantes.get(i));
+        }
     }
 }

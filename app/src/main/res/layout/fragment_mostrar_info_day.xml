@@ -225,7 +225,7 @@
                 android:background="@drawable/borderedondo_banner"
                 android:fontFamily="@font/bs_regular"
                 android:gravity="center"
-                android:id="@+id/avan_minfoDay"
+                android:id="@+id/salir_infoDia"
                 android:layout_marginLeft="10dp"
                 android:text="@string/salir"
                 android:textAllCaps="false"

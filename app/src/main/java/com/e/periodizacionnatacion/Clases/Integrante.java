@@ -44,10 +44,12 @@ public class Integrante implements Serializable {
      * @param id
      * @param prueba
      */
-    public Integrante(String nombre, String id, ArrayList<Prueba> prueba) {
+    public Integrante(String nombre, String id, String descripcion, ArrayList<String> tiposPruebas, ArrayList<Prueba> prueba) {
         this.nombre = nombre;
         this.id = id;
-        pruebas = prueba;
+        this.descripcion = descripcion;
+        this.tiposPruebas = tiposPruebas;
+        this.pruebas = prueba;
     }
 
     /**

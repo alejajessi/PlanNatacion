@@ -26,6 +26,8 @@ import com.e.periodizacionnatacion.Clases.DatoBasico;
 import com.e.periodizacionnatacion.R;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -41,7 +43,6 @@ public class SelectCycleTest extends Fragment {
     private ArrayList<DatoBasico> ciclos;
     private CallBackListener callback;
     private int posicion;
-    private ArrayList<String> testType;
 
     public SelectCycleTest() {
         // Required empty public constructor
@@ -54,7 +55,7 @@ public class SelectCycleTest extends Fragment {
             callback = (CallBackListener) getActivity();
         }
         if (callback != null){
-            ciclos = callback.onCallBackMostrarCiclo("MostrarMacroCiclo");
+            ciclos = callback.onCallBackMostrarCiclo("SelectCycleTest");
         }
         agregarMacroCiclos();
     }
@@ -75,9 +76,6 @@ public class SelectCycleTest extends Fragment {
         macroCiclos = new ArrayList<String>();
         adaptador = new ArrayAdapter<String>(getContext(),R.layout.mes_trabajo,macroCiclos);
         listCycle.setAdapter(adaptador);
-
-
-
 
     }
 
@@ -101,74 +99,21 @@ public class SelectCycleTest extends Fragment {
 
         listCycle.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //callback.onCallBack("MostrarMacroCiclo",ciclos.get(position).getDato2(),null,null);
+            public void onItemClick(AdapterView<?> parent,final View view, int position, long id) {
                 //Log.e("Mostrar MacroCiclos", "InfoCycle");
                // Toast.makeText(getContext(),"Cargando MacroCiclo...",Toast.LENGTH_SHORT).show();
-                AlertDialog dialog= crearDialogoTipo(nav, view);
-                dialog.show();
-            }
-        });
-    }
-
-    public AlertDialog crearDialogoTipo(NavController nav,  final View view){
-        final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-
-        LayoutInflater inflater = getActivity().getLayoutInflater();
-
-        final View v= inflater.inflate(R.layout.dialog_int_pruebas, null);
-
-        builder.setView(v);
-
-        final ArrayList<CheckBox> pruebas = organizacionPruebas(v);
-        final ArrayList<String> itemSelected = new ArrayList<String>();
-
-        builder.setPositiveButton("Avanzar", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                for (int i = 0; i < pruebas.size(); i++) {
-                    if (pruebas.get(i).isChecked()) {
-                        itemSelected.add(pruebas.get(i).getText().toString().trim());
+                callback.onCallBack("SelectCycleTest",ciclos.get(position).getDato2(),null,null);
+                new Timer().schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        if (callback.onCallBackCambioFragment()){
+                            Navigation.findNavController(view).navigate(R.id.nav_info_test);
+                            cancel();
+                        }
                     }
-                }
-                if(itemSelected.size() == 1){
-                    testType = itemSelected;
-                    Log.e("UNO", "Entre al if final");
-                    Navigation.findNavController(view).navigate(R.id.nav_info_test);
-                } else{
-                    Toast.makeText(getContext(),"Debe seleccionar una (1) opción",Toast.LENGTH_SHORT).show();
-
-                }
-                //cualBoton = "";
-                //Mirar problema y función de Cuál Botón
-
+                }, 1000);
             }
         });
-
-        builder.setNegativeButton("Cancelar",null);
-
-        return  builder.create();
-    }
-
-    public ArrayList<CheckBox> organizacionPruebas(View v){
-
-        CheckBox aire = v.findViewById(R.id.pru_airelibre);
-        CheckBox combin = v.findViewById(R.id.pru_combin);
-        CheckBox espalda = v.findViewById(R.id.pru_espal);
-        CheckBox mariposa = v.findViewById(R.id.pru_mari);
-        CheckBox pecho = v.findViewById(R.id.pru_pecho);
-
-        final ArrayList<CheckBox> pruebas = new ArrayList<CheckBox>();
-
-        pruebas.add(aire);
-        pruebas.add(combin);
-        pruebas.add(espalda);
-        pruebas.add(mariposa);
-        pruebas.add(pecho);
-
-        //Falta método que chequeé que sólo seleccionó 1 checkbox
-
-        return pruebas;
     }
 
     public void funcionBttRetroceder(NavController navController){
@@ -189,4 +134,5 @@ public class SelectCycleTest extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_select_cycle_test, container, false);
     }
+
 }

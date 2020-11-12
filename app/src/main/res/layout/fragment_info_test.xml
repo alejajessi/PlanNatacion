@@ -61,12 +61,13 @@
                 android:textSize="14dp"
                 android:background="@color/colorWhite"/>
 
-            <EditText
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorBanner"
                 android:id="@+id/resp1_infotest"
                 android:background="@color/colorWhite"/>
+
 
             <TextView
                 android:layout_width="match_parent"
@@ -101,7 +102,6 @@
             android:orientation="horizontal"
             android:layout_gravity="center"
             android:gravity="center"
-            android:layout_gravity="center"
             android:layout_marginTop="70dp">
 
             <Button

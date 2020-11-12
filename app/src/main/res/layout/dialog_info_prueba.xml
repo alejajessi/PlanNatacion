@@ -32,33 +32,5 @@
         android:textColor="@color/colorBanner"
         android:layout_margin="15dp"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/colorWhite"
-        android:textSize="13dp"
-        android:layout_marginTop="15dp"
-        android:id="@+id/enun2_infoprueba"
-        android:fontFamily="@font/bs_regular"
-        android:gravity="center"
-        android:text="Seleccione la fecha de realización:"/>
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="@color/colorWhite"
-        android:fontFamily="@font/bs_regular"
-        android:textSize="14dp"
-        android:id="@+id/ed2_infoprueba"
-        android:textColor="@color/colorBanner"
-        android:layout_margin="15dp"/>
-
-    <ImageButton
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:id="@+id/btt_cal1_infoprueba"
-        android:src="@mipmap/calendario"
-        android:background="@drawable/borderedondo_banner"
-        android:layout_gravity="center"
 
 </LinearLayout>

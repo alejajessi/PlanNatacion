@@ -118,7 +118,7 @@ public class MostrarInfoDay extends Fragment {
         txSemana = view.findViewById(R.id.tx7_sem_infoday);
         txDia = view.findViewById(R.id.tx1_diainfo);
         txHabilidades = view.findViewById(R.id.tx9_hab_infoday);
-        salir = view.findViewById(R.id.avan_minfoDay);
+        salir = view.findViewById(R.id.salir_infoDia);
         retroceder = view.findViewById(R.id.retro_minfoDay);
 
         dia = null;
