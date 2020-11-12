@@ -153,6 +153,8 @@
     <string name="flexibilidad">Flexibilidad</string>
     <string name="coordinacion">Coordinación</string>
     <string name="selectcycletest">Select cycle test</string>
+    <string name="info_type">Tipo de test</string>
+    <string name="list_integrant">Lista de integrantes pruebas</string>
 
     <string-array name="periodos">
         <item>Seleccione</item>

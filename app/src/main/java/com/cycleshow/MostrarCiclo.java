@@ -140,7 +140,8 @@ public class MostrarCiclo extends Fragment {
                 macroCiclos.clear();
             }
             String nombre="";
-            for (int i=0;i<ciclos.size();i++){
+            int tam = ciclos.size();
+            for (int i=0;i<tam;i++){
                 nombre = ciclos.get(i).getDato1();
                 macroCiclos.add(nombre);
             }

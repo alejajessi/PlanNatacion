@@ -1,9 +1,11 @@
 package com.cycletest;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -15,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -23,6 +26,8 @@ import com.e.periodizacionnatacion.Clases.DatoBasico;
 import com.e.periodizacionnatacion.R;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -50,7 +55,7 @@ public class SelectCycleTest extends Fragment {
             callback = (CallBackListener) getActivity();
         }
         if (callback != null){
-            ciclos = callback.onCallBackMostrarCiclo("MostrarMacroCiclo");
+            ciclos = callback.onCallBackMostrarCiclo("SelectCycleTest");
         }
         agregarMacroCiclos();
     }
@@ -58,12 +63,9 @@ public class SelectCycleTest extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        inicializarID(view);
-
         final NavController navController= Navigation.findNavController(view);
-
-        funcionListView(navController);
+        inicializarID(view);
+        funcionListView(navController, view);
         funcionBttRetroceder(navController);
     }
 
@@ -74,6 +76,7 @@ public class SelectCycleTest extends Fragment {
         macroCiclos = new ArrayList<String>();
         adaptador = new ArrayAdapter<String>(getContext(),R.layout.mes_trabajo,macroCiclos);
         listCycle.setAdapter(adaptador);
+
     }
 
     public void agregarMacroCiclos(){
@@ -92,15 +95,23 @@ public class SelectCycleTest extends Fragment {
         }
     }
 
-    public void funcionListView(NavController nav){
+    public void funcionListView(final NavController nav, View view){
 
         listCycle.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                callback.onCallBack("MostrarMacroCiclo",ciclos.get(position).getDato2(),null,null);
-                Log.e("Mostrar MacroCiclos", "InfoCycle");
-                Toast.makeText(getContext(),"Cargando MacroCiclo...",Toast.LENGTH_SHORT).show();
-                Navigation.findNavController(view).navigate(R.id.nav_add_notification);
+            public void onItemClick(AdapterView<?> parent,final View view, int position, long id) {
+                //Log.e("Mostrar MacroCiclos", "InfoCycle");
+               // Toast.makeText(getContext(),"Cargando MacroCiclo...",Toast.LENGTH_SHORT).show();
+                callback.onCallBack("SelectCycleTest",ciclos.get(position).getDato2(),null,null);
+                new Timer().schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        if (callback.onCallBackCambioFragment()){
+                            Navigation.findNavController(view).navigate(R.id.nav_info_test);
+                            cancel();
+                        }
+                    }
+                }, 1000);
             }
         });
     }
@@ -123,4 +134,5 @@ public class SelectCycleTest extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_select_cycle_test, container, false);
     }
+
 }

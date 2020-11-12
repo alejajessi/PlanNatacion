@@ -115,6 +115,8 @@ public class AddEarthCycle extends Fragment {
         conv = new ArrayList<String>();
         cons = new ArrayList<String>();
         max = new ArrayList<String>();
+        coor = new ArrayList<String>();
+        flex = new ArrayList<String>();
 
     }
 
@@ -144,7 +146,7 @@ public class AddEarthCycle extends Fragment {
     }
     public  void funcionCoordi(){
 
-        fmaxbtt.setOnClickListener(new View.OnClickListener() {
+        coordi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 cualBoton = "Coordinacion";
@@ -157,7 +159,7 @@ public class AddEarthCycle extends Fragment {
 
     public void funcionFlexi(){
 
-        fconversionbtt.setOnClickListener(new View.OnClickListener() {
+        flexi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 cualBoton = "Flexibilidad";

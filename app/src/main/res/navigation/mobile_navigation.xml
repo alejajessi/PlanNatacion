@@ -236,5 +236,29 @@
         <action
             android:id="@+id/action_nav_select_cycle_test_to_nav_menuPruebas"
             app:destination="@id/nav_menuPruebas" />
+        <action
+            android:id="@+id/action_nav_select_cycle_test_to_nav_info_test"
+            app:destination="@id/nav_info_test" />
+    </fragment>
+
+    <fragment android:id="@+id/nav_info_test"
+        android:name="com.cycletest.InfoTest"
+        android:label="@string/info_type"
+        tools:layout="@layout/fragment_info_test">
+        <action
+            android:id="@+id/action_nav_info_test_to_nav_select_cycle_test"
+            app:destination="@id/nav_select_cycle_test" />
+        <action
+            android:id="@+id/action_nav_info_test_to_nav_list_integrant"
+            app:destination="@id/nav_list_integrant" />
+    </fragment>
+
+    <fragment android:id="@+id/nav_list_integrant"
+        android:name="com.cycletest.ListIntegrant"
+        android:label="@string/list_integrant"
+        tools:layout="@layout/fragment_list_integrant">
+        <action
+            android:id="@+id/action_nav_list_integrant_to_nav_info_test"
+            app:destination="@id/nav_info_test" />
     </fragment>
 </navigation>

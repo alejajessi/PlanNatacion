@@ -8,21 +8,22 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/infotest"
+        android:id="@+id/fragment_listIntegrant"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/bg_color"
         android:orientation="vertical"
         android:visibility="visible"
-        tools:context=".InfoTest">
+        tools:context="com.cycletest.ListIntegrant">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
+
             <TextView
-                android:id="@+id/tittle_infotest"
+                android:id="@+id/tittle_listinteg"
                 android:layout_width="250dp"
                 android:fontFamily="@font/bs_regular"
                 android:layout_height="match_parent"
@@ -30,108 +31,92 @@
                 android:gravity="center"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="15dp"
-                android:text="@string/add_pruebas"
+                android:text="Anotación de prueba"
                 android:textColor="@color/colorWhite"
                 android:textSize="27dp" />
 
             <ImageView
-                android:id="@+id/banner_infotest"
+                android:id="@+id/banner_listinteg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:src="@mipmap/logo_foreground" />
 
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_margin="25dp"
-            android:layout_gravity="center"
-            android:gravity="center">
+            android:layout_gravity="center">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:textColor="@color/colorBanner"
+                android:textColor="@color/colorWhite"
+                android:textSize="16dp"
+                android:text="Presione sobre el nombre del integrante y añada el valor y la fecha correspondiente:"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_margin="10dp"
+                android:layout_marginBottom="25dp"
+                android:id="@+id/tx_enun_listint"
+                android:layout_marginTop="25dp"
+                android:fontFamily="@font/bs_regular"/>
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
                 android:fontFamily="@font/bs_regular"
-                android:id="@+id/enun1_addtest"
-                android:text="@string/nom_test"
-                android:textSize="14dp"
-                android:background="@color/colorWhite"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:background="@drawable/borderedondo_txt"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:id="@+id/integrantes_listprueba"
                 android:textColor="@color/colorBanner"
-                android:id="@+id/resp1_infotest"
-                android:background="@color/colorWhite"/>
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:textColor="@color/colorBanner"
-                android:fontFamily="@font/bs_regular"
-                android:id="@+id/enun2_addtest"
-                android:text="@string/enun_fecha_test"
-                android:textSize="14dp"
-                android:background="@color/colorWhite"/>
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/resp2_infotest"
-                android:textColor="@color/colorBanner"
-                android:background="@color/colorWhite"/>
-
-            <ImageButton
-                android:layout_width="60dp"
-                android:layout_marginTop="20dp"
-                android:layout_height="60dp"
-                android:id="@+id/date_infotest"
-                android:background="@mipmap/calendario"/>
+                android:textSize="14dp"/>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="136dp"
             android:orientation="horizontal"
             android:layout_gravity="center"
-            android:gravity="center"
-            android:layout_marginTop="70dp">
+            android:gravity="center">
 
             <Button
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/borderedondo_banner"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="10dp"
                 android:fontFamily="@font/bs_regular"
-                android:gravity="center"
                 android:text="@string/opcion7_Retroceder"
                 android:textAllCaps="false"
-                android:id="@+id/retro_infotest"
+                android:id="@+id/retro_listintegrant"
+                android:background="@drawable/borderedondo_banner"
                 android:textColor="@color/colorWhite"
-                android:layout_marginRight="10dp"
-                android:textSize="14dp" />
+                android:textSize="14dp"
+                android:layout_gravity="center"
+                android:gravity="center"/>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/borderedondo_banner"
-                android:fontFamily="@font/bs_regular"
-                android:gravity="center"
-                android:id="@+id/avan_infotest"
+                android:layout_marginTop="20dp"
                 android:layout_marginLeft="10dp"
-                android:text="@string/opcion8_Avanzar"
+                android:fontFamily="@font/bs_regular"
+                android:text="Guardar"
                 android:textAllCaps="false"
-                android:textColor="@color/colorWhite"
-                android:textSize="14dp" />
+                android:id="@+id/avan_listinteg"
+                android:textSize="14dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/borderedondo_banner"
+                android:textColor="@color/colorWhite"/>
+
 
         </LinearLayout>
 
-    </LinearLayout>
 
+    </LinearLayout>
 </ScrollView>
