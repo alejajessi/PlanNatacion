@@ -15,11 +15,6 @@
             android:title="@string/menu_controlP" />
 
         <item
-            android:id="@+id/nav_canceltiempo"
-            android:icon="@drawable/cancelar_foreground"
-            android:title="@string/menu_cancelarT"/>
-
-        <item
             android:id="@+id/nav_deletecycle"
             android:icon="@drawable/eliminar_foreground"
             android:title="@string/menu_eliminarMC"/>
