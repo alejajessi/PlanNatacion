@@ -15,7 +15,7 @@
             app:destination="@id/nav_addcyle" />
         <action
             android:id="@+id/action_nav_home_to_nav_showCycles"
-            app:destination="@id/nav_showCycles" />
+            app:destination="@id/nav_showcycle" />
     </fragment>
 
     <fragment
@@ -33,6 +33,9 @@
         <action
             android:id="@+id/action_nav_showcycle_to_nav_home"
             app:destination="@id/nav_home" />
+        <action
+            android:id="@+id/action_nav_showcycle_to_nav_showCycles"
+            app:destination="@id/nav_showCycles" />
     </fragment>
 
     <fragment android:id="@+id/nav_addcyle"
@@ -112,17 +115,11 @@
         android:label="@string/info_ciclo"
         tools:layout="@layout/fragment_mostrar_info_cycle" >
         <action
-            android:id="@+id/action_nav_showCycles_to_nav_home"
-            app:destination="@id/nav_home" />
-        <action
             android:id="@+id/action_nav_showCycles_to_nav_showMonths"
             app:destination="@id/nav_showMonths" />
         <action
-            android:id="@+id/action_nav_showCycles_to_nav_home2"
-            app:destination="@id/nav_home" />
-        <action
             android:id="@+id/action_nav_showCycles_to_nav_addIntegrante"
-            app:destination="@id/nav_addIntegrante" />
+            app:destination="@id/nav_showcycle" />
     </fragment>
 
     <fragment android:id="@+id/nav_showMonths"
@@ -136,8 +133,8 @@
             android:id="@+id/action_nav_showMonths_to_nav_showWeeks"
             app:destination="@id/nav_showWeeks" />
         <action
-            android:id="@+id/action_nav_showMonths_to_nav_addIntegrante"
-            app:destination="@id/nav_addIntegrante" />
+            android:id="@+id/action_nav_showMonths_to_nav_home"
+            app:destination="@id/nav_home" />
     </fragment>
 
     <fragment android:id="@+id/nav_showWeeks"
@@ -183,8 +180,8 @@
         tools:layout="@layout/fragment_menu_macro_ciclo">
 
         <action
-            android:id="@+id/action_nav_menuMacroCiclo_to_nav_vistaprevia"
-            app:destination="@id/nav_vistaprevia" />
+            android:id="@+id/action_nav_menuMacroCiclo_to_nav_addcyle"
+            app:destination="@id/nav_addcyle" />
         <action
             android:id="@+id/action_nav_menuMacroCiclo_to_nav_showcycle"
             app:destination="@id/nav_showcycle" />
@@ -260,5 +257,44 @@
         <action
             android:id="@+id/action_nav_list_integrant_to_nav_info_test"
             app:destination="@id/nav_info_test" />
+        <action
+            android:id="@+id/action_nav_list_integrant_to_nav_home"
+            app:destination="@id/nav_home" />
+    </fragment>
+
+    <fragment android:id="@+id/nav_select_cycle_specific_day"
+        android:name="com.specificday.SelectCycleSpecificDay"
+        android:label="Select cycle specific day"
+        tools:layout="@layout/fragment_select_cycle_specific_day">
+        <action
+            android:id="@+id/action_nav_select_cycle_specific_day_to_nav_home"
+            app:destination="@id/nav_home" />
+        <action
+            android:id="@+id/action_nav_select_cycle_specific_day_to_nav_select_specific_day"
+            app:destination="@id/nav_select_specific_day" />
+    </fragment>
+
+    <fragment android:id="@+id/nav_select_specific_day"
+        android:name="com.specificday.SelectSpecificDay"
+        android:label="Select specific day"
+        tools:layout="@layout/fragment_select_specific_day">
+        <action
+            android:id="@+id/action_nav_select_cycle_specific_day_to_nav_select_cycle_specific_day"
+            app:destination="@id/nav_select_cycle_specific_day" />
+        <action
+            android:id="@+id/action_nav_select_cycle_specific_day_to_nav_show_specific_day"
+            app:destination="@id/nav_show_specific_day" />
+    </fragment>
+
+    <fragment android:id="@+id/nav_show_specific_day"
+        android:name="com.specificday.MostrarSpecificDay"
+        android:label="Show specific day"
+        tools:layout="@layout/fragment_mostrar_specific_day">
+        <action
+            android:id="@+id/action_nav_show_specific_day_to_nav_select_specific_day"
+            app:destination="@id/nav_select_specific_day" />
+        <action
+            android:id="@+id/action_nav_show_specific_day_to_nav_home"
+            app:destination="@id/nav_home" />
     </fragment>
 </navigation>

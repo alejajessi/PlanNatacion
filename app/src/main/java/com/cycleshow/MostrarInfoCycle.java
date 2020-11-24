@@ -65,11 +65,6 @@ public class MostrarInfoCycle extends Fragment {
     private Button retroceder;
 
     /**
-     * Componente gráfico del xml fragment_mostrar_info_day tipo Button
-     */
-    private Button eliminar;
-
-    /**
      * Objeto tipo MacroCiclo
      */
     private MacroCiclo macroClico;
@@ -136,7 +131,6 @@ public class MostrarInfoCycle extends Fragment {
 
         funcionBttAvanzar(navController);
         funcionBttRetroceder(navController);
-        funcionEliminarMacro(navController);
 
     }
 
@@ -153,7 +147,6 @@ public class MostrarInfoCycle extends Fragment {
         txVolTierra = view.findViewById(R.id.tx8_nomb_infocycle);
         avanzar = view.findViewById(R.id.avan_infocycle);
         retroceder = view.findViewById(R.id.retro_infocycle);
-        eliminar = view.findViewById(R.id.del_infocycle);
 
     }
 
@@ -210,22 +203,6 @@ public class MostrarInfoCycle extends Fragment {
             }
         });
 
-    }
-
-    /**
-     * Método funcionEliminarMacro: Encargado de realizar la eliminación del macro ciclo que se está visualizando
-     * @param navController
-     */
-    public void funcionEliminarMacro(NavController navController){
-        eliminar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (callback != null){
-                    callback.onCallBackDeleteMacroCiclo(macroClico);
-                }
-                Navigation.findNavController(v).navigate(R.id.nav_home);
-            }
-        });
     }
 
 

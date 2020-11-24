@@ -511,15 +511,15 @@ public class Cronograma implements Serializable {
                 float volTrabajo5 = 0;
 
                 if (tipo.equals("Agua")) {
-                    volTrabajo1 = (volumen * ((float) (65.00 / 100.00))) / repiteTrabajo1;
-                    volTrabajo2 = (volumen * ((float) (33.00 / 100.00))) / repiteTrabajo2;
-                    volTrabajo3 = (volumen * ((float) (2.00 / 100.00))) / repiteTrabajo3;
+                    volTrabajo1 = (volumen * ((float) (65.0 / 100.0))) / repiteTrabajo1;
+                    volTrabajo2 = (volumen * ((float) (33.0 / 100.0))) / repiteTrabajo2;
+                    volTrabajo3 = (volumen * ((float) (2.0 / 100.0))) / repiteTrabajo3;
                 }else{
-                    volTrabajo1 = (volumen * ((float) ( 50.00 / 100.00))) / repiteTrabajo1;
-                    volTrabajo2 = (volumen * ((float) ( 15.00 / 100.00))) / repiteTrabajo2;
-                    volTrabajo3 = (volumen * ((float) ( 15.00 / 100.00))) / repiteTrabajo3;
-                    volTrabajo4 = (volumen * ((float) ( 10.00 / 100.00))) / repiteTrabajo4;
-                    volTrabajo5 = (volumen * ((float) ( 10.00 / 100.00))) / repiteTrabajo5;
+                    volTrabajo1 = (volumen * ((float) ( 50.0 / 100.0))) / repiteTrabajo1;
+                    volTrabajo2 = (volumen * ((float) ( 15.0 / 100.0))) / repiteTrabajo2;
+                    volTrabajo3 = (volumen * ((float) ( 15.0 / 100.0))) / repiteTrabajo3;
+                    volTrabajo4 = (volumen * ((float) ( 10.0 / 100.0))) / repiteTrabajo4;
+                    volTrabajo5 = (volumen * ((float) ( 10.0 / 100.0))) / repiteTrabajo5;
                 }
 
                 int numDias = dias.size();

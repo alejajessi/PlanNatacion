@@ -11,13 +11,18 @@
             android:title="@string/menu_macrociclo" />
         <item
             android:id="@+id/nav_menuPruebas"
-            android:icon="@mipmap/control_prueba_foreground"
+            android:icon="@drawable/menu_pruebas"
             android:title="@string/menu_controlP" />
 
         <item
             android:id="@+id/nav_deletecycle"
             android:icon="@drawable/eliminar_foreground"
             android:title="@string/menu_eliminarMC"/>
+
+        <item
+            android:id="@+id/nav_select_cycle_specific_day"
+            android:icon="@drawable/specific_day"
+            android:title="@string/dia_especifico"/>
 
         <item
             android:id="@+id/nav_legalinfo"
