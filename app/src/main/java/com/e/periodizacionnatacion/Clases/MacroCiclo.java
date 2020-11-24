@@ -257,8 +257,10 @@ public class MacroCiclo implements Serializable {
         }
 
         //Calcular las fechas cuando no son meses exactos
-        fecha = FechaIncrementoMesSemana(meses,0,fecha1);
-        fecha1.set(fecha[2],fecha[1],fecha[0]);
+        fecha = FechaIncrementoDia(1,fechaIncremento);
+        fechaIncremento.set(fecha[2],fecha[1],fecha[0]);
+
+        fecha1.set(fechaIncremento.get(Calendar.YEAR),fechaIncremento.get(Calendar.MONTH),fechaIncremento.get(Calendar.DATE));
         int diasFecha1 = fecha1.get(Calendar.DAY_OF_YEAR);
         int diasFecha2 = fecha2.get(Calendar.DAY_OF_YEAR);
         int diferenciaDias = diasFecha2-diasFecha1;
@@ -288,7 +290,7 @@ public class MacroCiclo implements Serializable {
             //Aumento dias en la cantidad de diferenciaDias
             fecha = FechaIncrementoDia(diferenciaDias,fechaIncremento);
             fechaIncremento.set(fecha[2],fecha[1],fecha[0]);
-            finPeriodo = df.format(fechaIncremento.getTime());
+            finPeriodo = df.format(fecha2.getTime());
             periodo2.setFin(finPeriodo);
 
         }
@@ -314,13 +316,13 @@ public class MacroCiclo implements Serializable {
         if (fecha[0]>diasMax){
             fecha[0] = fecha[0]-diasMax;
             fecha[1]=fecha[1]+1;
-            meses=meses+1;
+            month=fecha[1];
         }
         //Verificar si el incremento aumenta mas de un año
-        while (meses>12){
+        while (month>12){
             fecha[1]=fecha[1]-12;
             fecha[2]=fecha[2]+1;
-            meses=meses-12;
+            month=fecha[1];
         }
         //Verificar si el incremento pasa al siguiente año
         if (fecha[1]<=12){

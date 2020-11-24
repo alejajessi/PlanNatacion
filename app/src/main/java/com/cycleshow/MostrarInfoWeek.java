@@ -268,39 +268,39 @@ public class MostrarInfoWeek extends Fragment {
         if (datos[1].equals("Periodo1")){
 
             if (estado.equals("semanas")){
-                llenarArray(cronograma.getPeriodo1().getFecha().get(mes), infoList);
+                llenarArray(cronograma.getPeriodo1().getFecha().get(mes));
             }else if (estado.equals("dias")){
-                llenarArray(cronograma.getPeriodo1().getFecha().get(mes).getFecha().get(semana), infoList);
+                llenarArray(cronograma.getPeriodo1().getFecha().get(mes).getFecha().get(semana));
             }
             adaptador.notifyDataSetChanged();
 
         }else if (datos[1].equals("Periodo2")){
 
             if (estado.equals("semanas")){
-                llenarArray(cronograma.getPeriodo2().getFecha().get(mes), infoList);
+                llenarArray(cronograma.getPeriodo2().getFecha().get(mes));
             }else if (estado.equals("dias")){
-                llenarArray(cronograma.getPeriodo1().getFecha().get(mes).getFecha().get(semana), infoList);
+                llenarArray(cronograma.getPeriodo1().getFecha().get(mes).getFecha().get(semana));
             }
             adaptador.notifyDataSetChanged();
 
         }else if (datos[1].equals("Periodo3")){
 
             if (estado.equals("semanas")){
-                llenarArray(cronograma.getPeriodo3().getFecha().get(mes), infoList);
+                llenarArray(cronograma.getPeriodo3().getFecha().get(mes));
             }else if (estado.equals("dias")){
-                llenarArray(cronograma.getPeriodo1().getFecha().get(mes).getFecha().get(semana), infoList);
+                llenarArray(cronograma.getPeriodo1().getFecha().get(mes).getFecha().get(semana));
             }
             adaptador.notifyDataSetChanged();
         }
     }
 
-    public void llenarArray (Dato periodo, ArrayList<String> dia) {
+    public void llenarArray (Dato periodo) {
         String dato = "";
         int num = 1;
         actualizarTextView();
-        dia.clear();
+        infoList.clear();
         ArrayList<Dato> datosPeriodo = periodo.getFecha();
-        ArrayList<Dia> dias = null;
+        ArrayList<Dia> dias = new ArrayList<Dia>();
 
         int maximoTiempo = 0;
         if (estado.equals("dias")){
@@ -316,7 +316,7 @@ public class MostrarInfoWeek extends Fragment {
             }else{
                 dato = "Día" + num + " ("+dias.get(i).getDiaDeSemana()+"): " + dias.get(i).getVolumen();
             }
-            dia.add(dato);
+            infoList.add(dato);
             num++;
         }
     }

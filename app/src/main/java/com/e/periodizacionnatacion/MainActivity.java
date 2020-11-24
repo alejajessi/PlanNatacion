@@ -114,6 +114,9 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
 
     private String fechaPrueba;
 
+    private String fechaDiaEspecifico;
+
+
     /**
      * Método OnCreate
      * @param savedInstanceState
@@ -127,7 +130,7 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
         NavigationView navigationView = findViewById(R.id.nav_view);
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_menuMacroCiclo, R.id.nav_menuPruebas, R.id.nav_deletecycle,
-                R.id.nav_legalinfo).setDrawerLayout(drawer)
+                R.id.nav_select_cycle_specific_day, R.id.nav_legalinfo).setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupWithNavController(navigationView, navController);
@@ -291,6 +294,20 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
             case "InfoTest":
                 tipoPrueba = dato1;
                 fechaPrueba = dato2;
+                break;
+            case "SelectCycleSpecificDay":
+                pedirMacroCiclo(dato1);
+                break;
+            case "SelectSpecificDay":
+                fechaDiaEspecifico = dato1;
+                break;
+            case "MostrarSpecificDay":
+                cronogramas = new ArrayList<Cronograma>();
+                cronogramas.add(new Cronograma());
+                cronogramas.add(new Cronograma());
+                pedirCronograma(MacroCiclo.getDiasAgua().getCronograma(), 0);
+                pedirCronograma(MacroCiclo.getDiasTierra().getCronograma(), 1);
+                break;
         }
     }
 
@@ -546,6 +563,7 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
      * @param posicion Cadena de caracteres que representa un valor númerico que indica si es tierra ó agua
      */
     public void pedirCronograma(String id, final int posicion){
+        cambioFrag = false;
         if (!cronogramas.isEmpty() && cronogramas.size()>posicion
                 && cronogramas.get(posicion).getID().equals(id)){
            // cambioDeFragment = false;
@@ -562,6 +580,7 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
                 cronogramas.set(posicion,cronograma);
                 if (posicion==1){
                     carga.detener();
+                    cambioFrag = true;
                 }
             //    cambioDeFragment = false;
             }
@@ -597,7 +616,12 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
 
     @Override
     public String onCallBackMostrar(String fragmento) {
-        return mostrando;
+        if (fragmento.equals("MostrarSpecificDay")){
+            return fechaDiaEspecifico;
+        }else{
+
+            return mostrando;
+        }
     }
 
     //No sé como borrar desde aquí jijij holi
@@ -746,6 +770,8 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
             }
         }else {
             Toast.makeText(this,"No hay integrantes asociados a este macrociclo",Toast.LENGTH_LONG).show();
+            cambioFrag = true;
+            carga.detener();
         }
     }
 
