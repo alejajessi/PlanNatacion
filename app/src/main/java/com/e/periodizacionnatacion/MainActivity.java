@@ -34,6 +34,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.lowagie.text.pdf.BidiOrder;
 
 import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
@@ -108,13 +109,13 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
 
     private String mostrando;
 
-    private Prueba prueba;
-
     private  String tipoPrueba;
 
     private String fechaPrueba;
 
     private String fechaDiaEspecifico;
+
+    private ArrayList<String> fechasDePrueba;
 
 
     /**
@@ -264,12 +265,14 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
                 agregarVolumen(dato1,dato2);
                 break;
             case "MostrarMacroCiclo":
-                pedirMacroCiclo(dato1);
-                break;
+            case "SelectCycleStatistics":
             case "SelectCycle":
+            case "SelectCycleTest":
+            case "SelectCycleSpecificDay":
                 pedirMacroCiclo(dato1);
                 break;
             case "MostrarInfoCycle":
+            case "MostrarSpecificDay":
                 cronogramas = new ArrayList<Cronograma>();
                 cronogramas.add(new Cronograma());
                 cronogramas.add(new Cronograma());
@@ -281,32 +284,20 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
                 Log.e("Mostrando",">>>>>>> "+mostrando);
                 break;
             case "MostrarInfoWeek":
-                mostrando = dato1+dato2+"";
-                Log.e("Mostrando",">>>>>>> "+mostrando);
-                break;
             case "MostrarInfoDay":
                 mostrando = dato1+dato2+"";
                 Log.e("Mostrando",">>>>>>> "+mostrando);
-                break;
-            case "SelectCycleTest":
-                pedirMacroCiclo(dato1);
                 break;
             case "InfoTest":
                 tipoPrueba = dato1;
                 fechaPrueba = dato2;
                 break;
-            case "SelectCycleSpecificDay":
-                pedirMacroCiclo(dato1);
-                break;
             case "SelectSpecificDay":
                 fechaDiaEspecifico = dato1;
                 break;
-            case "MostrarSpecificDay":
-                cronogramas = new ArrayList<Cronograma>();
-                cronogramas.add(new Cronograma());
-                cronogramas.add(new Cronograma());
-                pedirCronograma(MacroCiclo.getDiasAgua().getCronograma(), 0);
-                pedirCronograma(MacroCiclo.getDiasTierra().getCronograma(), 1);
+            case "SelectTestType":
+                tipoPrueba = dato1;
+                pedirFechasdePrueba();
                 break;
         }
     }
@@ -417,7 +408,7 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
      * @param array ArrayList de Integrantes
      */
     @Override
-    public void onCallBackIntegrante(String fragmento, ArrayList<Integrante> array) {
+    public void onCallBackAgregarIntegrante(String fragmento, ArrayList<Integrante> array) {
         switch (fragmento){
             case "AddIntegrantes":
                 agregarIntegrantes(array);
@@ -618,6 +609,10 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
     public String onCallBackMostrar(String fragmento) {
         if (fragmento.equals("MostrarSpecificDay")){
             return fechaDiaEspecifico;
+
+        }else if (fragmento.equals("ShowStatistics")) {
+            return tipoPrueba;
+
         }else{
 
             return mostrando;
@@ -776,22 +771,27 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
     }
 
     @Override
-    public ArrayList<Integrante> onCallBackIntegrantesPrueba(String fragmento) {
-        ArrayList<Integrante> integrantesPrueba = new ArrayList<Integrante>();
-        int tamInt = integrantes.size();
-        for (int i=0; i<tamInt;i++){
-            int tamTip = integrantes.get(i).getTiposPruebas().size();
-            for (int j=0;j<tamTip;j++){
-                if (integrantes.get(i).getTiposPruebas().get(j).equals(tipoPrueba)){
-                    integrantesPrueba.add(integrantes.get(i));
-                    break;
+    public ArrayList<Integrante> onCallBackIntegrantes(String fragmento) {
+
+        if (fragmento.equals("ListIntegrant")){
+            ArrayList<Integrante> integrantesPrueba = new ArrayList<Integrante>();
+            int tamInt = integrantes.size();
+            for (int i=0; i<tamInt;i++){
+                int tamTip = integrantes.get(i).getTiposPruebas().size();
+                for (int j=0;j<tamTip;j++){
+                    if (integrantes.get(i).getTiposPruebas().get(j).equals(tipoPrueba)){
+                        integrantesPrueba.add(integrantes.get(i));
+                        break;
+                    }
                 }
             }
+            if (integrantesPrueba.size()==0){
+                return null;
+            }
+            return integrantesPrueba;
         }
-        if (integrantesPrueba.size()==0){
-            return null;
-        }
-        return integrantesPrueba;
+
+        return integrantes;
     }
 
     @Override
@@ -850,12 +850,145 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
         }
         //Actualizar la informacion de los integrantes en la base de datos
         actualizarIntegrantesDB();
+        actualizarFechaPruebas();
     }
 
     public void actualizarIntegrantesDB(){
         int tam = integrantes.size();
         for (int i=0;i<tam;i++){
             FirebaseDatabase.getInstance().getReference().child("Integrantes").child(integrantes.get(i).getID()).setValue(integrantes.get(i));
+        }
+    }
+
+    private void actualizarFechaPruebas() {
+        int tam = fechasDePrueba.size();
+        boolean agregar = true;
+        for (int i=0;i<tam;i++){
+            if (fechasDePrueba.get(i).equals(fechaPrueba)){
+                agregar = false;
+                break;
+            }
+        }
+        if (agregar){
+            fechasDePrueba.add(fechaPrueba);
+            FirebaseDatabase.getInstance().getReference().child("FechasPruebas").child(MacroCiclo.getID()).child(tipoPrueba).setValue(fechasDePrueba);
+        }
+    }
+
+    private void pedirFechasdePrueba() {
+        carga.iniciar();
+        cambioFrag = false;
+        fechasDePrueba = new ArrayList<String>();
+        Query query = FirebaseDatabase.getInstance().getReference().child("FechasPruebas").child(MacroCiclo.getID()).child(tipoPrueba);
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                if (dataSnapshot.exists()){
+
+                    for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+                        fechasDePrueba.add(postSnapshot.getValue(String.class));
+                    }
+                    ordenarFechasPruebas();
+                }
+                cambioFrag = true;
+                carga.detener();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    @Override
+    public ArrayList<String> onCallBackFechasDePrueba(String fragmento) {
+        if (fechasDePrueba.size() != 0){
+            return  fechasDePrueba;
+        }
+        return null;
+    }
+
+    public void ordenarFechasPruebas() {
+        sort(fechasDePrueba,0,(fechasDePrueba.size()-1));
+    }
+
+    public void sort(ArrayList<String> fecha, int inicio, int size) {
+        if(inicio < size){
+            //Encuentra el punto medio del vector.
+            int middle = (inicio + size) / 2;
+
+            //Divide la primera y segunda mitad (llamada recursiva).
+            sort(fecha, inicio, middle);
+            sort(fecha, middle+1, size);
+
+            //Une las mitades.
+            merge(fecha, inicio, middle, size);
+        }
+    }
+
+    public void merge(ArrayList<String> fecha, int inicio, int middle, int size) {
+        //Encuentra el tamaño de los sub-vectores para unirlos.
+        int n1 = middle - inicio + 1;
+        int n2 = size - middle;
+
+        //Vectores temporales.
+        String[] leftArray = new String[n1];
+        String[] rightArray = new String[n2];
+
+        //Copia los datos a los arrays temporales.
+        for (int i=0; i < n1; i++) {
+            leftArray[i] = fecha.get(inicio+i);
+        }
+        for (int j=0; j < n2; j++) {
+            rightArray[j] = fecha.get(middle + j + 1);
+        }
+        /* Une los vectorestemporales. */
+
+        //Índices inicial del primer y segundo sub-vector.
+        int i = 0;
+        int j = 0;
+
+        //Índice inicial del sub-vector arr[].
+        int k = inicio;
+
+        Calendar cal1 = Calendar.getInstance();
+        Calendar cal2 = Calendar.getInstance();
+        String[] fecha1 = null;
+        String[] fecha2 = null;
+
+        //Ordenamiento.
+        while (i < n1 && j < n2) {
+
+            fecha1 = leftArray[i].split("-");
+            fecha2 = rightArray[j].split("-");
+
+            cal1.set(Integer.parseInt(fecha1[2]),Integer.parseInt(fecha1[1])-1,Integer.parseInt(fecha1[0]));
+            cal2.set(Integer.parseInt(fecha2[2]),Integer.parseInt(fecha2[1])-1,Integer.parseInt(fecha2[0]));
+
+            if (cal1.before(cal2)) {
+                fecha.set(k,leftArray[i]);
+                i++;
+            } else {
+                fecha.set(k,rightArray[j]);
+                j++;
+            }
+            k++;
+        }//Fin del while.
+
+        /* Si quedan elementos por ordenar */
+        //Copiar los elementos restantes de leftArray[].
+        while (i < n1) {
+            fecha.set(k,leftArray[i]);
+            i++;
+            k++;
+        }
+        //Copiar los elementos restantes de rightArray[].
+        while (j < n2) {
+            fecha.set(k,rightArray[j]);
+            j++;
+            k++;
         }
     }
 }

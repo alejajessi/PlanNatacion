@@ -57,7 +57,7 @@ public class ListIntegrant extends Fragment {
             callback = (CallBackListener) getActivity();
         }
         if (callback != null){
-            integrantes = callback.onCallBackIntegrantesPrueba("ListIntegrant");
+            integrantes = callback.onCallBackIntegrantes("ListIntegrant");
         }
         agregarIntegrantes();
     }

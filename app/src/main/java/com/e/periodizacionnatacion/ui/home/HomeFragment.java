@@ -105,7 +105,7 @@ public class HomeFragment extends Fragment {
         bttStadistics.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Navigation.findNavController(v).navigate(R.id.nav_select_cycle_statistic);
             }
         });
 

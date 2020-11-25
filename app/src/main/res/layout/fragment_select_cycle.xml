@@ -30,7 +30,7 @@
                 android:gravity="center"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="15dp"
-                android:text="Selección ciclo"
+                android:text="@string/seleccion_macrociclo"
                 android:textColor="@color/colorWhite"
                 android:textSize="25dp" />
 
