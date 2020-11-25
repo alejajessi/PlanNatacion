@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public interface CallBackListener {
     void onCallBack(String fragmento, String dato1, String dato2, String dato3);
     void onCallBackExtendido(String fragmento, String dato1, String dato2, String dato3, String dato4, String dato5);
-    void onCallBackIntegrante(String fragmento, ArrayList<Integrante> array);
+    void onCallBackAgregarIntegrante(String fragmento, ArrayList<Integrante> array);
     ArrayList<Cronograma> onCallBackCronograma(String fragmento);
     ArrayList<DatoBasico> onCallBackMostrarCiclo(String fragmento);
     MacroCiclo onCallBackInfoCycle(String fragmento);
@@ -21,7 +21,8 @@ public interface CallBackListener {
     Dia onCallBackMostrarDia(String fragmento);
     boolean onCallBackCambioFragment();
     void onCallBackNotification(String fragmento, String nombre, String fecha, String macrociclo);
-    ArrayList<Integrante> onCallBackIntegrantesPrueba(String fragmento);
+    ArrayList<Integrante> onCallBackIntegrantes(String fragmento);
     void onCallBackAgregarPruebas(ArrayList<Integrante> integ, ArrayList<String> tiempos);
     void onCallBackLogout();
+    ArrayList<String> onCallBackFechasDePrueba(String fragmento);
 }

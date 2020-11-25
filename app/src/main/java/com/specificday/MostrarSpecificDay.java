@@ -46,14 +46,10 @@ public class MostrarSpecificDay extends Fragment {
     //Para mostrar el dia
     private ArrayList<Dia> dias;
 
-    /**
-     * Componente gráfico del xml fragment_mostrar_info_day tipo Button
-     */
+    private Button pdf;
+
     private Button salir;
 
-    /**
-     * Componente gráfico del xml fragment_mostrar_info_day tipo Button
-     */
     private Button retroceder;
 
 
@@ -119,6 +115,7 @@ public class MostrarSpecificDay extends Fragment {
 
         final NavController navController= Navigation.findNavController(view);
 
+        funcionBttPdf(navController);
         funcionBttSalir(navController);
         funcionBttRetroceder(navController);
 
@@ -135,12 +132,23 @@ public class MostrarSpecificDay extends Fragment {
         txSemana = view.findViewById(R.id.tx7_seminfo_specific_day);
         txDia = view.findViewById(R.id.tx1_diainfo_specific_day);
         txHabilidades = view.findViewById(R.id.tx9_habinfo_specific_day);
+        pdf = view.findViewById(R.id.pdf_specific_day);
         salir = view.findViewById(R.id.avan_show_specific_day);
         retroceder = view.findViewById(R.id.retro_show_specific_day);
 
         dias = new ArrayList<Dia>();
     }
 
+    public void funcionBttPdf(NavController navController){
+
+        pdf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Generar PDF
+            }
+        });
+
+    }
 
     /**
      * Método funcionBttRetroceder: Encargado de realizar el movimiento al fragment anterior: showCycles

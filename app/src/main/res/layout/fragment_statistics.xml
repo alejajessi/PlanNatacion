@@ -6,14 +6,15 @@
     android:fillViewport="true">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/fragment_statistics"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/bg_color"
         android:orientation="vertical"
         android:visibility="visible"
-        android:id="@+id/fragment_select_cycle_specific_day"
-        tools:context="com.specificday.SelectCycleSpecificDay">
+        tools:context="com.statistic.ShowStatistics">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -21,7 +22,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/text_title_calenanhadir"
+                android:id="@+id/text_title_statistics"
                 android:layout_width="250dp"
                 android:fontFamily="@font/bs_regular"
                 android:layout_height="match_parent"
@@ -29,26 +30,23 @@
                 android:gravity="center"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="15dp"
-                android:text="@string/seleccion_macrociclo"
+                android:text="@string/statistics"
                 android:textColor="@color/colorWhite"
                 android:textSize="25dp" />
 
             <ImageView
-                android:id="@+id/imgv_previa"
+                android:id="@+id/imgv_previa_selectcycletest"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:src="@mipmap/logo_foreground" />
 
         </LinearLayout>
-
-        <ListView
+        <com.github.mikephil.charting.charts.LineChart
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:background="@drawable/botonredondo_second"
-            android:layout_margin="30dp"
-            android:id="@+id/list_select_cycle_specific_day"
-            />
+            android:layout_height="490dp"
+            android:id="@+id/linechat_statistics"
+            android:scrollbars="horizontal"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -65,10 +63,25 @@
                 android:gravity="center"
                 android:text="@string/opcion7_Retroceder"
                 android:textAllCaps="false"
-                android:id="@+id/retro_selectCycle_specificDay"
+                android:id="@+id/retro_statistics"
+                android:textColor="@color/colorWhite"
+                android:layout_marginRight="10dp"
+                android:textSize="14dp" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/borderedondo_banner"
+                android:fontFamily="@font/bs_regular"
+                android:gravity="center"
+                android:id="@+id/avan_statistics"
+                android:layout_marginLeft="10dp"
+                android:text="@string/salir"
+                android:textAllCaps="false"
                 android:textColor="@color/colorWhite"
                 android:textSize="14dp" />
 
         </LinearLayout>
+
     </LinearLayout>
 </ScrollView>

@@ -21,6 +21,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.callback.CallBackListener;
@@ -31,7 +32,7 @@ import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link ListIntegrant#newInstance} factory method to
+ * Use the {@link ListIntegrant} factory method to
  * create an instance of this fragment.
  */
 public class ListIntegrant extends Fragment {
@@ -43,7 +44,7 @@ public class ListIntegrant extends Fragment {
     private Button guardar;
     private Button retroceder;
     private CallBackListener callback;
-    private DatePickerDialog pickerDialog;
+    private TextView tipoFechaPrueba;
     private int posicion;
 
     public ListIntegrant() {
@@ -57,7 +58,10 @@ public class ListIntegrant extends Fragment {
             callback = (CallBackListener) getActivity();
         }
         if (callback != null){
-            integrantes = callback.onCallBackIntegrantesPrueba("ListIntegrant");
+            integrantes = callback.onCallBackIntegrantes("ListIntegrant");
+            String tipo = callback.onCallBackMostrar("ListIntegrant1");
+            String fecha = callback.onCallBackMostrar("ListIntegrant2");
+            tipoFechaPrueba.setText("Tipo de prueba: "+tipo+"\nFecha de Prueba: "+fecha);
         }
         agregarIntegrantes();
     }
@@ -80,6 +84,7 @@ public class ListIntegrant extends Fragment {
         guardar = view.findViewById(R.id.avan_listinteg);
         retroceder = view.findViewById(R.id.retro_listintegrant);
         lista = view.findViewById(R.id.integrantes_listprueba);
+        tipoFechaPrueba = view.findViewById(R.id.tx_tipo_fecha_prueba);
         nombres = new ArrayList<String>();
         integrantes = new ArrayList<Integrante>();
         adaptador = new ArrayAdapter<String>(getContext(),R.layout.integrante_txv,nombres);

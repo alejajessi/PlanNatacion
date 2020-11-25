@@ -275,7 +275,7 @@ public class AddIntegrantes extends Fragment {
             @Override
             public void onClick(View v) {
                 if (callback != null){
-                    callback.onCallBackIntegrante("AddIntegrantes", integrantes);
+                    callback.onCallBackAgregarIntegrante("AddIntegrantes", integrantes);
                 }
                 Navigation.findNavController(v).navigate(R.id.nav_home);
             }

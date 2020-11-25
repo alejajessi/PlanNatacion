@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_nav_home_to_nav_showCycles"
             app:destination="@id/nav_showcycle" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_select_cycle_statistic"
+            app:destination="@id/nav_select_cycle_statistic" />
     </fragment>
 
     <fragment
@@ -203,6 +206,9 @@
         <action
             android:id="@+id/action_nav_menuPruebas_to_nav_select_cycle_test"
             app:destination="@id/nav_select_cycle_test" />
+        <action
+            android:id="@+id/action_nav_menuPruebas_to_nav_select_cycle_statistic"
+            app:destination="@id/nav_select_cycle_statistic" />
     </fragment>
 
     <fragment android:id="@+id/nav_select_Cycle"
@@ -295,6 +301,42 @@
             app:destination="@id/nav_select_specific_day" />
         <action
             android:id="@+id/action_nav_show_specific_day_to_nav_home"
+            app:destination="@id/nav_home" />
+    </fragment>
+
+    <fragment android:id="@+id/nav_select_cycle_statistic"
+        android:name="com.statistics.SelectCycleStatistics"
+        android:label="Select cycle statistic"
+        tools:layout="@layout/fragment_select_cycle_statistics">
+        <action
+            android:id="@+id/action_nav_select_cycle_statistic_to_nav_select_test_type"
+            app:destination="@id/nav_select_test_type" />
+        <action
+            android:id="@+id/action_nav_select_cycle_statistic_to_nav_home"
+            app:destination="@id/nav_home" />
+    </fragment>
+
+    <fragment android:id="@+id/nav_select_test_type"
+        android:name="com.statistics.SelectTestType"
+        android:label="Select test type"
+        tools:layout="@layout/fragment_select_test_type">
+        <action
+            android:id="@+id/action_nav_select_test_type_to_nav_select_cycle_statistic"
+            app:destination="@id/nav_select_cycle_statistic" />
+        <action
+            android:id="@+id/action_nav_select_test_type_to_nav_show_statistic"
+            app:destination="@id/nav_show_statistic" />
+    </fragment>
+
+    <fragment android:id="@+id/nav_show_statistic"
+        android:name="com.statistics.ShowStatistics"
+        android:label="Show statistics"
+        tools:layout="@layout/fragment_statistics">
+        <action
+            android:id="@+id/action_nav_show_statistic_to_nav_select_test_type"
+            app:destination="@id/nav_select_test_type" />
+        <action
+            android:id="@+id/action_nav_show_statistic_to_nav_home"
             app:destination="@id/nav_home" />
     </fragment>
 </navigation>

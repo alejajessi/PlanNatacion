@@ -8,22 +8,21 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/fragment_listIntegrant"
+        android:id="@+id/fragment_select_test_type"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/bg_color"
         android:orientation="vertical"
         android:visibility="visible"
-        tools:context="com.cycletest.ListIntegrant">
+        tools:context="com.statistic.SelectTestType">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-
             <TextView
-                android:id="@+id/tittle_listinteg"
+                android:id="@+id/tittle_select_test_type"
                 android:layout_width="250dp"
                 android:fontFamily="@font/bs_regular"
                 android:layout_height="match_parent"
@@ -31,105 +30,89 @@
                 android:gravity="center"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="15dp"
-                android:text="Anotación de prueba"
+                android:text="@string/test_type"
                 android:textColor="@color/colorWhite"
                 android:textSize="27dp" />
 
             <ImageView
-                android:id="@+id/banner_listinteg"
+                android:id="@+id/banner_infotest"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:src="@mipmap/logo_foreground" />
 
         </LinearLayout>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_gravity="center">
+            android:layout_margin="25dp"
+            android:layout_gravity="center"
+            android:gravity="center">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorWhite"
-                android:textSize="16dp"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:layout_margin="10dp"
-                android:layout_marginBottom="25dp"
-                android:id="@+id/tx_tipo_fecha_prueba"
+                android:textSize="15dp"
                 android:layout_marginTop="25dp"
-                android:fontFamily="@font/bs_regular"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorWhite"
-                android:textSize="16dp"
-                android:text="Presione sobre el nombre del integrante y añada el valor y la fecha correspondiente:"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:layout_margin="10dp"
-                android:layout_marginBottom="25dp"
-                android:id="@+id/tx_enun_listint"
-                android:layout_marginTop="25dp"
-                android:fontFamily="@font/bs_regular"/>
-
-            <ListView
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
+                android:id="@+id/enun1_select_test_type"
                 android:fontFamily="@font/bs_regular"
-                android:background="@drawable/borderedondo_txt"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:id="@+id/integrantes_listprueba"
+                android:gravity="center"
+                android:text="@string/select_test_type"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:textColor="@color/colorBanner"
-                android:textSize="14dp"/>
+                android:textSize="14dp"
+                android:layout_margin="15dp"
+                android:background="@drawable/borderedondo_txt"
+                android:id="@+id/tx_info_select_type"
+                android:fontFamily="@font/bs_regular"
+                android:gravity="center"/>
+
+
+
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="136dp"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_gravity="center"
-            android:gravity="center">
+            android:gravity="center"
+            android:layout_marginTop="70dp">
 
             <Button
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="10dp"
+                android:background="@drawable/borderedondo_banner"
                 android:fontFamily="@font/bs_regular"
+                android:gravity="center"
                 android:text="@string/opcion7_Retroceder"
                 android:textAllCaps="false"
-                android:id="@+id/retro_listintegrant"
-                android:background="@drawable/borderedondo_banner"
+                android:id="@+id/retro_select_test_type"
                 android:textColor="@color/colorWhite"
-                android:textSize="14dp"
-                android:layout_gravity="center"
-                android:gravity="center"/>
+                android:layout_marginRight="10dp"
+                android:textSize="14dp" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="10dp"
-                android:fontFamily="@font/bs_regular"
-                android:text="Guardar"
-                android:textAllCaps="false"
-                android:id="@+id/avan_listinteg"
-                android:textSize="14dp"
-                android:layout_gravity="center"
-                android:gravity="center"
                 android:background="@drawable/borderedondo_banner"
-                android:textColor="@color/colorWhite"/>
-
+                android:fontFamily="@font/bs_regular"
+                android:gravity="center"
+                android:id="@+id/avan_select_test_type"
+                android:layout_marginLeft="10dp"
+                android:text="@string/opcion8_Avanzar"
+                android:textAllCaps="false"
+                android:textColor="@color/colorWhite"
+                android:textSize="14dp" />
 
         </LinearLayout>
 
-
     </LinearLayout>
+
 </ScrollView>

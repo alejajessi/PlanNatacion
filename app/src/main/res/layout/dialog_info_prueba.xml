@@ -20,7 +20,7 @@
         android:id="@+id/enun1_infoprueba"
         android:fontFamily="@font/bs_regular"
         android:gravity="center"
-        android:text="Ingrese el tiempo obtenido:"/>
+        android:text="@string/text_ingresar_tiempo_obtenido"/>
 
     <EditText
         android:layout_width="match_parent"
@@ -30,7 +30,8 @@
         android:textSize="14dp"
         android:id="@+id/ed1_infoprueba"
         android:textColor="@color/colorBanner"
-        android:layout_margin="15dp"/>
+        android:layout_margin="15dp"
+        android:inputType="number"/>
 
 
 </LinearLayout>
