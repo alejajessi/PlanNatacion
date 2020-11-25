@@ -43,7 +43,7 @@ public class InfoTest extends Fragment {
     private Button avanzar;
     private Button retroceder;
     private ImageButton bttDate;
-    private EditText edtDate;
+    private TextView edtDate;
     private MacroCiclo macro;
 
     public InfoTest() {

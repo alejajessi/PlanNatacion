@@ -610,8 +610,11 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
         if (fragmento.equals("MostrarSpecificDay")){
             return fechaDiaEspecifico;
 
-        }else if (fragmento.equals("ShowStatistics")) {
+        }else if (fragmento.equals("ShowStatistics") || fragmento.equals("ListIntegrant1")) {
             return tipoPrueba;
+
+        }else if (fragmento.equals("ListIntegrant2")){
+            return fechaPrueba;
 
         }else{
 
@@ -788,6 +791,7 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
             if (integrantesPrueba.size()==0){
                 return null;
             }
+            pedirFechasdePrueba();
             return integrantesPrueba;
         }
 
@@ -835,14 +839,17 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
                             dato.setDato1(tiempos.get(i));
                             pruebaT.getResultadosPruebas().add(dato);
                             intMacro.getPruebas().add(pruebaT);
+                            intMacro.ordenarPrueba(tipoPrueba);
                         }else{
                             dato.setDato1(tiempos.get(i));
                             intMacro.getPruebas().get(pos).getResultadosPruebas().add(dato);
+                            intMacro.ordenarPrueba(tipoPrueba);
                         }
                     }else{
                         dato.setDato1(tiempos.get(i));
                         pruebaT.getResultadosPruebas().add(dato);
                         intMacro.getPruebas().add(pruebaT);
+                        intMacro.ordenarPrueba(tipoPrueba);
                     }
                     break;
                 }
@@ -911,7 +918,9 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
     }
 
     public void ordenarFechasPruebas() {
-        sort(fechasDePrueba,0,(fechasDePrueba.size()-1));
+        if (fechasDePrueba.size()>1){
+            sort(fechasDePrueba,0,(fechasDePrueba.size()-1));
+        }
     }
 
     public void sort(ArrayList<String> fecha, int inicio, int size) {

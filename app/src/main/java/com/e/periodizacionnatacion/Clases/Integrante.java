@@ -130,6 +130,17 @@ public class Integrante implements Serializable {
         this.tiposPruebas = tiposPruebas;
     }
 
+    public void ordenarPrueba(String tipo){
+
+        int tam = pruebas.size();
+        for (int i=0;i<tam;i++){
+            if (pruebas.get(i).getNombre().equals(tipo)){
+                pruebas.get(i).ordenarFechas();
+                break;
+            }
+        }
+    }
+
     /**
      * Método to String
      * @return cadena de caracteres

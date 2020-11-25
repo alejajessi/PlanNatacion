@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Menu_Pruebas#newInstance} factory method to
+ * Use the {@link Menu_Pruebas} factory method to
  * create an instance of this fragment.
  */
 public class Menu_Pruebas extends Fragment {
@@ -54,6 +54,7 @@ public class Menu_Pruebas extends Fragment {
         funcionBttAnhadir(navController);
         funcionBttRetroceder(navController);
         funcionBttPrueba(navController);
+        funcionBttEstadisticas(navController);
     }
 
     public void inicializarID(View view){
@@ -62,7 +63,7 @@ public class Menu_Pruebas extends Fragment {
         anhadir = view.findViewById(R.id.bttadd_notificaction);
         ver = view.findViewById(R.id.bttview_pruebas);
         prueba = view.findViewById(R.id.bttadd_prueba);
-        estadisticas = view.findViewById(R.id.btt_view_stadistics);
+        estadisticas = view.findViewById(R.id.bttestadisticas);
 
     }
 
@@ -92,6 +93,15 @@ public class Menu_Pruebas extends Fragment {
             @Override
             public void onClick(View v) {
                 Navigation.findNavController(v).navigate(R.id.nav_select_cycle_test);
+            }
+        });
+    }
+
+    public void funcionBttEstadisticas(NavController navController) {
+        estadisticas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigate(R.id.nav_select_cycle_statistic);
             }
         });
     }

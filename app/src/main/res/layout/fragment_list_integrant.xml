@@ -55,6 +55,19 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorWhite"
                 android:textSize="16dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_margin="10dp"
+                android:layout_marginBottom="25dp"
+                android:id="@+id/tx_tipo_fecha_prueba"
+                android:layout_marginTop="25dp"
+                android:fontFamily="@font/bs_regular"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorWhite"
+                android:textSize="16dp"
                 android:text="Presione sobre el nombre del integrante y añada el valor y la fecha correspondiente:"
                 android:layout_gravity="center"
                 android:gravity="center"

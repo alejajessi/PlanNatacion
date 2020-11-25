@@ -169,12 +169,18 @@ public class ShowStatistics extends Fragment {
         int red = rnd.nextInt(256);
         int green = rnd.nextInt(256);
         int blue = rnd.nextInt(256);
+
         for (int i=0;i<tam;i++){
 
             //Agrego los resultados de las pruebas de cada integrante con la etiqueta de su nombre
             LineDataSet dataSet = new LineDataSet(valores.get(i),integrantes.get(i).getNombre());
             dataSet.setColor(Color.argb(255, red, green, blue));
             arrayDataSets.add(dataSet);
+
+            //Cambio los colores
+            red = rnd.nextInt(256);
+            green = rnd.nextInt(256);
+            blue = rnd.nextInt(256);
         }
 
         LineData datos = new LineData();
@@ -185,7 +191,9 @@ public class ShowStatistics extends Fragment {
         }
 
         //Agrego el LineData al grafico
+        grafica.getXAxis().setGranularityEnabled(true);
         grafica.getXAxis().setValueFormatter(new IndexAxisValueFormatter(fechasPrueba));
+
         grafica.setData(datos);
         grafica.getDescription().setText(nombrePrueba);
         grafica.animateX(1000);

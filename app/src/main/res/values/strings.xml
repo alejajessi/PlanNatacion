@@ -169,4 +169,5 @@
     <string name="statistics">Estadísticas</string>
     <string name="test_type">Tipo de Prueba</string>
     <string name="select_test_type">Seleccionar el tipo de prueba:</string>
+    <string name="text_ingresar_tiempo_obtenido">Ingrese el tiempo obtenido en segundos:</string>
 </resources>

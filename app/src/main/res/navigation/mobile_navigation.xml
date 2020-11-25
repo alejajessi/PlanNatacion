@@ -206,6 +206,9 @@
         <action
             android:id="@+id/action_nav_menuPruebas_to_nav_select_cycle_test"
             app:destination="@id/nav_select_cycle_test" />
+        <action
+            android:id="@+id/action_nav_menuPruebas_to_nav_select_cycle_statistic"
+            app:destination="@id/nav_select_cycle_statistic" />
     </fragment>
 
     <fragment android:id="@+id/nav_select_Cycle"

@@ -43,7 +43,7 @@
 
         </LinearLayout>
         <com.github.mikephil.charting.charts.LineChart
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="490dp"
             android:id="@+id/linechat_statistics"
             android:scrollbars="horizontal"/>
