@@ -170,4 +170,6 @@
     <string name="test_type">Tipo de Prueba</string>
     <string name="select_test_type">Seleccionar el tipo de prueba:</string>
     <string name="text_ingresar_tiempo_obtenido">Ingrese el tiempo obtenido en segundos:</string>
+    <string name="pruebas_realizadas">Pruebas Realizadas</string>
+    <string name="seleccione_nadador">Seleccione el nadador</string>
 </resources>

@@ -54,6 +54,7 @@ public class Menu_Pruebas extends Fragment {
         funcionBttAnhadir(navController);
         funcionBttRetroceder(navController);
         funcionBttPrueba(navController);
+        funcionBttVer(navController);
         funcionBttEstadisticas(navController);
     }
 
@@ -93,6 +94,15 @@ public class Menu_Pruebas extends Fragment {
             @Override
             public void onClick(View v) {
                 Navigation.findNavController(v).navigate(R.id.nav_select_cycle_test);
+            }
+        });
+    }
+
+    public void funcionBttVer(NavController navController){
+        ver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigate(R.id.nav_select_cycle_previous);
             }
         });
     }
