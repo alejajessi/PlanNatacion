@@ -269,6 +269,7 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
             case "SelectCycle":
             case "SelectCycleTest":
             case "SelectCycleSpecificDay":
+            case "SelectCyclePrevious":
                 pedirMacroCiclo(dato1);
                 break;
             case "MostrarInfoCycle":
@@ -296,6 +297,7 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
                 fechaDiaEspecifico = dato1;
                 break;
             case "SelectTestType":
+            case "SelectPreviousType":
                 tipoPrueba = dato1;
                 pedirFechasdePrueba();
                 break;
@@ -610,7 +612,8 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
         if (fragmento.equals("MostrarSpecificDay")){
             return fechaDiaEspecifico;
 
-        }else if (fragmento.equals("ShowStatistics") || fragmento.equals("ListIntegrant1")) {
+        }else if (fragmento.equals("ShowStatistics") || fragmento.equals("ListIntegrant1") ||
+                fragmento.equals("ShowPreviousTest")) {
             return tipoPrueba;
 
         }else if (fragmento.equals("ListIntegrant2")){
@@ -776,7 +779,7 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
     @Override
     public ArrayList<Integrante> onCallBackIntegrantes(String fragmento) {
 
-        if (fragmento.equals("ListIntegrant")){
+        if (fragmento.equals("ListIntegrant")||fragmento.equals("ShowPreviousTest")){
             ArrayList<Integrante> integrantesPrueba = new ArrayList<Integrante>();
             int tamInt = integrantes.size();
             for (int i=0; i<tamInt;i++){
