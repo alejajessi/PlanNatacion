@@ -172,4 +172,5 @@
     <string name="text_ingresar_tiempo_obtenido">Ingrese el tiempo obtenido en segundos:</string>
     <string name="pruebas_realizadas">Pruebas Realizadas</string>
     <string name="seleccione_nadador">Seleccione el nadador</string>
+    <string name="seleccion_a_eliminar">Seleccione el macrociclo a eliminar</string>
 </resources>

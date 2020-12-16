@@ -603,8 +603,8 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
      * @param macroCiclo Macro ciclo a eliminar
      */
     @Override
-    public void onCallBackDeleteMacroCiclo(com.e.periodizacionnatacion.Clases.MacroCiclo macroCiclo) {
-      deleteMacroCiclo(macroCiclo);
+    public void onCallBackDeleteMacroCiclo(DatoBasico macroCiclo) {
+      deleteMacroCiclo(macroCiclo.getDato2());
     }
 
     @Override
@@ -626,7 +626,60 @@ public class MainActivity extends AppCompatActivity implements CallBackListener 
     }
 
     //No sé como borrar desde aquí jijij holi
-    public void deleteMacroCiclo ( MacroCiclo macroCiclo){
+    public void deleteMacroCiclo ( String macroCicloID){
+        pedirMacroCiclo(macroCicloID);
+
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                if (cambioFrag){
+                    deleteInfo();
+                    cancel();
+                }
+            }
+        }, 1000,1000);
+
+    }
+
+    public void deleteInfo(){
+
+        String id = MacroCiclo.getID();
+
+        int tam = MacroCiclo.getIntegrantes().size();
+        //Eliminar Integrantes asociados al macrociclo
+        for (int i=0;i<tam;i++){
+
+            FirebaseDatabase.getInstance().getReference().child("Integrantes").
+                    child(MacroCiclo.getIntegrantes().get(i).getDato2()).removeValue();
+        }
+
+        //Eliminar cronogramas
+
+            //Dias Agua
+            String idCrono = MacroCiclo.getDiasAgua().getCronograma();
+            FirebaseDatabase.getInstance().getReference().child("Cronograma").child(idCrono).removeValue();
+
+            //Dias Tierra
+            idCrono = MacroCiclo.getDiasTierra().getCronograma();
+            FirebaseDatabase.getInstance().getReference().child("Cronograma").child(idCrono).removeValue();
+
+        //Eliminar FechasPruebas
+        FirebaseDatabase.getInstance().getReference().child("FechasPruebas").child(id).removeValue();
+
+        //Eliminar Macrociclo
+        FirebaseDatabase.getInstance().getReference().child("MacroCiclo").child(id).removeValue();
+
+        //Eliminar Macrociclo en Usuario
+        tam = usuario.getMacroCiclos().size();
+        for (int i=0;i<tam;i++){
+            if (usuario.getMacroCiclos().get(i).getDato2().equals(id)){
+                usuario.getMacroCiclos().remove(i);
+                break;
+            }
+        }
+
+        FirebaseDatabase.getInstance().getReference().child("Usuario").child(usuario.getID()).setValue(usuario);
+
     }
 
     @Override
