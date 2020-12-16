@@ -191,6 +191,9 @@
         <action
             android:id="@+id/action_nav_menuMacroCiclo_to_nav_home"
             app:destination="@id/nav_home" />
+        <action
+            android:id="@+id/action_nav_menuMacroCiclo_to_nav_deletecycle"
+            app:destination="@id/nav_deletecycle" />
     </fragment>
 
     <fragment android:id="@+id/nav_menuPruebas"
@@ -377,6 +380,18 @@
         <action
             android:id="@+id/action_nav_show_statistic_to_nav_select_test_type"
             app:destination="@id/nav_select_test_type" />
+        <action
+            android:id="@+id/action_nav_show_statistic_to_nav_home"
+            app:destination="@id/nav_home" />
+    </fragment>
+
+    <fragment android:id="@+id/nav_deletecycle"
+        android:name="com.deletecycle.SelectCycleDelete"
+        android:label="Select cycle delete"
+        tools:layout="@layout/fragment_select_cycle_delete">
+        <action
+            android:id="@+id/action_nav_show_statistic_to_nav_menuMacroCiclo"
+            app:destination="@id/nav_menuMacroCiclo" />
         <action
             android:id="@+id/action_nav_show_statistic_to_nav_home"
             app:destination="@id/nav_home" />

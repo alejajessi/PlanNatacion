@@ -16,7 +16,7 @@ public interface CallBackListener {
     ArrayList<Cronograma> onCallBackCronograma(String fragmento);
     ArrayList<DatoBasico> onCallBackMostrarCiclo(String fragmento);
     MacroCiclo onCallBackInfoCycle(String fragmento);
-    void onCallBackDeleteMacroCiclo(MacroCiclo macroCiclo);
+    void onCallBackDeleteMacroCiclo(DatoBasico macroCiclo);
     String onCallBackMostrar(String fragmento);
     Dia onCallBackMostrarDia(String fragmento);
     boolean onCallBackCambioFragment();

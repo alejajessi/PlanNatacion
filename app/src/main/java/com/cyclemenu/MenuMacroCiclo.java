@@ -92,7 +92,7 @@ public class MenuMacroCiclo extends Fragment {
         bttDeleteMacroCilo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.nav_home);
+                Navigation.findNavController(v).navigate(R.id.nav_deletecycle);
             }
         });
     }
